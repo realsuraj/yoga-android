@@ -6,99 +6,103 @@
     tools:context=".Detail_intro"
     android:orientation="vertical">
 
+
+
     <ViewSwitcher
         android:id="@+id/switcher"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
-   <LinearLayout
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:orientation="vertical">
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal"
-           >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/poppins_medium"
+                    android:padding="16dp"
+                    android:text="SKIP"
 
 
-
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="SKIP"
-               android:fontFamily="@font/poppins_medium"
-               android:padding="16dp"
+                    />
 
 
-               />
-       </LinearLayout>
+            </RelativeLayout>
 
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginTop="60dp"
-           android:fontFamily="@font/poppins_bold"
-           android:text="What's your gender ?"
-           android:textSize="30dp"
-           android:layout_marginLeft="10dp"
-           android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="60dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="What's your gender ?"
+                android:textColor="@color/black"
+                android:textSize="30dp" />
 
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginTop="7dp"
-           android:text="Let us Know you better"
-           android:layout_marginLeft="10dp"
-           android:fontFamily="@font/poppins_medium"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="7dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Let us Know you better" />
 
-       <RadioGroup
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="vertical"
-           android:layout_marginTop="20dp"
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
 
-           >
+                >
 
 
-           <RadioButton
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_margin="16dp"
-               android:background="@drawable/radio_selector"
-               android:button="@android:color/transparent"
-               android:elevation="4dp"
-               android:padding="23dp"
-               android:text="Male"
-               android:textColor="@drawable/text_color_radio"
-               android:fontFamily="@font/poppins_semibold"/>
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@android:color/transparent"
+                    android:elevation="4dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:padding="23dp"
+                    android:text="Male"
+                    android:textColor="@drawable/text_color_radio" />
 
-           <RadioButton
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_margin="16dp"
-               android:background="@drawable/radio_selector"
-               android:button="@android:color/transparent"
-               android:elevation="4dp"
-               android:padding="23dp"
-               android:text="Female"
-               android:textColor="@drawable/text_color_radio"
-               android:fontFamily="@font/poppins_semibold"/>
-       </RadioGroup>
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/radio_selector"
+                    android:button="@android:color/transparent"
+                    android:elevation="4dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:padding="23dp"
+                    android:text="Female"
+                    android:textColor="@drawable/text_color_radio" />
+            </RadioGroup>
 
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:gravity="center">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
 
-           <Button
-               android:id="@+id/nextbtn"
-               android:layout_width="300dp"
-               android:layout_height="60dp"
-               android:text="Next"
-               android:layout_gravity="bottom"
-               android:fontFamily="@font/poppins_semibold"/>
-       </LinearLayout>
-   </LinearLayout>
+                <Button
+                    android:id="@+id/nextbtn"
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="bottom"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Next" />
+            </LinearLayout>
+        </LinearLayout>
 
 <!--        next page-->
 
@@ -109,7 +113,7 @@
             android:orientation="vertical">
 
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -119,7 +123,8 @@
                         android:id="@+id/btnback"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="back"/>
+                        android:text="back"
+                        android:layout_alignParentLeft="true"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -127,10 +132,10 @@
                         android:text="SKIP"
                         android:fontFamily="@font/poppins_medium"
                         android:padding="16dp"
-
+                        android:layout_alignParentRight="true"
 
                         />
-                </LinearLayout>
+                </RelativeLayout>
 
                 <TextView
                     android:layout_width="wrap_content"

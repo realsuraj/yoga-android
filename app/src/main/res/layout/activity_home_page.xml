@@ -1,16 +1,217 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomePage">
+    android:orientation="vertical"
+    tools:context=".HomePage"
+    android:background="@drawable/card_shape">
 
-    <TextView
-        android:id="@+id/textView"
+<!--heading-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Gym WorkOut"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+    </RelativeLayout>
+
+<!--  plan-->
+
+    <HorizontalScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="home page"
-        tools:layout_editor_absoluteX="176dp"
-        tools:layout_editor_absoluteY="222dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="wrap_content">
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal">
+
+
+           <!--    beginner plan-->
+           <RelativeLayout
+               android:layout_width="300dp"
+               android:layout_height="350dp"
+               android:elevation="3dp"
+               android:background="@drawable/card_shape"
+               android:padding="10dp"
+               android:layout_margin="10dp">
+
+               <ImageView
+                   android:layout_width="200dp"
+                   android:layout_height="350dp"
+                   android:layout_alignParentRight="true"
+                   android:scaleType="centerCrop"
+                   android:src="@drawable/beginner_plan_img" />
+
+               <TextView
+                   android:id="@+id/Beginner_plan"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_centerVertical="true"
+                   android:fontFamily="@font/poppins_medium"
+                   android:text="Beginner \n plan"
+                   android:textColor="@color/black"
+                   android:textSize="25sp" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_below="@id/Beginner_plan"
+                   android:layout_marginTop="0dp"
+                   android:text="30 Days Left"
+                   android:textSize="17sp"/>
+
+               <Button
+                   android:layout_width="150dp"
+                   android:layout_height="wrap_content"
+                   android:text="Join Now"
+                   android:background="@drawable/join_now_btn_background"
+                   android:textColor="@color/white"
+                   android:layout_alignParentBottom="true"
+                   android:layout_centerHorizontal="true"
+                   android:layout_marginBottom="15dp"
+                   />
+
+           </RelativeLayout>
+
+           <!--    intermidiate plan-->
+
+           <RelativeLayout
+               android:layout_width="300dp"
+               android:layout_height="350dp"
+               android:elevation="3dp"
+               android:background="@drawable/card_shape"
+               android:padding="10dp"
+               android:layout_margin="10dp">
+
+               <ImageView
+                   android:layout_width="200dp"
+                   android:layout_height="350dp"
+                   android:layout_alignParentRight="true"
+                   android:scaleType="centerCrop"
+                   android:src="@drawable/intermidiate_plan_img" />
+
+               <TextView
+                   android:id="@+id/Intermidiate_plan"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_centerVertical="true"
+                   android:fontFamily="@font/poppins_medium"
+                   android:text="Intermediate \n plan"
+                   android:textColor="@color/black"
+                   android:textSize="25sp" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_below="@id/Intermidiate_plan"
+                   android:layout_marginTop="0dp"
+                   android:text="30 Days Left"
+                   android:textSize="17sp"/>
+
+               <Button
+                   android:layout_width="150dp"
+                   android:layout_height="wrap_content"
+                   android:text="Join Now"
+                   android:background="@drawable/join_now_btn_background"
+                   android:textColor="@color/white"
+                   android:layout_alignParentBottom="true"
+                   android:layout_centerHorizontal="true"
+                   android:layout_marginBottom="15dp"
+                   />
+
+           </RelativeLayout>
+
+           <!--    advanced plan-->
+
+           <RelativeLayout
+               android:layout_width="300dp"
+               android:layout_height="350dp"
+               android:elevation="3dp"
+               android:background="@drawable/card_shape"
+               android:padding="10dp"
+               android:layout_margin="10dp">
+
+               <ImageView
+                   android:layout_width="200dp"
+                   android:layout_height="350dp"
+                   android:layout_alignParentRight="true"
+                   android:scaleType="centerCrop"
+                   android:src="@drawable/advanced_plan_img" />
+
+               <TextView
+                   android:id="@+id/Advanced_plan"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_centerVertical="true"
+                   android:fontFamily="@font/poppins_medium"
+                   android:text="Advanced \n plan"
+                   android:textColor="@color/black"
+                   android:textSize="25sp" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_below="@id/Advanced_plan"
+                   android:layout_marginTop="0dp"
+                   android:text="30 Days Left"
+                   android:textSize="17sp"/>
+
+               <Button
+                   android:layout_width="150dp"
+                   android:layout_height="wrap_content"
+                   android:text="Join Now"
+                   android:background="@drawable/join_now_btn_background"
+                   android:textColor="@color/white"
+                   android:layout_alignParentBottom="true"
+                   android:layout_centerHorizontal="true"
+                   android:layout_marginBottom="15dp"
+                   />
+
+           </RelativeLayout>
+
+
+       </LinearLayout>
+
+    </HorizontalScrollView>
+
+
+
+
+
+
+
+<!--body focus-->
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Body focus"
+            android:textColor="@color/black"
+            android:textSize="15dp" />
+
+    </RelativeLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/featured_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+
+</LinearLayout>

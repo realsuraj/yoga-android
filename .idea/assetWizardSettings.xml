@@ -91,6 +91,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="imagePath" value="C:\Users\skroy\Downloads\chest icon.jpeg" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -122,8 +123,7 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="foregroundAssetType" value="CLIP_ART" />
-                                      <entry key="outputName" value="back_icon" />
+                                      <entry key="outputName" value="chest_card" />
                                     </map>
                                   </option>
                                 </PersistentState>
