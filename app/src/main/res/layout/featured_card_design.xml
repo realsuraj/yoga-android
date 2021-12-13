@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="180dp"
-    android:layout_height="270dp"
+    android:layout_height="300dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="2dp"
     android:layout_margin="10dp"
@@ -13,7 +13,7 @@
         android:elevation="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="#e9eff1"
         android:orientation="vertical"
         android:padding="10dp"
         android:layout_margin="3dp"
@@ -40,14 +40,46 @@
 
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/featured_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Yoga hai to kar lena "
-            android:fontFamily="@font/poppins_medium"
-            android:textColor="@color/black"
-            android:layout_marginLeft="4dp"/>
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal">
+           android:layout_marginLeft="4dp"/>
+           <ImageView
+               android:layout_width="17dp"
+               android:layout_height="17dp"
+               android:src="@drawable/clock_icon"/>
+           <TextView
+               android:id="@+id/featured_time"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="12:00 Minutes"
+               android:fontFamily="@font/poppins_medium"
+               android:textColor="@color/black"
+               android:layout_marginLeft="20dp"/>
+
+       </LinearLayout>
+
+        <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal">
+           android:layout_marginLeft="4dp"/>
+           <ImageView
+               android:layout_width="20dp"
+               android:layout_height="25dp"
+               android:src="@drawable/exercise_icon"/>
+           <TextView
+               android:layout_marginTop="4dp"
+               android:id="@+id/featured_exercise_count"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="5 exercise"
+               android:fontFamily="@font/poppins_medium"
+               android:textColor="@color/black"
+               android:layout_marginLeft="20dp" />
+
+       </LinearLayout>
 
     </LinearLayout>
 

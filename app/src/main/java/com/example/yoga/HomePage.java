@@ -35,13 +35,13 @@ public class HomePage extends AppCompatActivity {
 
         ArrayList<FeaturedhelperClass> featuredLocaiton = new ArrayList<>();
 
-        featuredLocaiton.add(new FeaturedhelperClass(R.drawable.chest_icon,"Warm up","working on Chest"));
-        featuredLocaiton.add(new FeaturedhelperClass(R.drawable.chest_icon,"Chest","working on tricep"));
-        featuredLocaiton.add(new FeaturedhelperClass(R.drawable.chest_icon,"bicep","working on Bicep"));
-        featuredLocaiton.add(new FeaturedhelperClass(R.drawable.chest_icon,"Tricep","working on Bicep"));
-        featuredLocaiton.add(new FeaturedhelperClass(R.drawable.chest_icon,"Shoulder","working on Bicep"));
-        featuredLocaiton.add(new FeaturedhelperClass(R.drawable.chest_icon,"leg","working on Bicep"));
-        featuredLocaiton.add(new FeaturedhelperClass(R.drawable.chest_icon,"back","working on Bicep"));
+        featuredLocaiton.add(new FeaturedhelperClass(R.drawable.chest_icon,"Warm up","12:00","5 exercise"));
+        featuredLocaiton.add(new FeaturedhelperClass(R.drawable.chest_icon,"Chest","15:00","10 exercise"));
+        featuredLocaiton.add(new FeaturedhelperClass(R.drawable.chest_icon,"bicep","13:00","7 exercise"));
+        featuredLocaiton.add(new FeaturedhelperClass(R.drawable.chest_icon,"Tricep","5:00","8 exercise"));
+        featuredLocaiton.add(new FeaturedhelperClass(R.drawable.chest_icon,"Shoulder","9:00","9 exercise"));
+        featuredLocaiton.add(new FeaturedhelperClass(R.drawable.chest_icon,"leg","10:00","7 exercise"));
+        featuredLocaiton.add(new FeaturedhelperClass(R.drawable.chest_icon,"back","8:00","9 exercise"));
 
         adapter = new FeaturedAdapter(featuredLocaiton);
 

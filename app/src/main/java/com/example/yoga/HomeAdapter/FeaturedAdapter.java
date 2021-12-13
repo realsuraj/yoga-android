@@ -35,7 +35,8 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
 
         holder.imageView.setImageResource(featuredhelperClass.getImage());
         holder.title.setText(featuredhelperClass.getTitle());
-        holder.description.setText(featuredhelperClass.getDescription());
+        holder.time.setText(featuredhelperClass.getTime());
+        holder.exercise_count.setText(featuredhelperClass.getExercise_count());
 
     }
 
@@ -46,7 +47,7 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
 
     public static class FeaturedViewHolder extends RecyclerView.ViewHolder{
         ImageView imageView;
-        TextView title,description;
+        TextView title,time,exercise_count;
 
 
         public FeaturedViewHolder(@NonNull View itemView) {
@@ -54,7 +55,8 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
 
             imageView = itemView.findViewById(R.id.featured_image);
             title = itemView.findViewById(R.id.featured_title);
-            description = itemView.findViewById(R.id.featured_description);
+            time = itemView.findViewById(R.id.featured_time);
+            exercise_count = itemView.findViewById(R.id.featured_exercise_count);
         }
     }
 }
