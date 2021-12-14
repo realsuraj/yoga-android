@@ -16,9 +16,12 @@ import java.util.ArrayList;
 public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.FeaturedViewHolder> {
 
     ArrayList<FeaturedhelperClass> featuredLocation;
+    private RecyclerViewOnClickListerner listerner;
+    int position;
 
-    public FeaturedAdapter(ArrayList<FeaturedhelperClass> featuredLocation) {
+    public FeaturedAdapter(ArrayList<FeaturedhelperClass> featuredLocation,RecyclerViewOnClickListerner listerner) {
         this.featuredLocation = featuredLocation;
+        this.listerner = listerner;
     }
 
     @NonNull
@@ -31,6 +34,7 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
 
     @Override
     public void onBindViewHolder(@NonNull FeaturedViewHolder holder, int position) {
+
         FeaturedhelperClass featuredhelperClass = featuredLocation.get(position);
 
         holder.imageView.setImageResource(featuredhelperClass.getImage());
@@ -45,7 +49,7 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
         return featuredLocation.size();
     }
 
-    public static class FeaturedViewHolder extends RecyclerView.ViewHolder{
+    public class FeaturedViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView imageView;
         TextView title,time,exercise_count;
 
@@ -57,6 +61,17 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
             title = itemView.findViewById(R.id.featured_title);
             time = itemView.findViewById(R.id.featured_time);
             exercise_count = itemView.findViewById(R.id.featured_exercise_count);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            listerner.Onclick(itemView,getAdapterPosition());
+        }
+    }
+
+    public interface RecyclerViewOnClickListerner{
+        void Onclick(View v, int position);
+
     }
 }
