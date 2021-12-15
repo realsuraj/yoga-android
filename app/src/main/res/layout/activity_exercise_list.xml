@@ -8,6 +8,11 @@
     android:orientation="vertical"
     android:background="@color/design_default_color_primary">
 
+    <ImageView
+        android:id="@+id/firebaseimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
     <TextView
         android:id="@+id/exercise_name"
         android:layout_width="wrap_content"
@@ -20,5 +25,7 @@
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp"
         android:paddingBottom="130dp"/>
+
+
 
 </LinearLayout>

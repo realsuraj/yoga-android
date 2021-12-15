@@ -12,6 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.yoga.ExerciseList;
 import com.example.yoga.HomeAdapter.FeaturedAdapter;
 import com.example.yoga.R;
@@ -38,9 +40,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ExerciseViewHolder>{
     public void onBindViewHolder(@NonNull ExerciseViewHolder holder, int position) {
         HelperClass helperClass = exerciseLocation.get(position);
 
-        holder.imageView.setImageResource(helperClass.getExercise_image());
-        holder.Exercise_title.setText(helperClass.getExercise_title());
+        Glide.with(holder.imageView).load(helperClass.getExercise_image()).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.imageView);
 
+        holder.Exercise_title.setText(helperClass.getExercise_title());
         holder.Exercise_time.setText(helperClass.getExercise_time());
 
 

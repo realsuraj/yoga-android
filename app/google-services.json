@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "489120452818",
+    "project_id": "gymdb-7d60f",
+    "storage_bucket": "gymdb-7d60f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:489120452818:android:86ec9e2e59aa9c0fcd5d0b",
+        "android_client_info": {
+          "package_name": "com.example.yoga"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "489120452818-6kt90qlu55os9re1e8ccm2n0q5he46c0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcUAHhd4D6z2zocMVfyPqorQVfHlscBPw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "489120452818-6kt90qlu55os9re1e8ccm2n0q5he46c0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

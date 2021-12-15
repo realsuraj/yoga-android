@@ -4,53 +4,59 @@
     android:layout_height="100dp"
     android:layout_marginBottom="5dp">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:weightSum="5">
+
         <ImageView
             android:id="@+id/exercise_icon"
             android:layout_width="80dp"
             android:layout_height="70dp"
-            android:src="@drawable/chest_icon"
             android:scaleType="centerCrop"
-            android:layout_alignParentLeft="true"/>
-       <LinearLayout
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:orientation="vertical"
-           android:gravity="center"
-           android:layout_centerVertical="true"
-           android:layout_centerHorizontal="true"
-           android:layout_marginLeft="20dp">
-           <TextView
-               android:id="@+id/exercise_title"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="Barbell Bench Press"
-               android:textSize="20sp"
-               android:textColor="@color/black"
-               android:fontFamily="@font/poppins_medium"
-               />
+            android:src="@drawable/chest_icon"
+            android:layout_weight="1"/>
 
-           <TextView
-               android:id="@+id/exercise_time"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="30 Seconds"/>
-       </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+           android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_weight="3"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/exercise_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Barbell"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/exercise_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30 Seconds" />
+        </LinearLayout>
+
 
         <ImageView
-            android:layout_alignParentRight="true"
-            android:layout_width="50dp"
-            android:layout_height="40dp"
-            android:src="@drawable/video_icon"
-            android:background="@android:color/transparent"
-            android:layout_gravity="center_vertical"
-            android:scaleType="centerCrop"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
             android:layout_margin="10dp"
+            android:background="@android:color/transparent"
+            android:gravity="right"
+            android:scaleType="centerCrop"
+            android:src="@drawable/video_icon"
+            android:layout_weight="1"
             />
-    </RelativeLayout>
+
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>
