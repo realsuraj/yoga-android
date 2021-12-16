@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+<!--    chest-->
+    <string-array name="chest_urls">
+        <item>https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/Fitness-Exercise/400x400_7_Top_Chest_Exercises_for_Men_Barbell_Bench_Press.gif?w=525</item>
+        <item>https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/Fitness-Exercise/400x400_7_Top_Chest_Exercises_for_Men_Pec_Dec.gif?w=525</item>
+        <item>https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/Fitness-Exercise/400x400_7_Top_Chest_Exercises_for_Men_Cable_Crossover.gif?w=525</item>
+        <item>https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/Fitness-Exercise/400x400_7_Top_Chest_Exercises_for_Men_Chest_Press.gif?w=525</item>
+        <item>https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/Fitness-Exercise/400x400_7_Top_Chest_Exercises_for_Men_Incline_Dumbbell_Flies.gif?w=525</item>
+        <item>https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/Fitness-Exercise/400x400_7_Top_Chest_Exercises_for_Men_Dips.gif?w=525</item>
+        <item>https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/Fitness-Exercise/400x400_7_Top_Chest_Exercises_for_Men_Pushups.gif?w=525</item>
+
+    </string-array>
+
+
+    <string-array name="bicep_urls">
+
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/curlsthor3.gif?crop=1xw:1xh;center,top&amp;resize=480:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/curlszottman.gif?crop=1xw:1xh;center,top&amp;resize=480:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/spider-curl.gif?crop=1xw:1xh;center,top&amp;resize=480:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/chin-weight.gif?crop=1xw:1xh;center,top&amp;resize=480:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/reverseEZ.gif?crop=1xw:1xh;center,top&amp;resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/reversecurlgif.gif?crop=1xw:1xh;center,top&amp;resize=768:*</item>
+
+    </string-array>
+
+
+
+
+
+    <string-array name="tricep_urls">
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/arnoldpress.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/how-to-do-a-lateral-raise.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/bandraise.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/bent-over-row.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/handstand-wall-walk.gif?resize=768:*</item>
+        <item>https://cdn.prod.openfit.com/uploads/2017/08/29115720/Open_Fit_scarecrow_press_770.gif</item>
+        <item>https://cdn.prod.openfit.com/uploads/2017/08/29115648/Open_Fit_clean_squat_press_770.gif</item>
+
+    </string-array>
+
+
+
+
+    <string-array name="shoulder_urls">
+
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/arnoldpress.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/how-to-do-a-lateral-raise.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/bandraise.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/bent-over-row.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/handstand-wall-walk.gif?resize=768:*</item>
+        <item>https://cdn.prod.openfit.com/uploads/2017/08/29115720/Open_Fit_scarecrow_press_770.gif</item>
+        <item>https://cdn.prod.openfit.com/uploads/2017/08/29115648/Open_Fit_clean_squat_press_770.gif</item>
+
+    </string-array>
+
+
+
+
+    <string-array name="back_urls">
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/kettlbell-swing.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/deadlift.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/how-to-do-a-pull-up.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/dumbbell-single-arm-row.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/dumbbell-row.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/invertedrow.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/latpull.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/meadows-row.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/kbfarmerswalk.gif?resize=768:*</item>
+
+    </string-array>
+
+
+
+    <string-array name="warmup_urls">
+
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/lunge22.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/s-tri.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/s-shoul.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/s-quad.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/s-hip.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/s-ham.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/s-glu.gif?resize=768:*</item>
+
+    </string-array>
+
+
+
+
+    <string-array name="urls_legs">
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/single-leg-glute-bridge.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/overhead.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/deadlift.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/turkiskKB.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/barbell-step-up.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/barbell-squat.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/kettlebell-pistol-squat.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/how-to-run-on-an-inclined-treadmill.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/standing-long-jump.gif?resize=768:*</item>
+
+    </string-array>
+</resources>

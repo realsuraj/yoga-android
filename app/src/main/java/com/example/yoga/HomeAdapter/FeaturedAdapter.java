@@ -9,6 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.yoga.ExerciseListAdapter.HelperClass;
 import com.example.yoga.R;
 
 import java.util.ArrayList;
@@ -36,8 +39,8 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
     public void onBindViewHolder(@NonNull FeaturedViewHolder holder, int position) {
 
         FeaturedhelperClass featuredhelperClass = featuredLocation.get(position);
+        Glide.with(holder.imageView).load(featuredhelperClass.getImage()).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.imageView);
 
-        holder.imageView.setImageResource(featuredhelperClass.getImage());
         holder.title.setText(featuredhelperClass.getTitle());
         holder.time.setText(featuredhelperClass.getTime());
         holder.exercise_count.setText(featuredhelperClass.getExercise_count());
@@ -66,6 +69,7 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
 
         @Override
         public void onClick(View v) {
+
             listerner.Onclick(itemView,getAdapterPosition());
         }
     }

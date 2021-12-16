@@ -21,11 +21,13 @@ import com.example.yoga.R;
 import java.util.ArrayList;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ExerciseViewHolder>{
-
+    private ExerciseOnClickRecycler ex_listerner;
     ArrayList<HelperClass> exerciseLocation;
 
-    public Adapter(ArrayList<HelperClass> exerciseLocation) {
+    public Adapter(ArrayList<HelperClass> exerciseLocation, ExerciseOnClickRecycler ex_listerner) {
         this.exerciseLocation = exerciseLocation;
+        this.ex_listerner = ex_listerner;
+
     }
 
     @NonNull
@@ -54,7 +56,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ExerciseViewHolder>{
     }
 
 
-    public static class ExerciseViewHolder extends RecyclerView.ViewHolder{
+    public class ExerciseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView imageView;
         TextView Exercise_title , Exercise_time;
 
@@ -65,10 +67,19 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ExerciseViewHolder>{
             imageView = itemView.findViewById(R.id.exercise_icon);
             Exercise_title = itemView.findViewById(R.id.exercise_title);
             Exercise_time = itemView.findViewById(R.id.exercise_time);
+            itemView.setOnClickListener(this);
+
+        }
+
+
+        @Override
+        public void onClick(View v) {
+            ex_listerner.Onclick(itemView,getAdapterPosition());
         }
     }
 
-
-
+    public interface ExerciseOnClickRecycler{
+        void Onclick(View v,int position);
+    }
 
 }
