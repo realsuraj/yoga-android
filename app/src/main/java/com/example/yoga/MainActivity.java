@@ -30,10 +30,13 @@ public class MainActivity extends AppCompatActivity {
        if(gender != null && level != null){
            Intent intent = new Intent(MainActivity.this,HomePage.class);
            startActivity(intent);
+           finish();
        }
        else if(gender == null || level == null){
            Intent intent = new Intent(MainActivity.this,Detail_intro.class);
            startActivity(intent);
+           finish();
+
        }
        else {
            Toast.makeText(MainActivity.this,"error",Toast.LENGTH_SHORT).show();

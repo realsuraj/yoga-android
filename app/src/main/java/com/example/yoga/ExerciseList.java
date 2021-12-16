@@ -98,7 +98,7 @@ public class ExerciseList extends AppCompatActivity {
                 list.add(new HelperClass(urls_chest[6] ,"bicep", "1:00"));
                 }
 
-                  if(name_exercise_string.equalsIgnoreCase("leg")) {
+        if(name_exercise_string.equalsIgnoreCase("leg")) {
 
                 list.add(new HelperClass(urls_legs[0], "bicep test", "2:00"));
                 list.add(new HelperClass(urls_legs[1], "bicep 5", "1:00"));
@@ -110,7 +110,7 @@ public class ExerciseList extends AppCompatActivity {
                 list.add(new HelperClass(urls_legs[7], "bicep 9", "12:00"));
                 }
 
-                  if(name_exercise_string.equalsIgnoreCase("tricep")) {
+        if(name_exercise_string.equalsIgnoreCase("tricep")) {
                 list.add(new HelperClass(urls_triceps[0], "bicep 2", "12:00"));
                 list.add(new HelperClass(urls_triceps[1], "bicep 3", "2:00"));
                 list.add(new HelperClass(urls_triceps[2], "bicep 5", "1:00"));
@@ -118,11 +118,9 @@ public class ExerciseList extends AppCompatActivity {
                 list.add(new HelperClass(urls_triceps[4], "bicep 2", "12:00"));
                 list.add(new HelperClass(urls_triceps[5], "bicep 3", "2:00"));
                 list.add(new HelperClass(urls_triceps[6], "bicep 5", "1:00"));
-                list.add(new HelperClass(urls_triceps[7], "bicep 9", "12:00"));
-                list.add(new HelperClass(urls_triceps[8], "bicep 9", "12:00"));
                 }
 
-                  if(name_exercise_string.equalsIgnoreCase("shoulder")) {
+        if(name_exercise_string.equalsIgnoreCase("shoulder")) {
                 list.add(new HelperClass(urls_shoulder[0], "bicep 2", "12:00"));
                 list.add(new HelperClass(urls_shoulder[1], "bicep 3", "2:00"));
                 list.add(new HelperClass(urls_shoulder[2], "bicep 5", "1:00"));
@@ -132,7 +130,7 @@ public class ExerciseList extends AppCompatActivity {
                 list.add(new HelperClass(urls_shoulder[6], "bicep 5", "1:00"));
                 }
 
-                  if(name_exercise_string.equalsIgnoreCase("back")) {
+        if(name_exercise_string.equalsIgnoreCase("back")) {
                 list.add(new HelperClass(urls_backs[0], "bicep 2", "12:00"));
                 list.add(new HelperClass(urls_backs[1], "bicep 3", "2:00"));
                 list.add(new HelperClass(urls_backs[2], "bicep 5", "1:00"));
@@ -144,7 +142,7 @@ public class ExerciseList extends AppCompatActivity {
                 list.add(new HelperClass(urls_backs[8], "bicep 9", "12:00"));
                 }
 
-                  if(name_exercise_string.equalsIgnoreCase("warm-up")) {
+        if (name_exercise_string.equalsIgnoreCase("WarmUp")) {
                 list.add(new HelperClass(urls_warmup[0], "bicep 2", "12:00"));
                 list.add(new HelperClass(urls_warmup[1], "bicep 3", "2:00"));
                 list.add(new HelperClass(urls_warmup[2], "bicep 5", "1:00"));
@@ -152,7 +150,6 @@ public class ExerciseList extends AppCompatActivity {
                 list.add(new HelperClass(urls_warmup[4], "bicep 2", "12:00"));
                 list.add(new HelperClass(urls_warmup[5], "bicep 3", "2:00"));
                 list.add(new HelperClass(urls_warmup[6], "bicep 5", "1:00"));
-                list.add(new HelperClass(urls_warmup[7], "bicep 9", "12:00"));
                 }
 
 
@@ -168,7 +165,8 @@ public class ExerciseList extends AppCompatActivity {
             @Override
             public void Onclick(View v, int position) {
                 Intent intent = new Intent(ExerciseList.this,ShowExercise.class);
-                intent.putExtra("showExercise",list.get(position).getExercise_title());
+                intent.putExtra("showExerciseTitle",list.get(position).getExercise_title());
+                intent.putExtra("showExerciseImage",list.get(position).getExercise_image());
                 startActivity(intent);
             }
         };

@@ -1,7 +1,11 @@
 package com.example.yoga;
 
+import androidx.activity.OnBackPressedDispatcherOwner;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.drawable.Animatable;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -28,33 +32,57 @@ public class ShowExercise extends AppCompatActivity {
     private long countDownClock;
     private int exerciseManager = 0;
     private ArcProgress arcProgress;
-    private String showExercise;
+    private String showExerciseExtra,showImageExtra;
+    ImageView gifDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_exercise);
 
         arcProgress = findViewById(R.id.arcprogress);
         play_time_btn = findViewById(R.id.play_time_btn);
-        exercise_image = findViewById(R.id.exercise_imageview);
+        exercise_image =(ImageView) findViewById(R.id.exercise_imageview);
         exercise_title = findViewById(R.id.exercise_title);
         exercise_description = findViewById(R.id.exercise_description);
         arcProgress.setSuffixText("");
         countDownClock = 5000;
 
+
+
         getExtra();
-        Toast.makeText(ShowExercise.this,"" + showExercise,Toast.LENGTH_SHORT).show();
+        Toast.makeText(ShowExercise.this,"" + showExerciseExtra,Toast.LENGTH_SHORT).show();
         CountDown();
         play_time_btn_on_click();
         ExerciseManager();
 
+
+    }
+
+    int countfinish = 1;
+
+    @Override
+    public void onBackPressed() {
+        if(countfinish == 2)
+        {
+            countDownTimer.cancel();
+            finish();
+            super.onBackPressed();
+        }
+        else
+        {
+            Toast.makeText(ShowExercise.this, "once more", Toast.LENGTH_SHORT).show();
+            countfinish++;
+        }
     }
 
     private void getExtra() {
         Bundle extra = getIntent().getExtras();
         if(extra != null){
-            showExercise = extra.getString("showExercise");
+            showExerciseExtra = extra.getString("showExerciseTitle");
+            showImageExtra = extra.getString("showExerciseImage");
         }
     }
 
@@ -62,10 +90,13 @@ public class ShowExercise extends AppCompatActivity {
        switch (exerciseManager)
        {
            case 1:
-                NextExercise("https://picsum.photos/100?image=50","bicep","10/7",20);
+                NextExercise(showImageExtra,"bicep","1/3",20);
                 break;
            case 2:
-                NextExercise("https://picsum.photos/100?image=55","Chest","11/7",10);
+                NextExercise(showImageExtra,"Chest","2/3",10);
+                break;
+           case 3:
+                NextExercise(showImageExtra,"Chest","3/3",10);
                 break;
            default:
                Toast.makeText(ShowExercise.this,"done",Toast.LENGTH_SHORT).show();
@@ -80,12 +111,21 @@ public class ShowExercise extends AppCompatActivity {
             public void onClick(View v) {
                 if(play_time_btn.isChecked())
                 {
+                    Drawable drawable = exercise_image.getDrawable();
+                    if(drawable instanceof Animatable){
+                        ((Animatable) drawable).stop();
+                    }
+                    play_time_btn.setBackgroundResource(R.drawable.pause_icon);
                     countDownTimer.cancel();
 
                 }
                 else
-                {
-                        CountDown();
+                {  Drawable drawable = exercise_image.getDrawable();
+                    if(drawable instanceof Animatable){
+                        ((Animatable) drawable).start();
+                    }
+                    play_time_btn.setBackgroundResource(R.drawable.play_icon);
+                    CountDown();
                 }
 
             }
@@ -114,7 +154,7 @@ public class ShowExercise extends AppCompatActivity {
     }
 
     private void NextExercise(String url,String title,String howmanyExercise,int timer) {
-        Glide.with(ShowExercise.this).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).into(exercise_image);
+        Glide.with(ShowExercise.this).asGif().load(url).diskCacheStrategy(DiskCacheStrategy.ALL).into(exercise_image);
 
         exercise_title.setText(title);
         exercise_description.setText(howmanyExercise);

@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string-array name="home_page_icons_urls">
+        <item>https://www.bodybuilding.com/fun/images/2014/proper-warm-up-to-enhance-performance_facebook-960x540.jpg</item>
+        <item>https://generationiron.com/wp-content/uploads/2017/01/full-rounded-chest-header.jpg</item>
+        <item>https://d3h9ln6psucegz.cloudfront.net/wp-content/uploads/2010/01/Unconventional-Workout-Biceps.jpg</item>
+        <item>https://i.ytimg.com/vi/9PsyPp-41q8/maxresdefault.jpg</item>
+        <item>https://www.healthkart.com/connect/wp-content/uploads/2016/05/banner-25-1280x720.jpg</item>
+        <item>https://i.ytimg.com/vi/4kMOQXQAdHM/maxresdefault.jpg</item>
+        <item>https://image.shutterstock.com/image-photo/handsome-power-bodybuilder-showing-his-260nw-613210106.jpg</item>
+    </string-array>
 
 <!--    chest-->
     <string-array name="chest_urls">

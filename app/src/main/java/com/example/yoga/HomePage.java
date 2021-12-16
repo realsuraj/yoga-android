@@ -22,6 +22,7 @@ public class HomePage extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private FeaturedAdapter.RecyclerViewOnClickListerner listerner;
     ArrayList<FeaturedhelperClass> FeaturedLocation;
+    String[] urls;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +30,7 @@ public class HomePage extends AppCompatActivity {
 
 
         featuredRecycler = findViewById(R.id.featured_recycler);
+        urls = getResources().getStringArray(R.array.home_page_icons_urls);
 
 
         sharedPreferences = getApplicationContext().getSharedPreferences("storage", Context.MODE_PRIVATE);
@@ -36,7 +38,6 @@ public class HomePage extends AppCompatActivity {
         g = sharedPreferences.getString("gender","");
         l = sharedPreferences.getString("level","");
 
-        Toast.makeText(HomePage.this,g + "  " + l,Toast.LENGTH_SHORT).show();
 
 
         featuredRecycler();
@@ -51,13 +52,13 @@ public class HomePage extends AppCompatActivity {
 
         FeaturedLocation = new ArrayList<>();
 
-        FeaturedLocation.add(new FeaturedhelperClass("https://www.bodybuilding.com/fun/images/2014/proper-warm-up-to-enhance-performance_facebook-960x540.jpg","Warm up","12:00","5 exercise"));
-        FeaturedLocation.add(new FeaturedhelperClass("https://generationiron.com/wp-content/uploads/2017/01/full-rounded-chest-header.jpg","Chest","15:00","10 exercise"));
-        FeaturedLocation.add(new FeaturedhelperClass("https://d3h9ln6psucegz.cloudfront.net/wp-content/uploads/2010/01/Unconventional-Workout-Biceps.jpg","bicep","13:00","7 exercise"));
-        FeaturedLocation.add(new FeaturedhelperClass("https://i.ytimg.com/vi/9PsyPp-41q8/maxresdefault.jpg","Tricep","5:00","8 exercise"));
-        FeaturedLocation.add(new FeaturedhelperClass("https://www.healthkart.com/connect/wp-content/uploads/2016/05/banner-25-1280x720.jpg","Shoulder","9:00","9 exercise"));
-        FeaturedLocation.add(new FeaturedhelperClass("https://i.ytimg.com/vi/4kMOQXQAdHM/maxresdefault.jpg","Leg","10:00","7 exercise"));
-        FeaturedLocation.add(new FeaturedhelperClass("https://image.shutterstock.com/image-photo/handsome-power-bodybuilder-showing-his-260nw-613210106.jpg","Back","8:00","9 exercise"));
+        FeaturedLocation.add(new FeaturedhelperClass(urls[0],"WarmUp","12:00","5 exercise"));
+        FeaturedLocation.add(new FeaturedhelperClass(urls[1],"Chest","15:00","10 exercise"));
+        FeaturedLocation.add(new FeaturedhelperClass(urls[2],"bicep","13:00","7 exercise"));
+        FeaturedLocation.add(new FeaturedhelperClass(urls[3],"Tricep","5:00","8 exercise"));
+        FeaturedLocation.add(new FeaturedhelperClass(urls[4],"Shoulder","9:00","9 exercise"));
+        FeaturedLocation.add(new FeaturedhelperClass(urls[5],"Leg","10:00","7 exercise"));
+        FeaturedLocation.add(new FeaturedhelperClass(urls[6],"Back","8:00","9 exercise"));
 
         adapter = new FeaturedAdapter(FeaturedLocation,listerner);
 
