@@ -6,26 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".ExerciseList"
     android:orientation="vertical"
-    android:background="@color/design_default_color_primary">
+    android:background="@color/design_default_color_primary"
+    android:layout_weight="10">
 
-    <ImageView
-        android:id="@+id/firebaseimage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-    <TextView
-        android:id="@+id/exercise_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Exercise List"/>
+   <LinearLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_weight="2">
+       <ImageView
+           android:id="@+id/firebaseimage"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           />
+       <TextView
+           android:id="@+id/exercise_name"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Exercise List"/>
+   </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/exercise_list_recyclerView"
-        android:layout_width="391dp"
-        android:layout_height="776dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp"
-        android:paddingBottom="130dp"/>
+        android:layout_weight="7"/>
 
+    <Button
+        android:id="@+id/btn_start_all_exercise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:text="Start"
+        android:layout_weight="1"/>
 
 
 </LinearLayout>

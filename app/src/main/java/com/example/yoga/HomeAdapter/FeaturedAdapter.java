@@ -1,5 +1,7 @@
 package com.example.yoga.HomeAdapter;
 
+import android.graphics.drawable.Animatable;
+import android.graphics.drawable.AnimationDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -21,6 +24,7 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
     ArrayList<FeaturedhelperClass> featuredLocation;
     private RecyclerViewOnClickListerner listerner;
     int position;
+
 
     public FeaturedAdapter(ArrayList<FeaturedhelperClass> featuredLocation,RecyclerViewOnClickListerner listerner) {
         this.featuredLocation = featuredLocation;
@@ -39,7 +43,9 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
     public void onBindViewHolder(@NonNull FeaturedViewHolder holder, int position) {
 
         FeaturedhelperClass featuredhelperClass = featuredLocation.get(position);
-        Glide.with(holder.imageView).load(featuredhelperClass.getImage()).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.imageView);
+
+
+        Glide.with(holder.imageView).load(featuredhelperClass.getImage()).placeholder(R.drawable.blank_image).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.imageView);
 
         holder.title.setText(featuredhelperClass.getTitle());
         holder.time.setText(featuredhelperClass.getTime());

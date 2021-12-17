@@ -1,8 +1,10 @@
 package com.example.yoga;
 
 import androidx.activity.OnBackPressedDispatcherOwner;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -32,8 +34,10 @@ public class ShowExercise extends AppCompatActivity {
     private long countDownClock;
     private int exerciseManager = 0;
     private ArcProgress arcProgress;
-    private String showExerciseExtra,showImageExtra;
+    private String showExerciseExtra,showImageExtra,urlImage;
     ImageView gifDrawable;
+    private Button cancel_btn,next_btn;
+    boolean continuetime = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,18 +51,43 @@ public class ShowExercise extends AppCompatActivity {
         exercise_image =(ImageView) findViewById(R.id.exercise_imageview);
         exercise_title = findViewById(R.id.exercise_title);
         exercise_description = findViewById(R.id.exercise_description);
+        cancel_btn = findViewById(R.id.cancel_btn);
+        next_btn = findViewById(R.id.nextbtn);
         arcProgress.setSuffixText("");
-        countDownClock = 5000;
-
-
 
         getExtra();
-        Toast.makeText(ShowExercise.this,"" + showExerciseExtra,Toast.LENGTH_SHORT).show();
-        CountDown();
         play_time_btn_on_click();
         ExerciseManager();
+        cancelBtnPress();
 
 
+
+
+    }
+
+
+
+
+
+    private void cancelBtnPress() {
+        cancel_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(ShowExercise.this)
+                        .setTitle("Stop the exercise")
+                        .setMessage("Are you sure to stop the exercise")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                continuetime = false;
+                                countDownTimer.cancel();
+                                finish();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.cancel,null)
+                        .show();
+            }
+        });
     }
 
     int countfinish = 1;
@@ -67,6 +96,7 @@ public class ShowExercise extends AppCompatActivity {
     public void onBackPressed() {
         if(countfinish == 2)
         {
+            continuetime = false;
             countDownTimer.cancel();
             finish();
             super.onBackPressed();
@@ -87,21 +117,28 @@ public class ShowExercise extends AppCompatActivity {
     }
 
     private void ExerciseManager() {
-       switch (exerciseManager)
-       {
-           case 1:
-                NextExercise(showImageExtra,"bicep","1/3",20);
-                break;
-           case 2:
-                NextExercise(showImageExtra,"Chest","2/3",10);
-                break;
-           case 3:
-                NextExercise(showImageExtra,"Chest","3/3",10);
-                break;
-           default:
-               Toast.makeText(ShowExercise.this,"done",Toast.LENGTH_SHORT).show();
-       }
 
+
+         if(continuetime)
+         {
+             switch (exerciseManager)
+             {
+                 case 1:
+                     NextExercise("bicep","1/3",20);
+                     break;
+
+                 case 2:
+                     NextExercise("Chest","2/3",10);
+                     break;
+
+                 case 3:
+                     NextExercise("Chest","3/3",10);
+                     break;
+
+                 default:
+                     Toast.makeText(ShowExercise.this,"done",Toast.LENGTH_SHORT).show();
+             }
+         }
 
     }
 
@@ -153,9 +190,9 @@ public class ShowExercise extends AppCompatActivity {
 
     }
 
-    private void NextExercise(String url,String title,String howmanyExercise,int timer) {
-        Glide.with(ShowExercise.this).asGif().load(url).diskCacheStrategy(DiskCacheStrategy.ALL).into(exercise_image);
-
+    private void NextExercise(String title,String howmanyExercise,int timer) {
+        urlImage = showImageExtra;
+        Glide.with(ShowExercise.this).asGif().load(urlImage).placeholder(R.drawable.blank_image).diskCacheStrategy(DiskCacheStrategy.ALL).into(exercise_image);
         exercise_title.setText(title);
         exercise_description.setText(howmanyExercise);
         countDownClock = timer * 1000;

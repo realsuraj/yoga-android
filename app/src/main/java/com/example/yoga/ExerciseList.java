@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,13 +28,10 @@ public class ExerciseList extends AppCompatActivity {
     TextView exercise_name;
     String name_exercise_string;
     ImageView imageViewFire;
-    ActivityMainBinding binding;
-    StorageReference storageReference;
-    ProgressDialog progressDialog;
     Adapter.ExerciseOnClickRecycler listerner;
     ArrayList<HelperClass> list;
     String[] urls_legs,urls_chest,urls_biceps,urls_triceps,urls_shoulder,urls_backs,urls_warmup;
-
+    Button btn_start_all_exercise;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +40,24 @@ public class ExerciseList extends AppCompatActivity {
         exercise_name = findViewById(R.id.exercise_name);
         ExerciseRecyclerView = (RecyclerView) findViewById(R.id.exercise_list_recyclerView);
         imageViewFire = findViewById(R.id.firebaseimage);
+        btn_start_all_exercise = findViewById(R.id.btn_start_all_exercise);
         getUrlsInArrayList();
         getExtraIntent();
         Lists();
+        BtnStartAllExercise();
 
+    }
 
-
+    private void BtnStartAllExercise()
+    {
+        btn_start_all_exercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ExerciseList.this,ShowExerciseAll.class);
+                intent.putExtra("Exercise",name_exercise_string);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getUrlsInArrayList() {
@@ -167,6 +177,8 @@ public class ExerciseList extends AppCompatActivity {
                 Intent intent = new Intent(ExerciseList.this,ShowExercise.class);
                 intent.putExtra("showExerciseTitle",list.get(position).getExercise_title());
                 intent.putExtra("showExerciseImage",list.get(position).getExercise_image());
+                intent.putExtra("Exercise_previous_activity",name_exercise_string);
+                intent.putExtra("start","startExercise");
                 startActivity(intent);
             }
         };
