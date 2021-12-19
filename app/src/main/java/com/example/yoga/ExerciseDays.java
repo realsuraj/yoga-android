@@ -29,14 +29,86 @@ public class ExerciseDays extends AppCompatActivity {
         gridAdapter adapter = new gridAdapter();
         gridViewDate.setAdapter(adapter);
 
+        OnclickDate();
 
+    }
 
+    private void OnclickDate() {
         gridViewDate.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(),ExerciseList.class);
-                intent.putExtra("exercise","day");
-                startActivity(intent);
+
+                //chest
+                if(dateString[position].equalsIgnoreCase("DAY 1")
+                        || dateString[position].equalsIgnoreCase("DAY 9" )
+                        || dateString[position].equalsIgnoreCase("DAY 17" )
+                        || dateString[position].equalsIgnoreCase("Day 25"))
+                {
+                    Intent intent = new Intent(getApplicationContext(),ExerciseList.class);
+                    intent.putExtra("exercise","chest");
+                    startActivity(intent);
+                }
+
+                //back
+
+                if(dateString[position].equalsIgnoreCase("DAY 2")
+                        || dateString[position].equalsIgnoreCase("DAY 10" )
+                        || dateString[position].equalsIgnoreCase("DAY 18" )
+                        || dateString[position].equalsIgnoreCase("Day 26"))
+                {
+                    Intent intent = new Intent(getApplicationContext(),ExerciseList.class);
+                    intent.putExtra("exercise","back");
+                    startActivity(intent);
+                }
+
+                //shoulder
+
+                if(dateString[position].equalsIgnoreCase("DAY 3")
+                        || dateString[position].equalsIgnoreCase("DAY 11" )
+                        || dateString[position].equalsIgnoreCase("DAY 19" )
+                        || dateString[position].equalsIgnoreCase("Day 27"))
+                {
+                    Intent intent = new Intent(getApplicationContext(),ExerciseList.class);
+                    intent.putExtra("exercise","shoulder");
+                    startActivity(intent);
+                }
+
+
+
+                //bicep
+
+                if(dateString[position].equalsIgnoreCase("DAY 5")
+                        || dateString[position].equalsIgnoreCase("DAY 13" )
+                        || dateString[position].equalsIgnoreCase("DAY 21" )
+                        || dateString[position].equalsIgnoreCase("Day 29"))
+                {
+                    Intent intent = new Intent(getApplicationContext(),ExerciseList.class);
+                    intent.putExtra("exercise","bicep");
+                    startActivity(intent);
+                }
+
+                //tricep
+
+                if(dateString[position].equalsIgnoreCase("DAY 6")
+                        || dateString[position].equalsIgnoreCase("DAY 14" )
+                        || dateString[position].equalsIgnoreCase("DAY 22" )
+                        || dateString[position].equalsIgnoreCase("Day 30"))
+                {
+                    Intent intent = new Intent(getApplicationContext(),ExerciseList.class);
+                    intent.putExtra("exercise","tricep");
+                    startActivity(intent);
+                }
+                //leg
+                   if(dateString[position].equalsIgnoreCase("DAY 7")
+                           || dateString[position].equalsIgnoreCase("DAY 15" )
+                           || dateString[position].equalsIgnoreCase("DAY 23" ))
+                {
+                    Intent intent = new Intent(getApplicationContext(),ExerciseList.class);
+                    intent.putExtra("exercise","leg");
+                    startActivity(intent);
+                }
+
+
             }
         });
     }
@@ -49,9 +121,11 @@ public class ExerciseDays extends AppCompatActivity {
                   "DAY 22","DAY 23","DAY 24","DAY 25","DAY 26","DAY 27","DAY 28","DAY 29","DAY 30"};
 
         imageDate = new int[]
-                {0,0,0,0,0,0,R.drawable.break_icon,0,0,R.drawable.break_icon,
-                 0,0,0,0,0,0,R.drawable.break_icon,0,0,R.drawable.break_icon,
-                 0,0,0,0,0,0,R.drawable.break_icon,0,0,R.drawable.break_icon};
+                {0,0,0,R.drawable.break_icon,0,0,0,R.drawable.break_icon,
+                 0,0,0,R.drawable.break_icon,0,0,0,R.drawable.break_icon,
+                 0,0,0,R.drawable.break_icon,0,0,0,R.drawable.break_icon,
+                 0,0,0,R.drawable.break_icon,0,0,0,R.drawable.break_icon,
+                        0,0,0};
     }
 
     class gridAdapter extends BaseAdapter{

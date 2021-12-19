@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.yoga.ExerciseListAdapter.Adapter;
 import com.example.yoga.ExerciseListAdapter.HelperClass;
+import com.example.yoga.HomeAdapter.FeaturedAdapter;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -100,7 +101,7 @@ public class ExerciseList extends AppCompatActivity {
         ExerciseRecyclerView.setLayoutManager(new LinearLayoutManager(ExerciseList.this,LinearLayoutManager.VERTICAL,false));
 
         list = new ArrayList<>();
-        if(name_exercise_string.equalsIgnoreCase("bicep") || name_exercise_string.equalsIgnoreCase("day")) {
+        if(name_exercise_string.equalsIgnoreCase("bicep") ) {
             list.add(new HelperClass(urls_biceps[0],titles_biceps[0], "12:00"));
             list.add(new HelperClass(urls_biceps[1],titles_biceps[1] , "2:00"));
             list.add(new HelperClass(urls_biceps[2],titles_biceps[2] , "1:00"));

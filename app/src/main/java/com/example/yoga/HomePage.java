@@ -25,6 +25,7 @@ public class HomePage extends AppCompatActivity {
     private Button joinNowBtnDate1,joinNowBtnDate2,joinNowBtnDate3;
     ArrayList<FeaturedhelperClass> FeaturedLocation;
     String[] urls;
+    String[] chestImageUrls,warmupUrls,bicepUrls,tricepUrls,shoulderUrls,backUrls,legUrls;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +46,20 @@ public class HomePage extends AppCompatActivity {
 
 
 
-        featuredRecycler();
         JoinNow();
+        gettingArraysValues();
+        featuredRecycler();
 
+    }
 
+    private void gettingArraysValues() {
+        chestImageUrls = getResources().getStringArray(R.array.chest_urls);
+        bicepUrls = getResources().getStringArray(R.array.bicep_urls);
+        tricepUrls = getResources().getStringArray(R.array.tricep_urls);
+        shoulderUrls = getResources().getStringArray(R.array.shoulder_urls);
+        backUrls = getResources().getStringArray(R.array.back_urls);
+        legUrls = getResources().getStringArray(R.array.urls_legs);
+        warmupUrls = getResources().getStringArray(R.array.warmup_urls);
     }
 
     private void JoinNow() {
@@ -82,13 +93,13 @@ public class HomePage extends AppCompatActivity {
 
         FeaturedLocation = new ArrayList<>();
 
-        FeaturedLocation.add(new FeaturedhelperClass(urls[0],"WarmUp","12:00","5 exercise"));
-        FeaturedLocation.add(new FeaturedhelperClass(urls[1],"Chest","15:00","10 exercise"));
-        FeaturedLocation.add(new FeaturedhelperClass(urls[2],"bicep","13:00","7 exercise"));
-        FeaturedLocation.add(new FeaturedhelperClass(urls[3],"Tricep","5:00","8 exercise"));
-        FeaturedLocation.add(new FeaturedhelperClass(urls[4],"Shoulder","9:00","9 exercise"));
-        FeaturedLocation.add(new FeaturedhelperClass(urls[5],"Leg","10:00","7 exercise"));
-        FeaturedLocation.add(new FeaturedhelperClass(urls[6],"Back","8:00","9 exercise"));
+        FeaturedLocation.add(new FeaturedhelperClass(urls[0],"WarmUp","12:00",warmupUrls.length + " exercise"));
+        FeaturedLocation.add(new FeaturedhelperClass(urls[1],"Chest","15:00",  chestImageUrls.length+"  exercise"));
+        FeaturedLocation.add(new FeaturedhelperClass(urls[2],"bicep","13:00",  bicepUrls.length+" exercise"));
+        FeaturedLocation.add(new FeaturedhelperClass(urls[3],"Tricep","5:00",  tricepUrls.length+" exercise"));
+        FeaturedLocation.add(new FeaturedhelperClass(urls[4],"Shoulder","9:00",  shoulderUrls.length+" exercise"));
+        FeaturedLocation.add(new FeaturedhelperClass(urls[5],"Leg","10:00",  legUrls.length+" exercise"));
+        FeaturedLocation.add(new FeaturedhelperClass(urls[6],"Back","8:00",  backUrls.length+" exercise"));
 
         adapter = new FeaturedAdapter(FeaturedLocation,listerner);
 

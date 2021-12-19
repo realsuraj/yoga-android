@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -38,7 +39,7 @@ public class ShowExercise extends AppCompatActivity {
     ImageView gifDrawable;
     private Button cancel_btn,next_btn;
     boolean continuetime = true;
-
+    String getExercise;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -52,21 +53,31 @@ public class ShowExercise extends AppCompatActivity {
         exercise_title = findViewById(R.id.exercise_title);
         exercise_description = findViewById(R.id.exercise_description);
         cancel_btn = findViewById(R.id.cancel_btn);
-        next_btn = findViewById(R.id.nextbtn);
+        next_btn = findViewById(R.id.next_btn);
         arcProgress.setSuffixText("");
 
         getExtra();
         play_time_btn_on_click();
         ExerciseManager();
         cancelBtnPress();
-
+        nextBtnPress();
 
 
 
     }
 
+    private void nextBtnPress() {
+        next_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent intent = new Intent(ShowExercise.this, ShowExerciseAll.class);
+                intent.putExtra("Exercise",getExercise);
+                startActivity(intent);
+            }
+        });
 
+    }
 
 
     private void cancelBtnPress() {
@@ -111,6 +122,7 @@ public class ShowExercise extends AppCompatActivity {
     private void getExtra() {
         Bundle extra = getIntent().getExtras();
         if(extra != null){
+            getExercise = extra.getString("Exercise_previous_activity");
             showExerciseExtra = extra.getString("showExerciseTitle");
             showImageExtra = extra.getString("showExerciseImage");
         }

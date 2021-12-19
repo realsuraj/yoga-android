@@ -36,7 +36,7 @@ public class ShowExerciseAll extends AppCompatActivity {
     private String whichExercise = "",urlImage = "";
     String[] chestImageUrls,warmupUrls,bicepUrls,tricepUrls,shoulderUrls,backUrls,legUrls;
     int exerciseManager = 1;
-
+    int loopCount = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -50,7 +50,7 @@ public class ShowExerciseAll extends AppCompatActivity {
         exercise_title = findViewById(R.id.exercise_title);
         exercise_description = findViewById(R.id.exercise_description);
         cancel_btn = findViewById(R.id.cancel_btn);
-        next_btn = findViewById(R.id.nextbtn);
+        next_btn = findViewById(R.id.next_btn);
         arcProgress.setSuffixText("");
         getExtra();
         gettingArraysValues();
@@ -62,7 +62,15 @@ public class ShowExerciseAll extends AppCompatActivity {
     }
 
     private void nextBtnPress() {
-
+        next_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loopCount ++;
+                exerciseManager = 1;
+                countDownTimer.cancel();
+                loopExerciseManager();
+            }
+        });
     }
 
     private void gettingArraysValues() {
@@ -122,32 +130,35 @@ public class ShowExerciseAll extends AppCompatActivity {
             whichExercise = extra.getString("Exercise");
         }
     }
-    int loopCount = 0;
+
 
     private void loopExerciseManager() {
 
 
 
-       if(whichExercise.equalsIgnoreCase("Chest")) {
+       if(whichExercise.equalsIgnoreCase("Chest") ) {
 
-           Toast.makeText(ShowExerciseAll.this, "" + whichExercise, Toast.LENGTH_SHORT).show();
-           while(loopCount < chestImageUrls.length)
+           if(loopCount < chestImageUrls.length)
            {
-               urlImage = chestImageUrls[loopCount];
+               while(true){
+                   urlImage = chestImageUrls[loopCount];
 
-               if(exerciseManager == 4)
-               {
-                   exerciseManager = 1;
+                   if(exerciseManager == 4)
+                   {
+                       exerciseManager = 1;
+                   }
+                   ExerciseManager();
+
+                   break;
                }
-               ExerciseManager();
-
-               break;
+           }
+           else{
+               Toast.makeText(ShowExerciseAll.this, "Completed all exercise", Toast.LENGTH_SHORT).show();
            }
        }
 
         if(whichExercise.equalsIgnoreCase("WarmUp")) {
 
-            Toast.makeText(ShowExerciseAll.this, "" + whichExercise, Toast.LENGTH_SHORT).show();
             while(loopCount < warmupUrls.length)
             {
                 urlImage = warmupUrls[loopCount];
@@ -164,7 +175,6 @@ public class ShowExerciseAll extends AppCompatActivity {
 
         if(whichExercise.equalsIgnoreCase("bicep")) {
 
-            Toast.makeText(ShowExerciseAll.this, "" + whichExercise, Toast.LENGTH_SHORT).show();
             while(loopCount < bicepUrls.length)
             {
                 urlImage = bicepUrls[loopCount];
@@ -181,7 +191,6 @@ public class ShowExerciseAll extends AppCompatActivity {
 
         if(whichExercise.equalsIgnoreCase("tricep")) {
 
-            Toast.makeText(ShowExerciseAll.this, "" + whichExercise, Toast.LENGTH_SHORT).show();
             while(loopCount < tricepUrls.length)
             {
                 urlImage = tricepUrls[loopCount];
@@ -198,7 +207,6 @@ public class ShowExerciseAll extends AppCompatActivity {
 
         if(whichExercise.equalsIgnoreCase("back")) {
 
-            Toast.makeText(ShowExerciseAll.this, "" + whichExercise, Toast.LENGTH_SHORT).show();
             while(loopCount < backUrls.length)
             {
                 urlImage = backUrls[loopCount];
@@ -215,7 +223,6 @@ public class ShowExerciseAll extends AppCompatActivity {
 
         if(whichExercise.equalsIgnoreCase("shoulder")) {
 
-            Toast.makeText(ShowExerciseAll.this, "" + whichExercise, Toast.LENGTH_SHORT).show();
             while(loopCount < shoulderUrls.length)
             {
                 urlImage = shoulderUrls[loopCount];

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ExerciseList"
     android:orientation="vertical"
-    android:background="@color/design_default_color_primary"
+    android:background="@color/white"
     android:layout_weight="10">
 
    <LinearLayout
@@ -32,13 +32,22 @@
         tools:layout_editor_absoluteY="1dp"
         android:layout_weight="7"/>
 
-    <Button
-        android:id="@+id/btn_start_all_exercise"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:text="Start"
-        android:layout_weight="1"/>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       android:layout_gravity="bottom"
+       android:layout_marginBottom="15dp">
+       <Button
+           android:id="@+id/btn_start_all_exercise"
+           android:layout_width="300dp"
+           android:layout_height="45dp"
+           android:layout_gravity="center"
+           android:text="Start"
+           android:background="@drawable/join_now_btn_background"
+           android:textColor="@color/white"
+           android:fontFamily="@font/poppins_medium"/>
+   </LinearLayout>
 
 
 </LinearLayout>

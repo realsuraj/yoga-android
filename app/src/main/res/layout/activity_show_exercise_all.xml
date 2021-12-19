@@ -117,7 +117,8 @@
                     android:id="@+id/next_btn"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/next_icon" />
+                    android:background="@drawable/next_icon"
+                    android:alpha="0.8"/>
 
             </LinearLayout>
         </RelativeLayout>

@@ -11,7 +11,8 @@
 <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
 
 
 
@@ -25,10 +26,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:fontFamily="@font/poppins_bold"
-            android:text="Gym WorkOut"
+            android:fontFamily="@font/poppins_medium"
+            android:text="WorkOut"
             android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:layout_marginLeft="20dp"/>
 
 
     </LinearLayout>
@@ -151,7 +153,7 @@
                android:layout_margin="10dp">
 
                <ImageView
-                   android:layout_width="170dp"
+                   android:layout_width="200dp"
                    android:layout_height="350dp"
                    android:layout_alignParentRight="true"
                    android:scaleType="centerCrop"
@@ -165,7 +167,7 @@
                    android:fontFamily="@font/poppins_medium"
                    android:text="Advanced \n plan"
                    android:textColor="@color/black"
-                   android:textSize="25sp" />
+                   android:textSize="20sp" />
 
                <TextView
                    android:layout_width="wrap_content"
@@ -208,11 +210,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:fontFamily="@font/poppins_bold"
+            android:layout_marginLeft="40dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="Body focus"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:layout_marginLeft="20dp"/>
+            android:textSize="20sp" />
 
     </RelativeLayout>
 
@@ -230,7 +232,7 @@
         android:text="My Custom Exercise"
         android:textSize="20dp"
         android:textColor="@color/black"
-        android:fontFamily="@font/poppins_bold"
+        android:fontFamily="@font/poppins_medium"
         android:layout_marginLeft="20dp"/>
 
     <LinearLayout
