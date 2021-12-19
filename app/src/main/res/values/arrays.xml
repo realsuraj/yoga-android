@@ -11,7 +11,7 @@
         <item>https://image.shutterstock.com/image-photo/handsome-power-bodybuilder-showing-his-260nw-613210106.jpg</item>
     </string-array>
 
-<!--    chest-->
+    <!--    chest 7-->
     <string-array name="chest_urls">
         <item>https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/Fitness-Exercise/400x400_7_Top_Chest_Exercises_for_Men_Barbell_Bench_Press.gif?w=525</item>
         <item>https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/Fitness-Exercise/400x400_7_Top_Chest_Exercises_for_Men_Pec_Dec.gif?w=525</item>
@@ -23,7 +23,19 @@
 
     </string-array>
 
+        <string-array name="chest_titles">
+            <item> Barbell Bench Press </item>
+            <item> Pec Dec  </item>
+            <item>  Cable Crossover </item>
+            <item>  Chest Press</item>
+            <item>  Incline Dumbbell </item>
+            <item>  Dips </item>
+            <item> Push ups </item>
+        </string-array>
 
+    <!--    chest end-->
+
+    <!--        biceps total 6-->
     <string-array name="bicep_urls">
 
         <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/curlsthor3.gif?crop=1xw:1xh;center,top&amp;resize=480:*</item>
@@ -35,24 +47,45 @@
 
     </string-array>
 
+        <string-array name="bicep_titles">
+            <item> Hammer Curl  </item>
+            <item> Zottman Curl  </item>
+            <item>  Decline Dumbbell Curl </item>
+            <item>  Chin Up </item>
+            <item>  Regular EZ Bar Curl </item>
+            <item>  Reverse Curl Straight Bar </item>
+        </string-array>
+    <!--        bicep end-->
 
-
-
+    <!--    triceps 9-->
 
     <string-array name="tricep_urls">
-        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/arnoldpress.gif?resize=768:*</item>
-        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/how-to-do-a-lateral-raise.gif?resize=768:*</item>
-        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/bandraise.gif?resize=768:*</item>
-        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/bent-over-row.gif?resize=768:*</item>
-        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/handstand-wall-walk.gif?resize=768:*</item>
-        <item>https://cdn.prod.openfit.com/uploads/2017/08/29115720/Open_Fit_scarecrow_press_770.gif</item>
-        <item>https://cdn.prod.openfit.com/uploads/2017/08/29115648/Open_Fit_clean_squat_press_770.gif</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/how-to-do-the-close-grip-bench-press.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/triceppulldown.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/dips.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/how-to-do-the-single-arm-dumbbell-tricep-extension.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/skullcrushergif.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/diamond.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/bdip.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/press-up-classic.gif?resize=768:*</item>
+        <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/kettlebell-floor.gif?resize=768:*</item>
 
     </string-array>
 
+        <string-array name="tricep_titles">
+            <item> Close Grip Press  </item>
+            <item>  Rope Tricep PushDown </item>
+            <item>  Triceps Dips (Advanced) </item>
+            <item>  Overhead Triceps Extensions </item>
+            <item>  Skull crushers (Lying Triceps Extensions) </item>
+            <item>  The Diamond Press </item>
+            <item>  Bench Press (Basic) </item>
+            <item>  The Class Press ups </item>
+            <item>  One Arm Kettlebell Floor </item>
+        </string-array>
+    <!--        tricep end-->
 
-
-
+    <!--    shoulder 7-->
     <string-array name="shoulder_urls">
 
         <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/arnoldpress.gif?resize=768:*</item>
@@ -65,9 +98,21 @@
 
     </string-array>
 
+        <string-array name="shoulder_title">
+
+            <item>  Arnold Press </item>
+            <item>  Lateral Raises </item>
+            <item>  Front Band Raise </item>
+            <item>  Bent Over Row </item>
+            <item>  Handstand Hold </item>
+            <item>  Scarecrow Press </item>
+            <item>  Clean Squad Press </item>
+        </string-array>
+
+    <!--        shoulder end-->
 
 
-
+    <!--            back 9-->
     <string-array name="back_urls">
         <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/kettlbell-swing.gif?resize=768:*</item>
         <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/deadlift.gif?resize=768:*</item>
@@ -81,8 +126,19 @@
 
     </string-array>
 
-
-
+        <string-array name="back_titles">
+            <item> Kettlebell Swing </item>
+            <item> Barbell Deadlift </item>
+            <item> Pull up </item>
+            <item> Dumbbell Single Arm Rol </item>
+            <item> Dumbbell Single Arm Row </item>
+            <item> Inverted Row </item>
+            <item> Lat Pull Down </item>
+            <item> Single Arm T-Bar Rows </item>
+            <item> Farmer Walk </item>
+        </string-array>
+    <!--        back end-->
+    <!--warm up-->
     <string-array name="warmup_urls">
 
         <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/lunge22.gif?resize=768:*</item>
@@ -95,9 +151,19 @@
 
     </string-array>
 
+        <string-array name="warmup_titles">
+            <item> Dynamic Stretching </item>
+            <item> Triceps Stretching </item>
+            <item> Shoulder Stretch </item>
+            <item> Quad Stretch </item>
+            <item> Hip Flexsor Stretch </item>
+            <item> Single-leg Hamstring Stretch </item>
+            <item> Glute Stretch </item>
+        </string-array>
 
+    <!--    warmup close-->
 
-
+    <!--        leg 9-->
     <string-array name="urls_legs">
         <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/single-leg-glute-bridge.gif?resize=768:*</item>
         <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/overhead.gif?resize=768:*</item>
@@ -110,4 +176,17 @@
         <item>https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/standing-long-jump.gif?resize=768:*</item>
 
     </string-array>
+
+        <string-array name="leg_titles">
+            <item> Single Legg Glute Bridge </item>
+            <item> Overhead Squad </item>
+            <item> Deadlift </item>
+            <item> Turkish Get up </item>
+            <item> Barbell Step up </item>
+            <item> Barbell Squad </item>
+            <item>  Kettle Pistol Squad </item>
+            <item> Incline Treadmill Sprint </item>
+            <item> Standing Long Jump </item>
+
+        </string-array>
 </resources>

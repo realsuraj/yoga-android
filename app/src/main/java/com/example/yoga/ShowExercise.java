@@ -32,7 +32,7 @@ public class ShowExercise extends AppCompatActivity {
     private TextView exercise_title, exercise_description;
     private CountDownTimer countDownTimer;
     private long countDownClock;
-    private int exerciseManager = 0;
+    private int exerciseManager = 1;
     private ArcProgress arcProgress;
     private String showExerciseExtra,showImageExtra,urlImage;
     ImageView gifDrawable;

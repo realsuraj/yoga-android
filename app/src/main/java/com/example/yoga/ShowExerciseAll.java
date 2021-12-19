@@ -33,8 +33,8 @@ public class ShowExerciseAll extends AppCompatActivity {
     ImageView gifDrawable;
     private Button cancel_btn,next_btn;
     boolean continuetime = true;
-    private String whichExercise,urlImage;
-    String[] chestImageUrls;
+    private String whichExercise = "",urlImage = "";
+    String[] chestImageUrls,warmupUrls,bicepUrls,tricepUrls,shoulderUrls,backUrls,legUrls;
     int exerciseManager = 1;
 
     @Override
@@ -52,21 +52,28 @@ public class ShowExerciseAll extends AppCompatActivity {
         cancel_btn = findViewById(R.id.cancel_btn);
         next_btn = findViewById(R.id.nextbtn);
         arcProgress.setSuffixText("");
-
         getExtra();
-        chestImageUrls = getResources().getStringArray(R.array.chest_urls);
-
+        gettingArraysValues();
+        nextBtnPress();
         play_time_btn_on_click();
         loopExerciseManager();
         cancelBtnPress();
         Toast.makeText(ShowExerciseAll.this, "" + exerciseManager, Toast.LENGTH_SHORT).show();
+    }
 
-
+    private void nextBtnPress() {
 
     }
 
-
-
+    private void gettingArraysValues() {
+        chestImageUrls = getResources().getStringArray(R.array.chest_urls);
+        bicepUrls = getResources().getStringArray(R.array.bicep_urls);
+        tricepUrls = getResources().getStringArray(R.array.tricep_urls);
+        shoulderUrls = getResources().getStringArray(R.array.shoulder_urls);
+        backUrls = getResources().getStringArray(R.array.back_urls);
+        legUrls = getResources().getStringArray(R.array.urls_legs);
+        warmupUrls = getResources().getStringArray(R.array.warmup_urls);
+    }
 
 
     private void cancelBtnPress() {
@@ -119,8 +126,9 @@ public class ShowExerciseAll extends AppCompatActivity {
 
     private void loopExerciseManager() {
 
-       if(whichExercise.equalsIgnoreCase("Chest"))
-       {
+
+
+       if(whichExercise.equalsIgnoreCase("Chest")) {
 
            Toast.makeText(ShowExerciseAll.this, "" + whichExercise, Toast.LENGTH_SHORT).show();
            while(loopCount < chestImageUrls.length)
@@ -136,6 +144,91 @@ public class ShowExerciseAll extends AppCompatActivity {
                break;
            }
        }
+
+        if(whichExercise.equalsIgnoreCase("WarmUp")) {
+
+            Toast.makeText(ShowExerciseAll.this, "" + whichExercise, Toast.LENGTH_SHORT).show();
+            while(loopCount < warmupUrls.length)
+            {
+                urlImage = warmupUrls[loopCount];
+
+                if(exerciseManager == 4)
+                {
+                    exerciseManager = 1;
+                }
+                ExerciseManager();
+
+                break;
+            }
+        }
+
+        if(whichExercise.equalsIgnoreCase("bicep")) {
+
+            Toast.makeText(ShowExerciseAll.this, "" + whichExercise, Toast.LENGTH_SHORT).show();
+            while(loopCount < bicepUrls.length)
+            {
+                urlImage = bicepUrls[loopCount];
+
+                if(exerciseManager == 4)
+                {
+                    exerciseManager = 1;
+                }
+                ExerciseManager();
+
+                break;
+            }
+        }
+
+        if(whichExercise.equalsIgnoreCase("tricep")) {
+
+            Toast.makeText(ShowExerciseAll.this, "" + whichExercise, Toast.LENGTH_SHORT).show();
+            while(loopCount < tricepUrls.length)
+            {
+                urlImage = tricepUrls[loopCount];
+
+                if(exerciseManager == 4)
+                {
+                    exerciseManager = 1;
+                }
+                ExerciseManager();
+
+                break;
+            }
+        }
+
+        if(whichExercise.equalsIgnoreCase("back")) {
+
+            Toast.makeText(ShowExerciseAll.this, "" + whichExercise, Toast.LENGTH_SHORT).show();
+            while(loopCount < backUrls.length)
+            {
+                urlImage = backUrls[loopCount];
+
+                if(exerciseManager == 4)
+                {
+                    exerciseManager = 1;
+                }
+                ExerciseManager();
+
+                break;
+            }
+        }
+
+        if(whichExercise.equalsIgnoreCase("shoulder")) {
+
+            Toast.makeText(ShowExerciseAll.this, "" + whichExercise, Toast.LENGTH_SHORT).show();
+            while(loopCount < shoulderUrls.length)
+            {
+                urlImage = shoulderUrls[loopCount];
+
+                if(exerciseManager == 4)
+                {
+                    exerciseManager = 1;
+                }
+                ExerciseManager();
+
+                break;
+            }
+        }
 
     }
     private void ExerciseManager() {

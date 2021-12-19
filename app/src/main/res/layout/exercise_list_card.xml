@@ -36,7 +36,8 @@
                 android:maxLength="15"
                 android:text="Barbel sdfd ds dfs fsd"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:gravity="center" />
 
             <TextView
                 android:id="@+id/exercise_time"

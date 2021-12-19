@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.yoga.HomeAdapter.FeaturedAdapter;
@@ -21,6 +22,7 @@ public class HomePage extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private SharedPreferences sharedPreferences;
     private FeaturedAdapter.RecyclerViewOnClickListerner listerner;
+    private Button joinNowBtnDate1,joinNowBtnDate2,joinNowBtnDate3;
     ArrayList<FeaturedhelperClass> FeaturedLocation;
     String[] urls;
     @Override
@@ -30,6 +32,9 @@ public class HomePage extends AppCompatActivity {
 
 
         featuredRecycler = findViewById(R.id.featured_recycler);
+        joinNowBtnDate1 = (Button) findViewById(R.id.joinNowDate);
+        joinNowBtnDate2 = (Button) findViewById(R.id.joinNowDate2);
+        joinNowBtnDate3 = (Button) findViewById(R.id.joinNowDate3);
         urls = getResources().getStringArray(R.array.home_page_icons_urls);
 
 
@@ -41,8 +46,33 @@ public class HomePage extends AppCompatActivity {
 
 
         featuredRecycler();
+        JoinNow();
 
 
+    }
+
+    private void JoinNow() {
+        joinNowBtnDate1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this,ExerciseDays.class);
+                startActivity(intent);
+            }
+        });
+        joinNowBtnDate2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this,ExerciseDays.class);
+                startActivity(intent);
+            }
+        });
+        joinNowBtnDate3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this,ExerciseDays.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void featuredRecycler() {

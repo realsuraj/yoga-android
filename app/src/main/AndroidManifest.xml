@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Yoga">
         <activity
+            android:name=".ExerciseDays"
+            android:exported="false" />
+        <activity
             android:name=".ShowExerciseAll"
             android:exported="false" />
         <activity
