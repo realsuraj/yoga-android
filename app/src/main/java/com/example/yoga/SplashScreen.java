@@ -34,9 +34,9 @@ public class SplashScreen extends AppCompatActivity {
         view1 = findViewById(R.id.view1);
         splashImage = findViewById(R.id.splash_img);
 
-        YoYo.with(Techniques.SlideInLeft).duration(2000).playOn(splashTextview);
-        YoYo.with(Techniques.FadeIn).duration(1000).playOn(view1);
-        YoYo.with(Techniques.FadeInRight).duration(3000).playOn(splashTextview2);
+        YoYo.with(Techniques.SlideInLeft).duration(900).playOn(splashTextview);
+        YoYo.with(Techniques.FadeIn).duration(500).playOn(view1);
+        YoYo.with(Techniques.FadeInRight).duration(800).playOn(splashTextview2);
         YoYo.with(Techniques.FadeIn).duration(700).repeat(0).playOn(splashImage);
 
 

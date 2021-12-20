@@ -3,6 +3,7 @@ package com.example.yoga;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
@@ -33,8 +34,10 @@ public class ShowExerciseAll extends AppCompatActivity {
     ImageView gifDrawable;
     private Button cancel_btn,next_btn;
     boolean continuetime = true;
-    private String whichExercise = "",urlImage = "";
-    String[] chestImageUrls,warmupUrls,bicepUrls,tricepUrls,shoulderUrls,backUrls,legUrls;
+    private String whichExercise = "",urlImage = "",titlesText="";
+    String[] chestImageUrls,warmupUrls,bicepUrls,tricepUrls,shoulderUrls,backUrls,legUrls,
+            titles_legs,titles_chest,titles_biceps,titles_triceps,titles_shoulder,titles_back,titles_warmup;
+
     int exerciseManager = 1;
     int loopCount = 0;
     @Override
@@ -81,6 +84,14 @@ public class ShowExerciseAll extends AppCompatActivity {
         backUrls = getResources().getStringArray(R.array.back_urls);
         legUrls = getResources().getStringArray(R.array.urls_legs);
         warmupUrls = getResources().getStringArray(R.array.warmup_urls);
+
+        titles_legs = getResources().getStringArray(R.array.leg_titles);
+        titles_biceps = getResources().getStringArray(R.array.bicep_titles);
+        titles_back = getResources().getStringArray(R.array.back_titles);
+        titles_chest = getResources().getStringArray(R.array.chest_titles);
+        titles_warmup = getResources().getStringArray(R.array.warmup_titles);
+        titles_shoulder = getResources().getStringArray(R.array.shoulder_title);
+        titles_triceps = getResources().getStringArray(R.array.tricep_titles);
     }
 
 
@@ -140,8 +151,10 @@ public class ShowExerciseAll extends AppCompatActivity {
 
            if(loopCount < chestImageUrls.length)
            {
-               while(true){
+
                    urlImage = chestImageUrls[loopCount];
+                   titlesText = titles_chest[loopCount];
+
 
                    if(exerciseManager == 4)
                    {
@@ -149,95 +162,110 @@ public class ShowExerciseAll extends AppCompatActivity {
                    }
                    ExerciseManager();
 
-                   break;
-               }
+
+
            }
            else{
-               Toast.makeText(ShowExerciseAll.this, "Completed all exercise", Toast.LENGTH_SHORT).show();
+               DialogBox();
            }
        }
 
         if(whichExercise.equalsIgnoreCase("WarmUp")) {
 
-            while(loopCount < warmupUrls.length)
-            {
-                urlImage = warmupUrls[loopCount];
+            if (loopCount < warmupUrls.length) {
 
-                if(exerciseManager == 4)
-                {
-                    exerciseManager = 1;
-                }
-                ExerciseManager();
+                    titlesText = titles_warmup[loopCount];
+                    urlImage = warmupUrls[loopCount];
 
-                break;
+                    if (exerciseManager == 4) {
+                        exerciseManager = 1;
+                    }
+                    ExerciseManager();
+
+
+            }else{
+                DialogBox();
             }
         }
 
         if(whichExercise.equalsIgnoreCase("bicep")) {
 
-            while(loopCount < bicepUrls.length)
-            {
-                urlImage = bicepUrls[loopCount];
+            if (loopCount < bicepUrls.length) {
 
-                if(exerciseManager == 4)
-                {
-                    exerciseManager = 1;
-                }
-                ExerciseManager();
+                    titlesText = titles_biceps[loopCount];
+                    urlImage = bicepUrls[loopCount];
 
-                break;
+                    if (exerciseManager == 4) {
+                        exerciseManager = 1;
+                    }
+                    ExerciseManager();
+
+
+
+            }else{
+                DialogBox();
             }
         }
 
         if(whichExercise.equalsIgnoreCase("tricep")) {
 
-            while(loopCount < tricepUrls.length)
-            {
-                urlImage = tricepUrls[loopCount];
+            if (loopCount < tricepUrls.length) {
 
-                if(exerciseManager == 4)
-                {
-                    exerciseManager = 1;
-                }
-                ExerciseManager();
+                    titlesText = titles_triceps[loopCount];
+                    urlImage = tricepUrls[loopCount];
 
-                break;
+                    if (exerciseManager == 4) {
+                        exerciseManager = 1;
+                    }
+                    ExerciseManager();
+
+
+
+            }else{
+                DialogBox();
             }
         }
 
         if(whichExercise.equalsIgnoreCase("back")) {
 
-            while(loopCount < backUrls.length)
-            {
-                urlImage = backUrls[loopCount];
+            if (loopCount < backUrls.length) {
 
-                if(exerciseManager == 4)
-                {
-                    exerciseManager = 1;
-                }
-                ExerciseManager();
+                    titlesText = titles_back[loopCount];
+                    urlImage = backUrls[loopCount];
 
-                break;
+                    if (exerciseManager == 4) {
+                        exerciseManager = 1;
+                    }
+                    ExerciseManager();
+
+
+
+            }else{
+                DialogBox();
             }
         }
 
         if(whichExercise.equalsIgnoreCase("shoulder")) {
 
-            while(loopCount < shoulderUrls.length)
-            {
-                urlImage = shoulderUrls[loopCount];
+            if (loopCount < shoulderUrls.length) {
 
-                if(exerciseManager == 4)
-                {
-                    exerciseManager = 1;
-                }
-                ExerciseManager();
+                    titlesText = titles_shoulder[loopCount];
+                    urlImage = shoulderUrls[loopCount];
 
-                break;
-            }
-        }
+                    if (exerciseManager == 4) {
+                        exerciseManager = 1;
+                    }
+                    ExerciseManager();
+
+
+
+            }else{
+                DialogBox();
+
+            }        }
 
     }
+
     private void ExerciseManager() {
 
 
@@ -247,15 +275,15 @@ public class ShowExerciseAll extends AppCompatActivity {
             {
                 case 1:
 
-                    NextExercise("bicep","1/3",20);
+                    NextExercise(titlesText,"1/3",20);
                     break;
 
                 case 2:
-                    NextExercise("Chest","2/3",10);
+                    NextExercise(titlesText,"2/3",10);
                     break;
 
                 case 3:
-                    NextExercise("Chest","3/3",20);
+                    NextExercise(titlesText,"3/3",20);
 
                     break;
 
@@ -327,4 +355,22 @@ public class ShowExerciseAll extends AppCompatActivity {
         CountDown();
 
     }
+
+    private void DialogBox(){
+        new AlertDialog.Builder(ShowExerciseAll.this)
+                .setTitle("All Exercise Finished")
+                .setMessage("Congratulation you have finished all exercise")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        continuetime = false;
+                        countDownTimer.cancel();
+                        finish();
+                    }
+                })
+                .show();
+
+}
+
+
 }

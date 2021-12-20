@@ -26,11 +26,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:fontFamily="@font/poppins_medium"
+            android:fontFamily="@font/poppins_bold"
             android:text="WorkOut"
             android:textColor="@color/black"
-            android:textSize="20dp"
+            android:textSize="25sp"
             android:layout_marginLeft="20dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginRight="20dp"
+            android:gravity="end">
+
+            <ImageView
+                android:id="@+id/setting_imageview"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity=""
+                android:background="@drawable/setting_icon" />
+        </RelativeLayout>
 
 
     </LinearLayout>

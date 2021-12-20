@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.yoga.HomeAdapter.FeaturedAdapter;
@@ -26,6 +27,7 @@ public class HomePage extends AppCompatActivity {
     ArrayList<FeaturedhelperClass> FeaturedLocation;
     String[] urls;
     String[] chestImageUrls,warmupUrls,bicepUrls,tricepUrls,shoulderUrls,backUrls,legUrls;
+    ImageView settingImageview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,21 +38,33 @@ public class HomePage extends AppCompatActivity {
         joinNowBtnDate1 = (Button) findViewById(R.id.joinNowDate);
         joinNowBtnDate2 = (Button) findViewById(R.id.joinNowDate2);
         joinNowBtnDate3 = (Button) findViewById(R.id.joinNowDate3);
+        settingImageview = (ImageView)  findViewById(R.id.setting_imageview);
         urls = getResources().getStringArray(R.array.home_page_icons_urls);
 
 
         sharedPreferences = getApplicationContext().getSharedPreferences("storage", Context.MODE_PRIVATE);
-        String g , l;
-        g = sharedPreferences.getString("gender","");
-        l = sharedPreferences.getString("level","");
+        String gender , level;
+        gender = sharedPreferences.getString("gender","");
+        level = sharedPreferences.getString("level","");
 
 
 
         JoinNow();
         gettingArraysValues();
         featuredRecycler();
-
+        SettingImageButton();
     }
+
+    private void SettingImageButton() {
+        settingImageview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this,Setting.class);
+                startActivity(intent);
+            }
+        });
+    }
+
 
     private void gettingArraysValues() {
         chestImageUrls = getResources().getStringArray(R.array.chest_urls);
