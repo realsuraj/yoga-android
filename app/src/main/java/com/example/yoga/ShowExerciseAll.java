@@ -37,6 +37,7 @@ public class ShowExerciseAll extends AppCompatActivity {
     private String whichExercise = "",urlImage = "",titlesText="";
     String[] chestImageUrls,warmupUrls,bicepUrls,tricepUrls,shoulderUrls,backUrls,legUrls,
             titles_legs,titles_chest,titles_biceps,titles_triceps,titles_shoulder,titles_back,titles_warmup;
+    int localSetsTime,localCountdownTime;
 
     int exerciseManager = 1;
     int loopCount = 0;
@@ -55,6 +56,8 @@ public class ShowExerciseAll extends AppCompatActivity {
         cancel_btn = findViewById(R.id.cancel_btn);
         next_btn = findViewById(R.id.next_btn);
         arcProgress.setSuffixText("");
+        localCountdownTime = PrefConfig.loadSettingCountDown(this);
+        localSetsTime = PrefConfig.loadSettingSetsCount(this);
         getExtra();
         gettingArraysValues();
         nextBtnPress();
@@ -266,34 +269,19 @@ public class ShowExerciseAll extends AppCompatActivity {
 
     }
 
+    int i = 0;
     private void ExerciseManager() {
-
-
-        if(continuetime)
+         if(continuetime)
         {
-            switch (exerciseManager)
-            {
-                case 1:
 
-                    NextExercise(titlesText,"1/3",20);
-                    break;
-
-                case 2:
-                    NextExercise(titlesText,"2/3",10);
-                    break;
-
-                case 3:
-                    NextExercise(titlesText,"3/3",20);
-
-                    break;
-
-                default:
-                    if(exerciseManager == 4)
-                    {
-                        loopCount ++;
-                        loopExerciseManager();
-                    }
+            if(i <= localSetsTime){
+                NextExercise(titlesText,i+"/"+localSetsTime,localCountdownTime);
+                i++;
             }
+            else {
+                DialogBox();
+            }
+
         }
 
     }

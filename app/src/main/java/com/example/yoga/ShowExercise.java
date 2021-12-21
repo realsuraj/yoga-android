@@ -1,6 +1,5 @@
 package com.example.yoga;
 
-import androidx.activity.OnBackPressedDispatcherOwner;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -22,9 +20,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.github.lzyzsd.circleprogress.ArcProgress;
 
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
-
 public class ShowExercise extends AppCompatActivity {
 
     private TextView textView ;
@@ -33,13 +28,14 @@ public class ShowExercise extends AppCompatActivity {
     private TextView exercise_title, exercise_description;
     private CountDownTimer countDownTimer;
     private long countDownClock;
-    private int exerciseManager = 1;
     private ArcProgress arcProgress;
     private String showExerciseExtra,showImageExtra,urlImage;
     ImageView gifDrawable;
     private Button cancel_btn,next_btn;
     boolean continuetime = true;
     String getExercise;
+    int countdowntime, localSetsCount,localCountdownTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -55,14 +51,14 @@ public class ShowExercise extends AppCompatActivity {
         cancel_btn = findViewById(R.id.cancel_btn);
         next_btn = findViewById(R.id.next_btn);
         arcProgress.setSuffixText("");
+        localSetsCount = PrefConfig.loadSettingSetsCount(this);
+        localCountdownTime = PrefConfig.loadSettingCountDown(this);
 
         getExtra();
         play_time_btn_on_click();
         ExerciseManager();
         cancelBtnPress();
         nextBtnPress();
-
-
 
     }
 
@@ -125,31 +121,26 @@ public class ShowExercise extends AppCompatActivity {
             getExercise = extra.getString("Exercise_previous_activity");
             showExerciseExtra = extra.getString("showExerciseTitle");
             showImageExtra = extra.getString("showExerciseImage");
+            countdowntime = extra.getInt("CountdownTime");
         }
     }
-
+    int i = 1;
     private void ExerciseManager() {
 
-
-         if(continuetime)
+      if(continuetime)
          {
-             switch (exerciseManager)
-             {
-                 case 1:
-                     NextExercise("bicep","1/3",20);
-                     break;
 
-                 case 2:
-                     NextExercise("Chest","2/3",10);
-                     break;
 
-                 case 3:
-                     NextExercise("Chest","3/3",10);
-                     break;
 
-                 default:
-                     Toast.makeText(ShowExercise.this,"done",Toast.LENGTH_SHORT).show();
+             if(i <= localSetsCount) {
+                 NextExercise("bicep",i +"/" + localSetsCount,localCountdownTime);
+                 i++;
+
              }
+             else{
+                 DialogBox();
+             }
+
          }
 
     }
@@ -194,7 +185,6 @@ public class ShowExercise extends AppCompatActivity {
 
         @Override
         public void onFinish() {
-            exerciseManager += 1;
             ExerciseManager();
 
         }
@@ -209,6 +199,22 @@ public class ShowExercise extends AppCompatActivity {
         exercise_description.setText(howmanyExercise);
         countDownClock = timer * 1000;
         CountDown();
+
+    }
+
+    private void DialogBox(){
+        new AlertDialog.Builder(ShowExercise.this)
+                .setTitle("All Exercise Finished")
+                .setMessage("Congratulation you have finished exercise")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        continuetime = false;
+                        countDownTimer.cancel();
+                        finish();
+                    }
+                })
+                .show();
 
     }
 

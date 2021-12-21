@@ -43,11 +43,13 @@ public class HomePage extends AppCompatActivity {
 
 
         sharedPreferences = getApplicationContext().getSharedPreferences("storage", Context.MODE_PRIVATE);
+        sharedPreferences = getApplicationContext().getSharedPreferences("setting", Context.MODE_PRIVATE);
         String gender , level;
+        int countdown, rest;
         gender = sharedPreferences.getString("gender","");
         level = sharedPreferences.getString("level","");
 
-
+        Toast.makeText(HomePage.this, "" + PrefConfig.loadSettingCountDown(this) + PrefConfig.loadSettingSetsCount(this) , Toast.LENGTH_SHORT).show();
 
         JoinNow();
         gettingArraysValues();

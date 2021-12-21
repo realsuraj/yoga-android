@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,6 +35,9 @@ public class ExerciseList extends AppCompatActivity {
     String[] urls_legs,urls_chest,urls_biceps,urls_triceps,urls_shoulder,urls_backs,urls_warmup,
     titles_legs,titles_chest,titles_biceps,titles_triceps,titles_shoulder,titles_back,titles_warmup;
     Button btn_start_all_exercise;
+    int countdownTimeInt;
+    String countdownTimeString;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,7 @@ public class ExerciseList extends AppCompatActivity {
         imageViewFire = findViewById(R.id.firebaseimage);
         btn_start_all_exercise = findViewById(R.id.btn_start_all_exercise);
         name_exercise_string = "";
+        getPrefs();
         getUrlsInArrayList();
         getExtraIntent();
         Lists();
@@ -83,12 +89,17 @@ public class ExerciseList extends AppCompatActivity {
 
     }
 
+    private  void getPrefs(){
+        countdownTimeInt = PrefConfig.loadSettingCountDown(this);
+        countdownTimeString = countdownTimeInt + " seconds";
+    }
 
     private void getExtraIntent() {
         Bundle extras = getIntent().getExtras();
         if(extras != null)
         {
             name_exercise_string = extras.getString("exercise");
+
         }
 
         exercise_name.setText(name_exercise_string);
@@ -102,78 +113,79 @@ public class ExerciseList extends AppCompatActivity {
 
         list = new ArrayList<>();
         if(name_exercise_string.equalsIgnoreCase("bicep") ) {
-            list.add(new HelperClass(urls_biceps[0],titles_biceps[0], "12:00"));
-            list.add(new HelperClass(urls_biceps[1],titles_biceps[1] , "2:00"));
-            list.add(new HelperClass(urls_biceps[2],titles_biceps[2] , "1:00"));
-            list.add(new HelperClass(urls_biceps[3],titles_biceps[3] , "12:00"));
-            list.add(new HelperClass(urls_biceps[4],titles_biceps[4], "2:00"));
-            list.add(new HelperClass(urls_biceps[5],titles_biceps[5] , "2:00"));
+            String time = countdownTimeString;
+            list.add(new HelperClass(urls_biceps[0],titles_biceps[0], "" + time));
+            list.add(new HelperClass(urls_biceps[1],titles_biceps[1] , "" + time));
+            list.add(new HelperClass(urls_biceps[2],titles_biceps[2] , "" + time));
+            list.add(new HelperClass(urls_biceps[3],titles_biceps[3] , "" + time));
+            list.add(new HelperClass(urls_biceps[4],titles_biceps[4], "" + time));
+            list.add(new HelperClass(urls_biceps[5],titles_biceps[5] , "" + time));
 
         }
         if(name_exercise_string.equalsIgnoreCase("chest")) {
-                list.add(new HelperClass(urls_chest[0],titles_chest[0] , "12:00"));
-                list.add(new HelperClass(urls_chest[1],titles_chest[1], "2:00"));
-                list.add(new HelperClass(urls_chest[2],titles_chest[2] , "1:00"));
-                list.add(new HelperClass(urls_chest[3],titles_chest[3] , "12:00"));
-                list.add(new HelperClass(urls_chest[4],titles_chest[4] , "12:00"));
-                list.add(new HelperClass(urls_chest[5],titles_chest[5], "2:00"));
-                list.add(new HelperClass(urls_chest[6],titles_chest[6] ,"1:00"));
+                list.add(new HelperClass(urls_chest[0],titles_chest[0] , "" + countdownTimeString));
+                list.add(new HelperClass(urls_chest[1],titles_chest[1], "" + countdownTimeString));
+                list.add(new HelperClass(urls_chest[2],titles_chest[2] , "" + countdownTimeString));
+                list.add(new HelperClass(urls_chest[3],titles_chest[3] , "" + countdownTimeString));
+                list.add(new HelperClass(urls_chest[4],titles_chest[4] , "" + countdownTimeString));
+                list.add(new HelperClass(urls_chest[5],titles_chest[5], "" + countdownTimeString));
+                list.add(new HelperClass(urls_chest[6],titles_chest[6] ,"" + countdownTimeString));
                 }
 
         if(name_exercise_string.equalsIgnoreCase("leg")) {
 
-                list.add(new HelperClass(urls_legs[0],titles_legs[0] , "2:00"));
-                list.add(new HelperClass(urls_legs[1],titles_legs[1] , "1:00"));
-                list.add(new HelperClass(urls_legs[2],titles_legs[2] , "12:00"));
-                list.add(new HelperClass(urls_legs[3],titles_legs[3] , "12:00"));
-                list.add(new HelperClass(urls_legs[4],titles_legs[4] , "2:00"));
-                list.add(new HelperClass(urls_legs[5],titles_legs[5] , "1:00"));
-                list.add(new HelperClass(urls_legs[6],titles_legs[6] , "12:00"));
-                list.add(new HelperClass(urls_legs[7],titles_legs[7] , "12:00"));
+                list.add(new HelperClass(urls_legs[0],titles_legs[0] , "" + countdownTimeString));
+                list.add(new HelperClass(urls_legs[1],titles_legs[1] , "" + countdownTimeString));
+                list.add(new HelperClass(urls_legs[2],titles_legs[2] , "" + countdownTimeString));
+                list.add(new HelperClass(urls_legs[3],titles_legs[3] , "" + countdownTimeString));
+                list.add(new HelperClass(urls_legs[4],titles_legs[4] , "" + countdownTimeString));
+                list.add(new HelperClass(urls_legs[5],titles_legs[5] , "" + countdownTimeString));
+                list.add(new HelperClass(urls_legs[6],titles_legs[6] , "" + countdownTimeString));
+                list.add(new HelperClass(urls_legs[7],titles_legs[7] , "" + countdownTimeString));
                 }
 
         if(name_exercise_string.equalsIgnoreCase("tricep")) {
-                list.add(new HelperClass(urls_triceps[0], titles_triceps[0], "12:00"));
-                list.add(new HelperClass(urls_triceps[1], titles_triceps[1], "2:00"));
-                list.add(new HelperClass(urls_triceps[2], titles_triceps[2], "1:00"));
-                list.add(new HelperClass(urls_triceps[3], titles_triceps[3], "12:00"));
-                list.add(new HelperClass(urls_triceps[4], titles_triceps[4], "12:00"));
-                list.add(new HelperClass(urls_triceps[5], titles_triceps[5], "2:00"));
-                list.add(new HelperClass(urls_triceps[6], titles_triceps[6], "1:00"));
-                list.add(new HelperClass(urls_triceps[7], titles_triceps[7], "1:00"));
-                list.add(new HelperClass(urls_triceps[8], titles_triceps[8], "1:00"));
+                list.add(new HelperClass(urls_triceps[0], titles_triceps[0], "" + countdownTimeString));
+                list.add(new HelperClass(urls_triceps[1], titles_triceps[1], "" + countdownTimeString));
+                list.add(new HelperClass(urls_triceps[2], titles_triceps[2], "" + countdownTimeString));
+                list.add(new HelperClass(urls_triceps[3], titles_triceps[3], "" + countdownTimeString));
+                list.add(new HelperClass(urls_triceps[4], titles_triceps[4], "" + countdownTimeString));
+                list.add(new HelperClass(urls_triceps[5], titles_triceps[5], "" + countdownTimeString));
+                list.add(new HelperClass(urls_triceps[6], titles_triceps[6], "" + countdownTimeString));
+                list.add(new HelperClass(urls_triceps[7], titles_triceps[7], "" + countdownTimeString));
+                list.add(new HelperClass(urls_triceps[8], titles_triceps[8], "" + countdownTimeString));
                 }
 
         if(name_exercise_string.equalsIgnoreCase("shoulder")) {
-                list.add(new HelperClass(urls_shoulder[0], titles_shoulder[0], "12:00"));
-                list.add(new HelperClass(urls_shoulder[1], titles_shoulder[1], "2:00"));
-                list.add(new HelperClass(urls_shoulder[2], titles_shoulder[2], "1:00"));
-                list.add(new HelperClass(urls_shoulder[3], titles_shoulder[3], "12:00"));
-                list.add(new HelperClass(urls_shoulder[4], titles_shoulder[4], "12:00"));
-                list.add(new HelperClass(urls_shoulder[5], titles_shoulder[5], "2:00"));
-                list.add(new HelperClass(urls_shoulder[6], titles_shoulder[6], "1:00"));
+                list.add(new HelperClass(urls_shoulder[0], titles_shoulder[0], "" + countdownTimeString));
+                list.add(new HelperClass(urls_shoulder[1], titles_shoulder[1], "" + countdownTimeString));
+                list.add(new HelperClass(urls_shoulder[2], titles_shoulder[2], "" + countdownTimeString));
+                list.add(new HelperClass(urls_shoulder[3], titles_shoulder[3], "" + countdownTimeString));
+                list.add(new HelperClass(urls_shoulder[4], titles_shoulder[4], "" + countdownTimeString));
+                list.add(new HelperClass(urls_shoulder[5], titles_shoulder[5], "" + countdownTimeString));
+                list.add(new HelperClass(urls_shoulder[6], titles_shoulder[6], "" + countdownTimeString));
                 }
 
         if(name_exercise_string.equalsIgnoreCase("back")) {
-                list.add(new HelperClass(urls_backs[0], titles_back[0], "12:00"));
-                list.add(new HelperClass(urls_backs[1], titles_back[1], "2:00"));
-                list.add(new HelperClass(urls_backs[2], titles_back[2], "1:00"));
-                list.add(new HelperClass(urls_backs[3], titles_back[3], "12:00"));
-                list.add(new HelperClass(urls_backs[4], titles_back[4], "12:00"));
-                list.add(new HelperClass(urls_backs[5], titles_back[5], "2:00"));
-                list.add(new HelperClass(urls_backs[6], titles_back[6], "1:00"));
-                list.add(new HelperClass(urls_backs[7], titles_back[7], "12:00"));
-                list.add(new HelperClass(urls_backs[8], titles_back[8], "12:00"));
+                list.add(new HelperClass(urls_backs[0], titles_back[0], "" + countdownTimeString));
+                list.add(new HelperClass(urls_backs[1], titles_back[1], "" + countdownTimeString));
+                list.add(new HelperClass(urls_backs[2], titles_back[2], "" + countdownTimeString));
+                list.add(new HelperClass(urls_backs[3], titles_back[3], "" + countdownTimeString));
+                list.add(new HelperClass(urls_backs[4], titles_back[4], "" + countdownTimeString));
+                list.add(new HelperClass(urls_backs[5], titles_back[5], "" + countdownTimeString));
+                list.add(new HelperClass(urls_backs[6], titles_back[6], "" + countdownTimeString));
+                list.add(new HelperClass(urls_backs[7], titles_back[7], "" + countdownTimeString));
+                list.add(new HelperClass(urls_backs[8], titles_back[8], "" + countdownTimeString));
                 }
 
         if (name_exercise_string.equalsIgnoreCase("WarmUp")) {
-                list.add(new HelperClass(urls_warmup[0], titles_warmup[0], "12:00"));
-                list.add(new HelperClass(urls_warmup[1], titles_warmup[1], "2:00"));
-                list.add(new HelperClass(urls_warmup[2], titles_warmup[2], "1:00"));
-                list.add(new HelperClass(urls_warmup[3], titles_warmup[3], "12:00"));
-                list.add(new HelperClass(urls_warmup[4], titles_warmup[4], "12:00"));
-                list.add(new HelperClass(urls_warmup[5], titles_warmup[5], "2:00"));
-                list.add(new HelperClass(urls_warmup[6], titles_warmup[6], "1:00"));
+                list.add(new HelperClass(urls_warmup[0], titles_warmup[0], "" + countdownTimeString));
+                list.add(new HelperClass(urls_warmup[1], titles_warmup[1], "" + countdownTimeString));
+                list.add(new HelperClass(urls_warmup[2], titles_warmup[2], "" + countdownTimeString));
+                list.add(new HelperClass(urls_warmup[3], titles_warmup[3], "" + countdownTimeString));
+                list.add(new HelperClass(urls_warmup[4], titles_warmup[4], "" + countdownTimeString));
+                list.add(new HelperClass(urls_warmup[5], titles_warmup[5], "" + countdownTimeString));
+                list.add(new HelperClass(urls_warmup[6], titles_warmup[6], "" + countdownTimeString));
                 }
 
 
