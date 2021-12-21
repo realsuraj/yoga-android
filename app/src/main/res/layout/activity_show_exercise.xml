@@ -9,6 +9,13 @@
     android:padding="5dp"
     android:weightSum="100">
 
+    <View
+        android:id="@+id/view_for_sound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:soundEffectsEnabled="true"
+        />
+
     <ImageView
         android:id="@+id/exercise_imageview"
         android:layout_width="400dp"

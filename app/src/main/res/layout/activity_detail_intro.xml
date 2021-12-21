@@ -103,7 +103,10 @@
                     android:layout_height="60dp"
                     android:layout_gravity="bottom"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="Next" />
+                    android:text="Next"
+                    android:background="@drawable/join_now_btn_background"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"/>
             </LinearLayout>
         </LinearLayout>
 

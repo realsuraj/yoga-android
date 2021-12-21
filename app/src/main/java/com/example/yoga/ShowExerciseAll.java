@@ -279,6 +279,7 @@ public class ShowExerciseAll extends AppCompatActivity {
                 i++;
             }
             else {
+
                 DialogBox();
             }
 

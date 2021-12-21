@@ -9,6 +9,7 @@ import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -35,6 +36,7 @@ public class ShowExercise extends AppCompatActivity {
     boolean continuetime = true;
     String getExercise;
     int countdowntime, localSetsCount,localCountdownTime;
+    private View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,7 @@ public class ShowExercise extends AppCompatActivity {
         arcProgress.setSuffixText("");
         localSetsCount = PrefConfig.loadSettingSetsCount(this);
         localCountdownTime = PrefConfig.loadSettingCountDown(this);
-
+        view = findViewById(R.id.view_for_sound);
         getExtra();
         play_time_btn_on_click();
         ExerciseManager();
@@ -178,7 +180,6 @@ public class ShowExercise extends AppCompatActivity {
         @Override
         public void onTick(long millisUntilFinished) {
             countDownClock = millisUntilFinished;
-
             arcProgress.setProgress((int)(millisUntilFinished/1000));
         }
 

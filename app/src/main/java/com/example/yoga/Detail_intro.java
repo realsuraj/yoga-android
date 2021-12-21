@@ -20,9 +20,8 @@ public class Detail_intro extends AppCompatActivity {
     private ViewSwitcher viewSwitcher;
     private RadioGroup radio_grp_gender,radio_grp_level;
     private RadioButton gender_selection_radio_btn, level_selection_radio_btn;
-    private SharedPreferences sharedPreferences;
 
-    private String gender_string,level_string;
+    private String gender_string,level_string,previousExtrasValues;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,18 +35,11 @@ public class Detail_intro extends AppCompatActivity {
         finishbtn = (Button) findViewById(R.id.finishbtn);
         radio_grp_gender = (RadioGroup) findViewById(R.id.radio_grp_gender);
         radio_grp_level = (RadioGroup) findViewById(R.id.radio_grp_level);
+        Animation fade = AnimationUtils.loadAnimation(Detail_intro.this,android.R.anim.fade_in);
 
+        viewSwitcher.setAnimation(fade);
 
-
-        sharedPreferences = getSharedPreferences("storage", Context.MODE_PRIVATE);
-
-
-
-        Animation in = AnimationUtils.loadAnimation(Detail_intro.this,android.R.anim.slide_in_left);
-        Animation out = AnimationUtils.loadAnimation(Detail_intro.this,android.R.anim.slide_out_right);
-
-        viewSwitcher.setAnimation(in);
-        viewSwitcher.setAnimation(out);
+        getExtras();
 
 
         btnChangeTxt.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +69,29 @@ public class Detail_intro extends AppCompatActivity {
         }
     });
     }
+    private void getExtras() {
+        Bundle extras = getIntent().getExtras();
+        if(extras != null)
+        {
+            previousExtrasValues = extras.getString("customPressed");
+
+        }
+    }
+    private void nextExtaDepandActivity() {
+        if(previousExtrasValues.equalsIgnoreCase("Custom_pressed")){
+            Intent intent = new Intent(Detail_intro.this, ExerciseDays.class);
+            startActivity(intent);
+            finish();
+        }
+        else{
+            Intent intent = new Intent(Detail_intro.this,HomePage.class);
+            startActivity(intent);
+            finish();
+
+        }
+    }
+
+
 
     public void gender_selecion(){
        if(radio_grp_gender.getCheckedRadioButtonId() == -1)
@@ -88,7 +103,7 @@ public class Detail_intro extends AppCompatActivity {
            int radioId = radio_grp_gender.getCheckedRadioButtonId();
            gender_selection_radio_btn = findViewById(radioId);
            gender_string = "" + gender_selection_radio_btn.getText();
-           Toast.makeText(Detail_intro.this,"selected radio btn: " + gender_string,Toast.LENGTH_SHORT).show();
+           PrefConfig.saveGender(Detail_intro.this,gender_string);
            viewSwitcher.showNext();
        }
 
@@ -96,6 +111,7 @@ public class Detail_intro extends AppCompatActivity {
 
 
     }
+
     public void level_selection(){
       if(radio_grp_level.getCheckedRadioButtonId() == -1)
       {
@@ -106,16 +122,9 @@ public class Detail_intro extends AppCompatActivity {
           int radioId = radio_grp_level.getCheckedRadioButtonId();
           level_selection_radio_btn = findViewById(radioId);
           level_string = "" + level_selection_radio_btn.getText();
+          PrefConfig.saveLevel(Detail_intro.this,level_string);
+          nextExtaDepandActivity();
 
-          SharedPreferences.Editor editor = sharedPreferences.edit();
-          editor.putString("level", gender_string);
-          editor.putString("gender",level_string);
-          editor.apply();
-
-          Toast.makeText(Detail_intro.this,"selected radio btn" + level_string,Toast.LENGTH_SHORT).show();
-
-          Intent intent = new Intent(Detail_intro.this,HomePage.class);
-          startActivity(intent);
       }
 
 

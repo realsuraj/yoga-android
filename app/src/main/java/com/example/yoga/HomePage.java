@@ -27,7 +27,7 @@ public class HomePage extends AppCompatActivity {
     ArrayList<FeaturedhelperClass> FeaturedLocation;
     String[] urls;
     String[] chestImageUrls,warmupUrls,bicepUrls,tricepUrls,shoulderUrls,backUrls,legUrls;
-    ImageView settingImageview;
+    ImageView settingImageview,custom_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +39,7 @@ public class HomePage extends AppCompatActivity {
         joinNowBtnDate2 = (Button) findViewById(R.id.joinNowDate2);
         joinNowBtnDate3 = (Button) findViewById(R.id.joinNowDate3);
         settingImageview = (ImageView)  findViewById(R.id.setting_imageview);
+        custom_btn = findViewById(R.id.create_custom_plan_btn);
         urls = getResources().getStringArray(R.array.home_page_icons_urls);
 
 
@@ -49,12 +50,23 @@ public class HomePage extends AppCompatActivity {
         gender = sharedPreferences.getString("gender","");
         level = sharedPreferences.getString("level","");
 
-        Toast.makeText(HomePage.this, "" + PrefConfig.loadSettingCountDown(this) + PrefConfig.loadSettingSetsCount(this) , Toast.LENGTH_SHORT).show();
 
         JoinNow();
         gettingArraysValues();
         featuredRecycler();
         SettingImageButton();
+        custombtnPressed();
+    }
+
+    private void custombtnPressed() {
+        custom_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this,Detail_intro.class);
+                intent.putExtra("customPressed","Custom_pressed");
+                startActivity(intent);
+            }
+        });
     }
 
     private void SettingImageButton() {
