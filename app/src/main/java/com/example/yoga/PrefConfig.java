@@ -11,9 +11,9 @@ public class PrefConfig {
 
     private  static final String PREF_GENDER = "pref_setting_gender";
     private  static final String PREF_LEVEL = "pref_setting_level";
-    private static final String PREF_DAYS = "pref_days";
+    private static final String PREF_SOUND_ON_OFF = "pref_sound_onn_off";
 
-    private static final String PREF_ISDAYPAGE = "pref_isDayPage";
+    private static final String PREF_MUSIC_ON_OFF = "pref_is_music_on_off";
 
     public static void saveSettingSetsCountInPref(Context context, int total){
         SharedPreferences sharedPreferences = context.getSharedPreferences(MY_PREFERENCE_NAME,Context.MODE_PRIVATE);
@@ -62,28 +62,28 @@ public class PrefConfig {
         SharedPreferences sharedPreferences = context.getSharedPreferences(MY_PREFERENCE_NAME,Context.MODE_PRIVATE);
         return sharedPreferences.getInt(PREF_SETTING_COUNTDOWN,30);
     }
-    public static void saveDays(Context context, int Days){
+    public static void saveIsSoundOn(Context context, boolean isSoundOn){
         SharedPreferences sharedPreferences = context.getSharedPreferences(MY_PREFERENCE_NAME,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(PREF_DAYS,Days);
+        editor.putBoolean(PREF_SOUND_ON_OFF,isSoundOn);
         editor.apply();
     };
 
-    public static int loadDays(Context context){
+    public static boolean loadIsSoundOn(Context context){
         SharedPreferences sharedPreferences = context.getSharedPreferences(MY_PREFERENCE_NAME,Context.MODE_PRIVATE);
-        return sharedPreferences.getInt(PREF_DAYS,0);
+        return sharedPreferences.getBoolean(PREF_SOUND_ON_OFF,false);
     }
 
-      public static void saveIsDayPage(Context context, boolean isDayspage){
+      public static void saveIsMusicOn(Context context, boolean IsMusicOn){
         SharedPreferences sharedPreferences = context.getSharedPreferences(MY_PREFERENCE_NAME,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(PREF_ISDAYPAGE,isDayspage);
+        editor.putBoolean(PREF_MUSIC_ON_OFF,IsMusicOn);
         editor.apply();
     };
 
-    public static boolean loadIsDayPage(Context context){
+    public static boolean loadIsMusicOn(Context context){
         SharedPreferences sharedPreferences = context.getSharedPreferences(MY_PREFERENCE_NAME,Context.MODE_PRIVATE);
-        return sharedPreferences.getBoolean(PREF_ISDAYPAGE,false);
+        return sharedPreferences.getBoolean(PREF_MUSIC_ON_OFF,false);
     }
 
 

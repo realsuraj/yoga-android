@@ -7,6 +7,9 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -38,6 +41,7 @@ public class ShowExerciseAll extends AppCompatActivity {
     String[] chestImageUrls,warmupUrls,bicepUrls,tricepUrls,shoulderUrls,backUrls,legUrls,
             titles_legs,titles_chest,titles_biceps,titles_triceps,titles_shoulder,titles_back,titles_warmup;
     int localSetsTime,localCountdownTime;
+    MediaPlayer player;
 
     int exerciseManager = 1;
     int loopCount = 0;
@@ -64,8 +68,44 @@ public class ShowExerciseAll extends AppCompatActivity {
         play_time_btn_on_click();
         loopExerciseManager();
         cancelBtnPress();
-        Toast.makeText(ShowExerciseAll.this, "" + exerciseManager, Toast.LENGTH_SHORT).show();
+        startBackgroundSong();
     }
+    private void stopBackgroundSong() {
+        if(player != null){
+            player.release();
+            player = null;
+        }
+    }
+
+    private void startBackgroundSong() {
+        if(!PrefConfig.loadIsMusicOn(ShowExerciseAll.this)) {
+            player = MediaPlayer.create(ShowExerciseAll.this,R.raw.song);
+            player.seekTo(22000);
+            player.setLooping(true);
+            player.start();
+        }
+        else{
+            stopBackgroundSong();
+        }
+    }
+
+    ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+
+    public void soundPlayer(String whichsound){
+       if(!PrefConfig.loadIsSoundOn(ShowExerciseAll.this)){
+           if(whichsound.equalsIgnoreCase("countdown")){
+               toneG.startTone(ToneGenerator.TONE_PROP_BEEP, 400);
+
+           }
+           if(whichsound.equalsIgnoreCase("finish")){
+               toneG.startTone(ToneGenerator.TONE_CDMA_PIP, 1000);
+
+           }
+
+       }
+
+    }
+
 
     private void nextBtnPress() {
         next_btn.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +148,7 @@ public class ShowExerciseAll extends AppCompatActivity {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                stopBackgroundSong();
                                 continuetime = false;
                                 countDownTimer.cancel();
                                 finish();
@@ -125,6 +166,7 @@ public class ShowExerciseAll extends AppCompatActivity {
     public void onBackPressed() {
         if(countfinish == 2)
         {
+            stopBackgroundSong();
             continuetime = false;
             countDownTimer.cancel();
             finish();
@@ -157,12 +199,6 @@ public class ShowExerciseAll extends AppCompatActivity {
 
                    urlImage = chestImageUrls[loopCount];
                    titlesText = titles_chest[loopCount];
-
-
-                   if(exerciseManager == 4)
-                   {
-                       exerciseManager = 1;
-                   }
                    ExerciseManager();
 
 
@@ -179,10 +215,6 @@ public class ShowExerciseAll extends AppCompatActivity {
 
                     titlesText = titles_warmup[loopCount];
                     urlImage = warmupUrls[loopCount];
-
-                    if (exerciseManager == 4) {
-                        exerciseManager = 1;
-                    }
                     ExerciseManager();
 
 
@@ -198,9 +230,6 @@ public class ShowExerciseAll extends AppCompatActivity {
                     titlesText = titles_biceps[loopCount];
                     urlImage = bicepUrls[loopCount];
 
-                    if (exerciseManager == 4) {
-                        exerciseManager = 1;
-                    }
                     ExerciseManager();
 
 
@@ -217,9 +246,6 @@ public class ShowExerciseAll extends AppCompatActivity {
                     titlesText = titles_triceps[loopCount];
                     urlImage = tricepUrls[loopCount];
 
-                    if (exerciseManager == 4) {
-                        exerciseManager = 1;
-                    }
                     ExerciseManager();
 
 
@@ -235,10 +261,6 @@ public class ShowExerciseAll extends AppCompatActivity {
 
                     titlesText = titles_back[loopCount];
                     urlImage = backUrls[loopCount];
-
-                    if (exerciseManager == 4) {
-                        exerciseManager = 1;
-                    }
                     ExerciseManager();
 
 
@@ -254,10 +276,6 @@ public class ShowExerciseAll extends AppCompatActivity {
 
                     titlesText = titles_shoulder[loopCount];
                     urlImage = shoulderUrls[loopCount];
-
-                    if (exerciseManager == 4) {
-                        exerciseManager = 1;
-                    }
                     ExerciseManager();
 
 
@@ -269,18 +287,21 @@ public class ShowExerciseAll extends AppCompatActivity {
 
     }
 
-    int i = 0;
+    int i = 1;
     private void ExerciseManager() {
          if(continuetime)
         {
 
             if(i <= localSetsTime){
-                NextExercise(titlesText,i+"/"+localSetsTime,localCountdownTime);
                 i++;
+                NextExercise(titlesText,(i-1) +"/"+localSetsTime,localCountdownTime);
+
             }
             else {
+                loopCount ++;
+                i = 1;
+                loopExerciseManager();
 
-                DialogBox();
             }
 
         }
@@ -320,20 +341,42 @@ public class ShowExerciseAll extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 countDownClock = millisUntilFinished;
-
+                soundPlayer("countdown");
                 arcProgress.setProgress((int)(millisUntilFinished/1000));
             }
 
 
             @Override
             public void onFinish() {
-                exerciseManager ++;
-                ExerciseManager();
+                soundPlayer("finish");
 
+                alertDialogFinishTime();
 
             }
         }.start();
 
+    }
+
+    private void alertDialogFinishTime() {
+        new AlertDialog.Builder(ShowExerciseAll.this)
+                .setTitle((i-1) + " Set Finished")
+                .setMessage("Do you want to continue")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                      ExerciseManager();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        stopBackgroundSong();
+                        continuetime = false;
+                        countDownTimer.cancel();
+                        finish();
+                    }
+                })
+                .show();
     }
 
     private void NextExercise(String title,String howmanyExercise,int timer) {

@@ -7,6 +7,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.SoundEffectConstants;
@@ -36,7 +39,7 @@ public class ShowExercise extends AppCompatActivity {
     boolean continuetime = true;
     String getExercise;
     int countdowntime, localSetsCount,localCountdownTime;
-    private View view;
+    MediaPlayer player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,14 +58,35 @@ public class ShowExercise extends AppCompatActivity {
         arcProgress.setSuffixText("");
         localSetsCount = PrefConfig.loadSettingSetsCount(this);
         localCountdownTime = PrefConfig.loadSettingCountDown(this);
-        view = findViewById(R.id.view_for_sound);
+        soundPlayer("");
         getExtra();
         play_time_btn_on_click();
         ExerciseManager();
         cancelBtnPress();
         nextBtnPress();
+        startBackgroundSong();
 
     }
+
+    private void stopBackgroundSong() {
+        if(player != null){
+            player.release();
+            player = null;
+        }
+    }
+
+    private void startBackgroundSong() {
+        if(!PrefConfig.loadIsMusicOn(ShowExercise.this)) {
+            player = MediaPlayer.create(ShowExercise.this,R.raw.song);
+            player.seekTo(22000);
+            player.setLooping(true);
+            player.start();
+        }
+        else{
+            stopBackgroundSong();
+        }
+    }
+
 
     private void nextBtnPress() {
         next_btn.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +112,7 @@ public class ShowExercise extends AppCompatActivity {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                stopBackgroundSong();
                                 continuetime = false;
                                 countDownTimer.cancel();
                                 finish();
@@ -105,6 +130,7 @@ public class ShowExercise extends AppCompatActivity {
     public void onBackPressed() {
         if(countfinish == 2)
         {
+            stopBackgroundSong();
             continuetime = false;
             countDownTimer.cancel();
             finish();
@@ -173,20 +199,39 @@ public class ShowExercise extends AppCompatActivity {
             }
         });
     }
+    ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+
+    public void soundPlayer(String whichsound){
+        if(!PrefConfig.loadIsSoundOn(ShowExercise.this)){
+            if(whichsound.equalsIgnoreCase("countdown")){
+                toneG.startTone(ToneGenerator.TONE_PROP_BEEP, 400);
+
+            }
+            if(whichsound.equalsIgnoreCase("finish")){
+                toneG.startTone(ToneGenerator.TONE_CDMA_PIP, 1000);
+
+            }
+
+        }
+    }
+
 
     private void CountDown() {
         arcProgress.setMax((int)countDownClock/1000);
+        arcProgress.setProgress(100);
         countDownTimer =  new CountDownTimer(countDownClock, 1000) {
         @Override
         public void onTick(long millisUntilFinished) {
-            countDownClock = millisUntilFinished;
-            arcProgress.setProgress((int)(millisUntilFinished/1000));
+            arcProgress.setProgress((int)millisUntilFinished/1000);
+            soundPlayer("countdown");
         }
 
 
         @Override
         public void onFinish() {
-            ExerciseManager();
+            arcProgress.setProgress(0);
+            soundPlayer("finish");
+            DialogBoxEndTime();
 
         }
     }.start();
@@ -210,12 +255,43 @@ public class ShowExercise extends AppCompatActivity {
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        stopBackgroundSong();
                         continuetime = false;
                         countDownTimer.cancel();
                         finish();
                     }
                 })
                 .show();
+
+    }
+ private void DialogBoxEndTime(){
+        if(i > localSetsCount)
+        {
+            ExerciseManager();
+        }
+        else
+        {
+
+            new AlertDialog.Builder(ShowExercise.this)
+                    .setTitle("Set " + (i-1) + " Finished")
+                    .setMessage("Do you want to continue")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ExerciseManager();
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            stopBackgroundSong();
+                            continuetime = false;
+                            countDownTimer.cancel();
+                            finish();
+                        }
+                    })
+                    .show();
+        }
 
     }
 

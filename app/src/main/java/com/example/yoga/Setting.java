@@ -2,6 +2,7 @@ package com.example.yoga;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -21,6 +22,7 @@ public class Setting extends AppCompatActivity{
     SharedPreferences sharedPreferences;
     TextView setsCounttxt;
     TextView countdownTimetxt;
+    SwitchCompat soundOnOffBtn,musicOnOffBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +35,55 @@ public class Setting extends AppCompatActivity{
         countdownbtn = (LinearLayout) findViewById(R.id.setting_countdown_btn_ly);
         setsCounttxt = findViewById(R.id.rest_time_textview);
         countdownTimetxt = findViewById(R.id.Countdown_txt);
+        soundOnOffBtn = findViewById(R.id.soundOnOffbtn);
+        musicOnOffBtn = findViewById(R.id.musicOnOffbtn);
+
         setsCounttxt.setText("" + PrefConfig.loadSettingSetsCount(this));
         countdownTimetxt.setText("" + PrefConfig.loadSettingCountDown(this));
 
+
        SetsOnClick();
        CountDownOnclick();
+       soundOnClick();
+       musicOnclick();
 
 
+        soundOnOffBtn.setChecked(PrefConfig.loadIsSoundOn(this));
+        musicOnOffBtn.setChecked(PrefConfig.loadIsMusicOn(this));
+    }
 
+    private void soundOnClick() {
+        soundOnOffBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(soundOnOffBtn.isChecked()){
+                    PrefConfig.saveIsSoundOn(Setting.this,true);
+                }
+                else{
+                    PrefConfig.saveIsSoundOn(Setting.this,false);
 
+                }
 
+            }
+        });
+    }
 
+    private void musicOnclick() {
+
+        musicOnOffBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(musicOnOffBtn.isChecked()){
+                    PrefConfig.saveIsMusicOn(Setting.this,true);
+                }
+                else
+                {
+                    PrefConfig.saveIsMusicOn(Setting.this,false);
+
+                }
+
+            }
+        });
     }
 
     private void CountDownOnclick() {
