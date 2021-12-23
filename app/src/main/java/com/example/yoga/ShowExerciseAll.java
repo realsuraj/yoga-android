@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
@@ -34,7 +35,7 @@ public class ShowExerciseAll extends AppCompatActivity {
     private long countDownClock;
     private int LoopExerciseManager = 0;
     private ArcProgress arcProgress;
-    ImageView gifDrawable;
+    ImageView settingBtn;
     private Button cancel_btn,next_btn;
     boolean continuetime = true;
     private String whichExercise = "",urlImage = "",titlesText="";
@@ -42,6 +43,7 @@ public class ShowExerciseAll extends AppCompatActivity {
             titles_legs,titles_chest,titles_biceps,titles_triceps,titles_shoulder,titles_back,titles_warmup;
     int localSetsTime,localCountdownTime;
     MediaPlayer player;
+    boolean soundplayer = true;
 
     int exerciseManager = 1;
     int loopCount = 0;
@@ -59,6 +61,7 @@ public class ShowExerciseAll extends AppCompatActivity {
         exercise_description = findViewById(R.id.exercise_description);
         cancel_btn = findViewById(R.id.cancel_btn);
         next_btn = findViewById(R.id.next_btn);
+        settingBtn = findViewById(R.id.settingbtn);
         arcProgress.setSuffixText("");
         localCountdownTime = PrefConfig.loadSettingCountDown(this);
         localSetsTime = PrefConfig.loadSettingSetsCount(this);
@@ -69,7 +72,24 @@ public class ShowExerciseAll extends AppCompatActivity {
         loopExerciseManager();
         cancelBtnPress();
         startBackgroundSong();
+        settingbtn();
     }
+
+    private void settingbtn() {
+      settingBtn.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              soundplayer = false;
+              stopBackgroundSong();
+              continuetime = false;
+              countDownTimer.cancel();
+              Intent intent = new Intent(ShowExerciseAll.this,Setting.class);
+              finish();
+              startActivity(intent);
+          }
+      });
+    }
+
     private void stopBackgroundSong() {
         if(player != null){
             player.release();
@@ -148,6 +168,7 @@ public class ShowExerciseAll extends AppCompatActivity {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                soundplayer = false;
                                 stopBackgroundSong();
                                 continuetime = false;
                                 countDownTimer.cancel();
@@ -166,6 +187,7 @@ public class ShowExerciseAll extends AppCompatActivity {
     public void onBackPressed() {
         if(countfinish == 2)
         {
+            soundplayer = false;
             stopBackgroundSong();
             continuetime = false;
             countDownTimer.cancel();
@@ -395,6 +417,8 @@ public class ShowExerciseAll extends AppCompatActivity {
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        soundplayer = false;
+                        stopBackgroundSong();
                         continuetime = false;
                         countDownTimer.cancel();
                         finish();
