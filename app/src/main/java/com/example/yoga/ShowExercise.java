@@ -287,33 +287,36 @@ public class ShowExercise extends AppCompatActivity {
 
     }
  private void DialogBoxEndTime(){
-        if(i > localSetsCount)
-        {
-            ExerciseManager();
-        }
-        else
-        {
+      if(continuetime)
+      {
+          if(i > localSetsCount)
+          {
+              ExerciseManager();
+          }
+          else
+          {
 
-            new AlertDialog.Builder(ShowExercise.this)
-                    .setTitle("Set " + (i-1) + " Finished")
-                    .setMessage("Do you want to continue")
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            ExerciseManager();
-                        }
-                    })
-                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            stopBackgroundSong();
-                            continuetime = false;
-                            countDownTimer.cancel();
-                            finish();
-                        }
-                    })
-                    .show();
-        }
+              new AlertDialog.Builder(ShowExercise.this)
+                      .setTitle("Set " + (i-1) + " Finished")
+                      .setMessage("Do you want to continue")
+                      .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                          @Override
+                          public void onClick(DialogInterface dialog, int which) {
+                              ExerciseManager();
+                          }
+                      })
+                      .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                          @Override
+                          public void onClick(DialogInterface dialog, int which) {
+                              stopBackgroundSong();
+                              continuetime = false;
+                              countDownTimer.cancel();
+                              finish();
+                          }
+                      })
+                      .show();
+          }
+      }
 
     }
 
