@@ -94,8 +94,7 @@ public class Setting extends AppCompatActivity{
                 final AlertDialog.Builder d = new AlertDialog.Builder(Setting.this);
                 LayoutInflater inflater = Setting.this.getLayoutInflater();
                 View dialogView = inflater.inflate(R.layout.setting_time_dialogbox, null);
-                d.setTitle("Title");
-                d.setMessage("Message");
+                d.setTitle("Select Countdown");
                 d.setView(dialogView);
                 final NumberPicker numberPicker = (NumberPicker) dialogView.findViewById(R.id.dialog_number_picker);
                 numberPicker.setMaxValue(50);
@@ -136,8 +135,7 @@ public class Setting extends AppCompatActivity{
                 final AlertDialog.Builder d = new AlertDialog.Builder(Setting.this);
                 LayoutInflater inflater = Setting.this.getLayoutInflater();
                 View dialogView = inflater.inflate(R.layout.setting_time_dialogbox, null);
-                d.setTitle("Title");
-                d.setMessage("Message");
+                d.setTitle("Select Sets Count");
                 d.setView(dialogView);
                 final NumberPicker numberPicker = (NumberPicker) dialogView.findViewById(R.id.dialog_number_picker);
                 numberPicker.setMaxValue(50);
