@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.yoga">
+    package="com.skroyal00000.dailyworkout">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -14,31 +14,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Yoga">
         <activity
-            android:name=".Setting"
+            android:name="com.skroyal00000.dailyworkout.Setting"
             android:exported="false" />
         <activity
-            android:name=".ExerciseDays"
+            android:name="com.skroyal00000.dailyworkout.ExerciseDays"
             android:exported="false" />
         <activity
-            android:name=".ShowExerciseAll"
+            android:name="com.skroyal00000.dailyworkout.ShowExerciseAll"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.skroyal00000.dailyworkout.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ShowExercise"
+            android:name="com.skroyal00000.dailyworkout.ShowExercise"
             android:exported="false" />
         <activity
-            android:name=".ExerciseList"
+            android:name="com.skroyal00000.dailyworkout.ExerciseList"
             android:exported="false" />
         <activity
-            android:name=".HomePage"
+            android:name="com.skroyal00000.dailyworkout.HomePage"
             android:exported="false" />
         <activity
-            android:name=".Detail_intro"
+            android:name="com.skroyal00000.dailyworkout.Detail_intro"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
+            android:name="com.skroyal00000.dailyworkout.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

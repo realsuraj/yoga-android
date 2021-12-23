@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashScreen"
+    tools:context="com.skroyal00000.dailyworkout.SplashScreen"
     android:orientation="vertical"
     android:weightSum="100"
     android:background="@color/black"
