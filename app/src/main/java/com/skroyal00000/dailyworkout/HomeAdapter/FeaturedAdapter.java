@@ -41,7 +41,7 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
         FeaturedhelperClass featuredhelperClass = featuredLocation.get(position);
 
 
-        Glide.with(holder.imageView).load(featuredhelperClass.getImage()).placeholder(R.drawable.blank_image).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.imageView);
+        Glide.with(holder.imageView).load(featuredhelperClass.getImage()).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.imageView);
 
         holder.title.setText(featuredhelperClass.getTitle());
         holder.time.setText(featuredhelperClass.getTime());

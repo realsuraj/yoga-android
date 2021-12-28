@@ -44,7 +44,7 @@
            android:layout_height="45dp"
            android:layout_gravity="center"
            android:text="Start"
-           android:background="@drawable/join_now_btn_background"
+           android:background="@drawable/btn_slector"
            android:textColor="@color/white"
            android:fontFamily="@font/poppins_medium"/>
    </LinearLayout>

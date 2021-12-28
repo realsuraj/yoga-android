@@ -123,8 +123,8 @@ public class HomePage extends AppCompatActivity {
 
         FeaturedLocation.add(new FeaturedhelperClass(urls[0],"WarmUp","12:00",warmupUrls.length + " exercise"));
         FeaturedLocation.add(new FeaturedhelperClass(urls[1],"Chest","15:00",  chestImageUrls.length+"  exercise"));
-        FeaturedLocation.add(new FeaturedhelperClass(urls[2],"bicep","13:00",  bicepUrls.length+" exercise"));
-        FeaturedLocation.add(new FeaturedhelperClass(urls[3],"Tricep","5:00",  tricepUrls.length+" exercise"));
+        FeaturedLocation.add(new FeaturedhelperClass(urls[2],"Bicep","13:00",  bicepUrls.length+" exercise"));
+        FeaturedLocation.add(new FeaturedhelperClass(urls[3],"Triceps","5:00",  tricepUrls.length+" exercise"));
         FeaturedLocation.add(new FeaturedhelperClass(urls[4],"Shoulder","9:00",  shoulderUrls.length+" exercise"));
         FeaturedLocation.add(new FeaturedhelperClass(urls[5],"Leg","10:00",  legUrls.length+" exercise"));
         FeaturedLocation.add(new FeaturedhelperClass(urls[6],"Back","8:00",  backUrls.length+" exercise"));

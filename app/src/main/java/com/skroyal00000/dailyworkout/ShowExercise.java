@@ -252,8 +252,11 @@ public class ShowExercise extends AppCompatActivity {
         @Override
         public void onFinish() {
             arcProgress.setProgress(0);
-            soundPlayer("finish");
-            DialogBoxEndTime();
+           if(continuetime)
+           {
+               soundPlayer("finish");
+               DialogBoxEndTime();
+           }
 
         }
     }.start();
@@ -262,7 +265,7 @@ public class ShowExercise extends AppCompatActivity {
 
     private void NextExercise(String title,String howmanyExercise,int timer) {
         urlImage = showImageExtra;
-        Glide.with(ShowExercise.this).asGif().load(urlImage).placeholder(R.drawable.blank_image).diskCacheStrategy(DiskCacheStrategy.ALL).into(exercise_image);
+        Glide.with(ShowExercise.this).asGif().load(urlImage).placeholder(R.drawable.progress_loader).error(R.drawable.blank_image).diskCacheStrategy(DiskCacheStrategy.ALL).into(exercise_image);
         exercise_title.setText(title);
         exercise_description.setText(howmanyExercise);
         countDownClock = timer * 1000;

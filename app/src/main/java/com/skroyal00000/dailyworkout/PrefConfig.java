@@ -15,6 +15,8 @@ public class PrefConfig {
 
     private static final String PREF_MUSIC_ON_OFF = "pref_is_music_on_off";
 
+
+
     public static void saveSettingSetsCountInPref(Context context, int total){
         SharedPreferences sharedPreferences = context.getSharedPreferences(MY_PREFERENCE_NAME,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();

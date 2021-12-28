@@ -37,7 +37,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ExerciseViewHolder>{
     public void onBindViewHolder(@NonNull ExerciseViewHolder holder, int position) {
         HelperClass helperClass = exerciseLocation.get(position);
 
-        Glide.with(holder.imageView).load(helperClass.getExercise_image()).placeholder(R.drawable.blank_image).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.imageView);
+        Glide.with(holder.imageView).
+                load(helperClass.getExercise_image()).
+                placeholder(R.drawable.progess_bar).
+                diskCacheStrategy(DiskCacheStrategy.ALL).
+                into(holder.imageView);
+
 
         holder.Exercise_title.setText(helperClass.getExercise_title());
         holder.Exercise_time.setText(helperClass.getExercise_time());

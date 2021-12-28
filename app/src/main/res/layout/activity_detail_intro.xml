@@ -23,7 +23,9 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
+
                 <TextView
+                    android:id="@+id/btnskip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -104,9 +106,10 @@
                     android:layout_gravity="bottom"
                     android:fontFamily="@font/poppins_semibold"
                     android:text="Next"
-                    android:background="@drawable/join_now_btn_background"
+                    android:background="@drawable/btn_slector"
                     android:textColor="@color/white"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    />
             </LinearLayout>
         </LinearLayout>
 
@@ -125,11 +128,12 @@
                     android:orientation="horizontal"
                     >
 
-                    <Button
+                    <ImageView
                         android:id="@+id/btnback"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="back"
+                        android:layout_height="50dp"
+                        android:padding="2dp"
+                        android:src="@drawable/back_icon_foreground"
                         android:layout_alignParentLeft="true"/>
 
                     <TextView
@@ -222,7 +226,9 @@
                         android:layout_height="60dp"
                         android:text="Finish"
                         android:layout_gravity="bottom"
-                        android:fontFamily="@font/poppins_semibold"/>
+                        android:fontFamily="@font/poppins_semibold"
+                        android:background="@drawable/btn_slector"
+                        android:textColor="@color/white"/>
                 </LinearLayout>
 
         </LinearLayout>

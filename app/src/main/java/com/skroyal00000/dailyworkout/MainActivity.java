@@ -22,25 +22,18 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-        sharedPreferences = getApplicationContext().getSharedPreferences("storage", Context.MODE_PRIVATE);
-        gender = sharedPreferences.getString("gender",null);
-        level = sharedPreferences.getString("level",null);
-
-       if(gender != null && level != null){
+       if(PrefConfig.loadGender(this) != null && PrefConfig.loadGender(this) != null){
            Intent intent = new Intent(MainActivity.this,HomePage.class);
            startActivity(intent);
            finish();
        }
-       else if(gender == null || level == null){
+       else {
            Intent intent = new Intent(MainActivity.this,Detail_intro.class);
            startActivity(intent);
            finish();
 
        }
-       else {
-           Toast.makeText(MainActivity.this,"error",Toast.LENGTH_SHORT).show();
-       }
+
 
 
 
