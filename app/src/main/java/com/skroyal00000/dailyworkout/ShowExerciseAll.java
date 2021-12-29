@@ -315,6 +315,21 @@ public class ShowExerciseAll extends AppCompatActivity {
 
             }        }
 
+        if(whichExercise.equalsIgnoreCase("leg")) {
+
+            if (loopCount < legUrls.length) {
+
+                titlesText = titles_legs[loopCount];
+                urlImage = legUrls[loopCount];
+                ExerciseManager();
+
+
+
+            }else{
+                DialogBox();
+
+            }        }
+
     }
 
     int i = 1;

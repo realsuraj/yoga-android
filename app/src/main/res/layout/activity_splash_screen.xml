@@ -12,57 +12,55 @@
     >
 
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="30"
+        android:orientation="vertical"
+        android:translationZ="100dp">
 
-  <LinearLayout
-      android:layout_width="wrap_content"
-      android:layout_height="0dp"
-      android:translationZ="100dp"
-      android:orientation="vertical"
-      android:layout_weight="30"
-      android:layout_gravity="center"
-      android:alpha="0.9"
-      >
+        <TextView
+            android:id="@+id/splashText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/poppins_black"
+            android:gravity="center"
+            android:text="Workout"
+            android:textColor="@color/white"
+            android:textSize="50sp"
+            android:translationZ="100dp" />
 
-      <TextView
-          android:id="@+id/splashText"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="30dp"
-          android:fontFamily="@font/poppins_black"
-          android:gravity="center"
-          android:text="Workout"
-          android:textColor="@color/white"
-          android:textSize="50sp"
-          android:translationZ="100dp" />
+        <View
+            android:id="@+id/view1"
+            android:layout_width="250dp"
+            android:layout_height="8dp"
+            android:background="@color/white"
+            android:layout_marginTop="-20dp"/>
 
-      <View
-          android:id="@+id/view1"
-          android:layout_width="250dp"
-          android:layout_height="5dp"
-          android:background="@color/white"
-          />
+        <TextView
+            android:id="@+id/splashTextUnder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_black"
+            android:gravity="center"
+            android:text="Daily"
+            android:textColor="@color/white"
+            android:textSize="50sp"
+            android:translationZ="100dp" />
 
-      <TextView
-          android:id="@+id/splashTextUnder"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:gravity="center"
-          android:fontFamily="@font/poppins_black"
-          android:text="Daily"
-          android:textColor="@color/white"
-          android:textSize="50sp"
-          android:translationZ="100dp"/>
-
-  </LinearLayout>
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/splash_img"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="70"
         android:scaleType="fitXY"
         android:src="@drawable/splash_screen_man"
-        android:layout_weight="70"
-        android:layout_gravity="center" />
+        android:translationZ="10dp"/>
 
 
 

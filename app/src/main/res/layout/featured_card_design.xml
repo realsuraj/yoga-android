@@ -48,7 +48,7 @@
            <ImageView
                android:layout_width="17dp"
                android:layout_height="17dp"
-               android:src="@drawable/clock_icon"/>
+               android:src="@drawable/time_icon"/>
            <TextView
                android:id="@+id/featured_time"
                android:layout_width="wrap_content"

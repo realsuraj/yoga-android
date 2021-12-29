@@ -21,9 +21,7 @@ public class ExerciseList extends AppCompatActivity {
 
     RecyclerView ExerciseRecyclerView;
     RecyclerView.Adapter adapter;
-    TextView exercise_name;
     String name_exercise_string,dayExercise;
-    ImageView imageViewFire;
     Adapter.ExerciseOnClickRecycler listerner;
     ArrayList<HelperClass> list;
     String[] urls_legs,urls_chest,urls_biceps,urls_triceps,urls_shoulder,urls_backs,urls_warmup,
@@ -37,9 +35,7 @@ public class ExerciseList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_list);
-        exercise_name = findViewById(R.id.exercise_name);
         ExerciseRecyclerView = (RecyclerView) findViewById(R.id.exercise_list_recyclerView);
-        imageViewFire = findViewById(R.id.firebaseimage);
         btn_start_all_exercise = findViewById(R.id.btn_start_all_exercise);
         name_exercise_string = "";
         getPrefs();
@@ -95,8 +91,6 @@ public class ExerciseList extends AppCompatActivity {
             name_exercise_string = extras.getString("exercise");
 
         }
-
-        exercise_name.setText(name_exercise_string);
     }
 
 

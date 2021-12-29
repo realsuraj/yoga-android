@@ -111,8 +111,8 @@ public class ShowExercise extends AppCompatActivity {
         next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stopBackgroundSong();
                 soundPlayer("stopCountdownMusic");
+                stopBackgroundSong();
                 stopsound = false;
                 Intent intent = new Intent(ShowExercise.this, ShowExerciseAll.class);
                 intent.putExtra("Exercise",getExercise);
