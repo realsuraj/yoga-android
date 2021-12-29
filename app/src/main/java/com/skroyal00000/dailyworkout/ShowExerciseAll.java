@@ -42,8 +42,8 @@ public class ShowExerciseAll extends AppCompatActivity {
     String[] chestImageUrls,warmupUrls,bicepUrls,tricepUrls,shoulderUrls,backUrls,legUrls,
             titles_legs,titles_chest,titles_biceps,titles_triceps,titles_shoulder,titles_back,titles_warmup;
     int localSetsTime,localCountdownTime;
-    MediaPlayer player;
-    boolean soundplayer = true;
+    MediaPlayer player,tickTickSoundPlayer,tickFinishSoundPlayer;
+    boolean soundplayer = true, ispause = false;
 
     int exerciseManager = 1;
     int loopCount = 0;
@@ -79,6 +79,7 @@ public class ShowExerciseAll extends AppCompatActivity {
       settingBtn.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
+              soundPlayer("stopCountdownMusic");
               soundplayer = false;
               stopBackgroundSong();
               continuetime = false;
@@ -99,8 +100,8 @@ public class ShowExerciseAll extends AppCompatActivity {
 
     private void startBackgroundSong() {
         if(!PrefConfig.loadIsMusicOn(ShowExerciseAll.this)) {
-            player = MediaPlayer.create(ShowExerciseAll.this,R.raw.song);
-            player.seekTo(22000);
+            player = MediaPlayer.create(ShowExerciseAll.this,R.raw.bgsound);
+            player.seekTo(15000);
             player.setLooping(true);
             player.start();
         }
@@ -109,19 +110,24 @@ public class ShowExerciseAll extends AppCompatActivity {
         }
     }
 
-    ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
 
     public void soundPlayer(String whichsound){
        if(!PrefConfig.loadIsSoundOn(ShowExerciseAll.this)){
-           if(whichsound.equalsIgnoreCase("countdown")){
-               toneG.startTone(ToneGenerator.TONE_PROP_BEEP, 400);
-
+           if(whichsound.equalsIgnoreCase("countdownMusic") && tickTickSoundPlayer == null){
+               tickTickSoundPlayer = MediaPlayer.create(ShowExerciseAll.this,R.raw.tick);
+               tickTickSoundPlayer.start();
            }
            if(whichsound.equalsIgnoreCase("finish")){
-               toneG.startTone(ToneGenerator.TONE_CDMA_PIP, 1000);
+               tickFinishSoundPlayer = MediaPlayer.create(ShowExerciseAll.this,R.raw.finish);
+               tickFinishSoundPlayer.start();
+           }
+           if(whichsound.equalsIgnoreCase("stopCountdownMusic")){
+               if(tickTickSoundPlayer != null){
+                   tickTickSoundPlayer.release();
+                   tickTickSoundPlayer = null;
+               }
 
            }
-
        }
 
     }
@@ -168,6 +174,7 @@ public class ShowExerciseAll extends AppCompatActivity {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                soundPlayer("stopCountdownMusic");
                                 soundplayer = false;
                                 stopBackgroundSong();
                                 continuetime = false;
@@ -187,6 +194,7 @@ public class ShowExerciseAll extends AppCompatActivity {
     public void onBackPressed() {
         if(countfinish == 2)
         {
+            soundPlayer("stopCountdownMusic");
             soundplayer = false;
             stopBackgroundSong();
             continuetime = false;
@@ -261,7 +269,7 @@ public class ShowExerciseAll extends AppCompatActivity {
             }
         }
 
-        if(whichExercise.equalsIgnoreCase("tricep")) {
+        if(whichExercise.equalsIgnoreCase("triceps")) {
 
             if (loopCount < tricepUrls.length) {
 
@@ -340,6 +348,8 @@ public class ShowExerciseAll extends AppCompatActivity {
                     if(drawable instanceof Animatable){
                         ((Animatable) drawable).stop();
                     }
+                    soundPlayer("stopCountdownMusic");
+                    ispause = true;
                     play_time_btn.setBackgroundResource(R.drawable.pause_icon);
                     countDownTimer.cancel();
 
@@ -350,28 +360,39 @@ public class ShowExerciseAll extends AppCompatActivity {
                         ((Animatable) drawable).start();
                     }
                     play_time_btn.setBackgroundResource(R.drawable.play_icon);
+                    soundPlayer("countdownMusic");
                     CountDown();
+                    ispause = false;
+
                 }
 
             }
         });
     }
 
+    long countDownClockTime,milliSecondLeft;
+
     private void CountDown() {
         arcProgress.setMax((int)countDownClock/1000);
+        if(ispause){
+            countDownClockTime = milliSecondLeft;
+        }
+        else{
+            countDownClockTime = countDownClock;
+        }
         countDownTimer =  new CountDownTimer(countDownClock, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 countDownClock = millisUntilFinished;
-                soundPlayer("countdown");
+                soundPlayer("countdownMusic");
                 arcProgress.setProgress((int)(millisUntilFinished/1000));
             }
 
 
             @Override
             public void onFinish() {
+                soundPlayer("stopCountdownMusic");
                 soundPlayer("finish");
-
                 alertDialogFinishTime();
 
             }
@@ -402,7 +423,7 @@ public class ShowExerciseAll extends AppCompatActivity {
     }
 
     private void NextExercise(String title,String howmanyExercise,int timer) {
-        Glide.with(ShowExerciseAll.this).asGif().load(urlImage).placeholder(R.drawable.blank_image).diskCacheStrategy(DiskCacheStrategy.ALL).into(exercise_image);
+        Glide.with(ShowExerciseAll.this).asGif().load(urlImage).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(exercise_image);
         exercise_title.setText(title);
         exercise_description.setText(howmanyExercise);
         countDownClock = timer * 1000;

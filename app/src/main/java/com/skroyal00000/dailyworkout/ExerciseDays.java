@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.skroyal00000.dailyworkout.R;
 
@@ -97,7 +98,7 @@ public class ExerciseDays extends AppCompatActivity {
                         || dateString[position].equalsIgnoreCase("Day 30"))
                 {
                     Intent intent = new Intent(getApplicationContext(),ExerciseList.class);
-                    intent.putExtra("exercise","tricep");
+                    intent.putExtra("exercise","triceps");
                     startActivity(intent);
                 }
                 //leg
@@ -109,6 +110,19 @@ public class ExerciseDays extends AppCompatActivity {
                     intent.putExtra("exercise","leg");
                     startActivity(intent);
                 }
+
+                   // breake
+                if(dateString[position].equalsIgnoreCase("DAY 4")
+                        || dateString[position].equalsIgnoreCase("DAY 8" )
+                        || dateString[position].equalsIgnoreCase("DAY 12" )
+                        || dateString[position].equalsIgnoreCase("DAY 20" )
+                        || dateString[position].equalsIgnoreCase("DAY 28")
+                        || dateString[position].equalsIgnoreCase("DAY 16" )
+                        || dateString[position].equalsIgnoreCase("DAY 24" ))
+                {
+                    Toast.makeText(ExerciseDays.this, "Take Brake", Toast.LENGTH_SHORT).show();
+                }
+
 
 
             }

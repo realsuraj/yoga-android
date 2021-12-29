@@ -138,7 +138,7 @@ public class ExerciseList extends AppCompatActivity {
                 list.add(new HelperClass(urls_legs[7],titles_legs[7] , "" + countdownTimeString));
                 }
 
-        if(name_exercise_string.equalsIgnoreCase("tricep")) {
+        if(name_exercise_string.equalsIgnoreCase("triceps")) {
                 list.add(new HelperClass(urls_triceps[0], titles_triceps[0], "" + countdownTimeString));
                 list.add(new HelperClass(urls_triceps[1], titles_triceps[1], "" + countdownTimeString));
                 list.add(new HelperClass(urls_triceps[2], titles_triceps[2], "" + countdownTimeString));

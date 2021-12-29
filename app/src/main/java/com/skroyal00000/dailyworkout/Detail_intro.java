@@ -49,8 +49,7 @@ public class Detail_intro extends AppCompatActivity {
         btnskip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Detail_intro.this,HomePage.class);
-                startActivity(intent);
+             nextExtaDepandActivity();
             }
         });
 
@@ -80,6 +79,14 @@ public class Detail_intro extends AppCompatActivity {
 
         }
     });
+
+    if(PrefConfig.loadGender(Detail_intro.this) != null && PrefConfig.loadLevel(Detail_intro.this) != null){
+        if( previousExtrasValues.equalsIgnoreCase("Custom_pressed")){
+            Intent intent = new Intent(Detail_intro.this, ExerciseDays.class);
+            startActivity(intent);
+            finish();
+        }
+    }
     }
     private void getExtras() {
         Bundle extras = getIntent().getExtras();
@@ -90,7 +97,7 @@ public class Detail_intro extends AppCompatActivity {
         }
     }
     private void nextExtaDepandActivity() {
-        if(previousExtrasValues.equalsIgnoreCase("Custom_pressed")){
+        if (previousExtrasValues.equalsIgnoreCase("Custom_pressed")){
             Intent intent = new Intent(Detail_intro.this, ExerciseDays.class);
             startActivity(intent);
             finish();
@@ -141,5 +148,8 @@ public class Detail_intro extends AppCompatActivity {
 
 
     }
+
+
+
 
 }
