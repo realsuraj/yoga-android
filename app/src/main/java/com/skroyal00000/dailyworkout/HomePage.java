@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,9 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.skroyal00000.dailyworkout.Detail.Detail_intro;
 import com.skroyal00000.dailyworkout.HomeAdapter.FeaturedAdapter;
 import com.skroyal00000.dailyworkout.HomeAdapter.FeaturedhelperClass;
-import com.skroyal00000.dailyworkout.R;
 
 import java.util.ArrayList;
 
@@ -23,7 +22,7 @@ public class HomePage extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private SharedPreferences sharedPreferences;
     private FeaturedAdapter.RecyclerViewOnClickListerner listerner;
-    private Button joinNowBtnDate1,joinNowBtnDate2,joinNowBtnDate3;
+    private Button begginerBtnJoin, intermediateBtnJoin, advanceBtnJoin;
     ArrayList<FeaturedhelperClass> FeaturedLocation;
     String[] urls;
     String[] chestImageUrls,warmupUrls,bicepUrls,tricepUrls,shoulderUrls,backUrls,legUrls;
@@ -35,15 +34,15 @@ public class HomePage extends AppCompatActivity {
 
 
         featuredRecycler = findViewById(R.id.featured_recycler);
-        joinNowBtnDate1 = (Button) findViewById(R.id.joinNowDate);
-        joinNowBtnDate2 = (Button) findViewById(R.id.joinNowDate2);
-        joinNowBtnDate3 = (Button) findViewById(R.id.joinNowDate3);
+        begginerBtnJoin = (Button) findViewById(R.id.joinNowDate);
+        intermediateBtnJoin = (Button) findViewById(R.id.joinNowDate2);
+        advanceBtnJoin = (Button) findViewById(R.id.joinNowDate3);
         settingImageview = (ImageView)  findViewById(R.id.setting_imageview);
         custom_btn = findViewById(R.id.create_custom_plan_btn);
         urls = getResources().getStringArray(R.array.home_page_icons_urls);
 
 
-        JoinNow();
+        BeginnerJoinFunc();
         gettingArraysValues();
         featuredRecycler();
         SettingImageButton();
@@ -54,7 +53,7 @@ public class HomePage extends AppCompatActivity {
         custom_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomePage.this,Detail_intro.class);
+                Intent intent = new Intent(HomePage.this, Detail_intro.class);
                 intent.putExtra("customPressed","Custom_pressed");
                 startActivity(intent);
             }
@@ -82,25 +81,28 @@ public class HomePage extends AppCompatActivity {
         warmupUrls = getResources().getStringArray(R.array.warmup_urls);
     }
 
-    private void JoinNow() {
-        joinNowBtnDate1.setOnClickListener(new View.OnClickListener() {
+    private void BeginnerJoinFunc() {
+        begginerBtnJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomePage.this,ExerciseDays.class);
+                intent.putExtra("JoinBtn","Beginner");
                 startActivity(intent);
             }
         });
-        joinNowBtnDate2.setOnClickListener(new View.OnClickListener() {
+        intermediateBtnJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomePage.this,ExerciseDays.class);
+                intent.putExtra("JoinBtn","Intermediate");
                 startActivity(intent);
             }
         });
-        joinNowBtnDate3.setOnClickListener(new View.OnClickListener() {
+        advanceBtnJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomePage.this,ExerciseDays.class);
+                intent.putExtra("JoinBtn","Advanced");
                 startActivity(intent);
             }
         });

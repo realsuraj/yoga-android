@@ -100,83 +100,138 @@ public class ExerciseList extends AppCompatActivity {
         ExerciseRecyclerView.setLayoutManager(new LinearLayoutManager(ExerciseList.this,LinearLayoutManager.VERTICAL,false));
 
         list = new ArrayList<>();
-        if(name_exercise_string.equalsIgnoreCase("bicep") ) {
+
+        //beginner
+
+        if(name_exercise_string.equalsIgnoreCase("bicep or chest or triceps") ) {
             String time = countdownTimeString;
-            list.add(new HelperClass(urls_biceps[0],titles_biceps[0], "" + time));
-            list.add(new HelperClass(urls_biceps[1],titles_biceps[1] , "" + time));
-            list.add(new HelperClass(urls_biceps[2],titles_biceps[2] , "" + time));
-            list.add(new HelperClass(urls_biceps[3],titles_biceps[3] , "" + time));
-            list.add(new HelperClass(urls_biceps[4],titles_biceps[4], "" + time));
-            list.add(new HelperClass(urls_biceps[5],titles_biceps[5] , "" + time));
+            for(int i=0;i<urls_biceps.length - 1;i++){
+                list.add(new HelperClass(urls_biceps[i], titles_biceps[i], "" + countdownTimeString));
+            }
+            for(int i=0;i<urls_chest.length - 1;i++) {
+                list.add(new HelperClass(urls_chest[i],titles_chest[i] , "" + countdownTimeString));
+            }
+            for(int i=0;i<urls_triceps.length - 1;i++) {
+                list.add(new HelperClass(urls_triceps[i],titles_triceps[i] , "" + countdownTimeString));
+            }
 
         }
+
+        if(name_exercise_string.equalsIgnoreCase("shoulder or back") ) {
+            String time = countdownTimeString;
+            for(int i=0;i<urls_shoulder.length - 1;i++){
+                list.add(new HelperClass(urls_shoulder[i], titles_shoulder[i], "" + countdownTimeString));
+            }
+            for(int i=0;i<urls_backs.length - 1;i++) {
+                list.add(new HelperClass(urls_backs[i],titles_back[i] , "" + countdownTimeString));
+            }
+        }
+
+        if(name_exercise_string.equalsIgnoreCase("chest or shoulder") ) {
+            String time = countdownTimeString;
+            for(int i=0;i<urls_chest.length - 1;i++){
+                list.add(new HelperClass(urls_chest[i], titles_chest[i], "" + countdownTimeString));
+            }
+            for(int i=0;i<urls_shoulder.length - 1;i++) {
+                list.add(new HelperClass(urls_shoulder[i],titles_shoulder[i] , "" + countdownTimeString));
+            }
+        }
+
+        if(name_exercise_string.equalsIgnoreCase("bicep or triceps or back") ) {
+            String time = countdownTimeString;
+            for(int i=0;i<urls_biceps.length - 1;i++){
+                list.add(new HelperClass(urls_biceps[i], titles_biceps[i], "" + countdownTimeString));
+            }
+            for(int i=0;i<urls_triceps.length - 1;i++) {
+                list.add(new HelperClass(urls_triceps[i],titles_triceps[i] , "" + countdownTimeString));
+            }
+            for(int i=0;i<urls_backs.length - 1;i++) {
+                list.add(new HelperClass(urls_backs[i],titles_back[i] , "" + countdownTimeString));
+            }
+        }
+
+        if(name_exercise_string.equalsIgnoreCase("chest or back") ) {
+            String time = countdownTimeString;
+            for(int i=0;i<urls_chest.length - 1;i++){
+                list.add(new HelperClass(urls_chest[i], titles_chest[i], "" + countdownTimeString));
+            }
+            for(int i=0;i<urls_backs.length - 1;i++) {
+                list.add(new HelperClass(urls_backs[i],titles_back[i] , "" + countdownTimeString));
+            }
+        }
+
+
+        // intermediate
+
+        if(name_exercise_string.equalsIgnoreCase("bicep") ) {
+            String time = countdownTimeString;
+            for(int i=0;i<urls_biceps.length - 1;i++){
+                list.add(new HelperClass(urls_biceps[i], titles_biceps[i], "" + countdownTimeString));
+            }
+
+        }
+
         if(name_exercise_string.equalsIgnoreCase("chest")) {
-                list.add(new HelperClass(urls_chest[0],titles_chest[0] , "" + countdownTimeString));
-                list.add(new HelperClass(urls_chest[1],titles_chest[1], "" + countdownTimeString));
-                list.add(new HelperClass(urls_chest[2],titles_chest[2] , "" + countdownTimeString));
-                list.add(new HelperClass(urls_chest[3],titles_chest[3] , "" + countdownTimeString));
-                list.add(new HelperClass(urls_chest[4],titles_chest[4] , "" + countdownTimeString));
-                list.add(new HelperClass(urls_chest[5],titles_chest[5], "" + countdownTimeString));
-                list.add(new HelperClass(urls_chest[6],titles_chest[6] ,"" + countdownTimeString));
-                }
+            for(int i=0;i<urls_chest.length - 1;i++) {
+                list.add(new HelperClass(urls_chest[i],titles_chest[i] , "" + countdownTimeString));
+            }
+        }
 
         if(name_exercise_string.equalsIgnoreCase("leg")) {
 
-                list.add(new HelperClass(urls_legs[0],titles_legs[0] , "" + countdownTimeString));
-                list.add(new HelperClass(urls_legs[1],titles_legs[1] , "" + countdownTimeString));
-                list.add(new HelperClass(urls_legs[2],titles_legs[2] , "" + countdownTimeString));
-                list.add(new HelperClass(urls_legs[3],titles_legs[3] , "" + countdownTimeString));
-                list.add(new HelperClass(urls_legs[4],titles_legs[4] , "" + countdownTimeString));
-                list.add(new HelperClass(urls_legs[5],titles_legs[5] , "" + countdownTimeString));
-                list.add(new HelperClass(urls_legs[6],titles_legs[6] , "" + countdownTimeString));
-                list.add(new HelperClass(urls_legs[7],titles_legs[7] , "" + countdownTimeString));
-                }
+            for(int i=0;i<urls_legs.length - 1;i++) {
+                list.add(new HelperClass(urls_legs[i], titles_legs[i], "" + countdownTimeString));
+            }
+        }
 
         if(name_exercise_string.equalsIgnoreCase("triceps")) {
-                list.add(new HelperClass(urls_triceps[0], titles_triceps[0], "" + countdownTimeString));
-                list.add(new HelperClass(urls_triceps[1], titles_triceps[1], "" + countdownTimeString));
-                list.add(new HelperClass(urls_triceps[2], titles_triceps[2], "" + countdownTimeString));
-                list.add(new HelperClass(urls_triceps[3], titles_triceps[3], "" + countdownTimeString));
-                list.add(new HelperClass(urls_triceps[4], titles_triceps[4], "" + countdownTimeString));
-                list.add(new HelperClass(urls_triceps[5], titles_triceps[5], "" + countdownTimeString));
-                list.add(new HelperClass(urls_triceps[6], titles_triceps[6], "" + countdownTimeString));
-                list.add(new HelperClass(urls_triceps[7], titles_triceps[7], "" + countdownTimeString));
-                list.add(new HelperClass(urls_triceps[8], titles_triceps[8], "" + countdownTimeString));
-                }
+            for(int i=0;i<urls_triceps.length - 1;i++) {
+                list.add(new HelperClass(urls_triceps[i], titles_triceps[i], "" + countdownTimeString));
+            }
+        }
 
         if(name_exercise_string.equalsIgnoreCase("shoulder")) {
-                list.add(new HelperClass(urls_shoulder[0], titles_shoulder[0], "" + countdownTimeString));
-                list.add(new HelperClass(urls_shoulder[1], titles_shoulder[1], "" + countdownTimeString));
-                list.add(new HelperClass(urls_shoulder[2], titles_shoulder[2], "" + countdownTimeString));
-                list.add(new HelperClass(urls_shoulder[3], titles_shoulder[3], "" + countdownTimeString));
-                list.add(new HelperClass(urls_shoulder[4], titles_shoulder[4], "" + countdownTimeString));
-                list.add(new HelperClass(urls_shoulder[5], titles_shoulder[5], "" + countdownTimeString));
-                list.add(new HelperClass(urls_shoulder[6], titles_shoulder[6], "" + countdownTimeString));
-                }
+            for(int i=0;i<urls_shoulder.length - 1;i++) {
+                list.add(new HelperClass(urls_shoulder[i], titles_shoulder[i], "" + countdownTimeString));
+            }
+        }
 
         if(name_exercise_string.equalsIgnoreCase("back")) {
-                list.add(new HelperClass(urls_backs[0], titles_back[0], "" + countdownTimeString));
-                list.add(new HelperClass(urls_backs[1], titles_back[1], "" + countdownTimeString));
-                list.add(new HelperClass(urls_backs[2], titles_back[2], "" + countdownTimeString));
-                list.add(new HelperClass(urls_backs[3], titles_back[3], "" + countdownTimeString));
-                list.add(new HelperClass(urls_backs[4], titles_back[4], "" + countdownTimeString));
-                list.add(new HelperClass(urls_backs[5], titles_back[5], "" + countdownTimeString));
-                list.add(new HelperClass(urls_backs[6], titles_back[6], "" + countdownTimeString));
-                list.add(new HelperClass(urls_backs[7], titles_back[7], "" + countdownTimeString));
-                list.add(new HelperClass(urls_backs[8], titles_back[8], "" + countdownTimeString));
-                }
+            for(int i=0;i<urls_backs.length - 1;i++) {
+                list.add(new HelperClass(urls_backs[i], titles_back[i], "" + countdownTimeString));
+            }
+        }
 
         if (name_exercise_string.equalsIgnoreCase("WarmUp")) {
-                list.add(new HelperClass(urls_warmup[0], titles_warmup[0], "" + countdownTimeString));
-                list.add(new HelperClass(urls_warmup[1], titles_warmup[1], "" + countdownTimeString));
-                list.add(new HelperClass(urls_warmup[2], titles_warmup[2], "" + countdownTimeString));
-                list.add(new HelperClass(urls_warmup[3], titles_warmup[3], "" + countdownTimeString));
-                list.add(new HelperClass(urls_warmup[4], titles_warmup[4], "" + countdownTimeString));
-                list.add(new HelperClass(urls_warmup[5], titles_warmup[5], "" + countdownTimeString));
-                list.add(new HelperClass(urls_warmup[6], titles_warmup[6], "" + countdownTimeString));
-                }
+            for (int i = 0; i < urls_warmup.length - 1; i++) {
+                list.add(new HelperClass(urls_warmup[i], titles_warmup[i], "" + countdownTimeString));
+            }
+        }
+
+        //advanced
+        if (name_exercise_string.equalsIgnoreCase("push")) {
+            for(int i=0;i<urls_chest.length - 1;i++) {
+                list.add(new HelperClass(urls_chest[i],titles_chest[i] , "" + countdownTimeString));
+            }
+            for(int i=0;i<urls_shoulder.length - 1;i++) {
+                list.add(new HelperClass(urls_shoulder[i], titles_shoulder[i], "" + countdownTimeString));
+            }
+            for(int i=0;i<urls_triceps.length - 1;i++) {
+                list.add(new HelperClass(urls_triceps[i], titles_triceps[i], "" + countdownTimeString));
+            }
+
+        }
+
+        if (name_exercise_string.equalsIgnoreCase("pull")) {
+            for(int i=0;i<urls_backs.length - 1;i++) {
+                list.add(new HelperClass(urls_backs[i], titles_back[i], "" + countdownTimeString));
+            }
+            for(int i=0;i<urls_biceps.length - 1;i++){
+                list.add(new HelperClass(urls_biceps[i], titles_biceps[i], "" + countdownTimeString));
+            }
 
 
+        }
         adapter = new Adapter(list,listerner);
         ExerciseRecyclerView.setAdapter(adapter);
 

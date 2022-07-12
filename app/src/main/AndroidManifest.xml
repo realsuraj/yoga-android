@@ -17,6 +17,9 @@
             android:name="com.skroyal00000.dailyworkout.Setting"
             android:exported="false" />
         <activity
+            android:name="com.skroyal00000.dailyworkout.LoginPage"
+            android:exported="false" />
+        <activity
             android:name="com.skroyal00000.dailyworkout.ExerciseDays"
             android:exported="false" />
         <activity
@@ -35,11 +38,11 @@
             android:name="com.skroyal00000.dailyworkout.HomePage"
             android:exported="false" />
         <activity
-            android:name="com.skroyal00000.dailyworkout.Detail_intro"
+            android:name="com.skroyal00000.dailyworkout.Detail.Detail_intro"
             android:exported="false" />
         <activity
             android:name="com.skroyal00000.dailyworkout.SplashScreen"
-            android:exported="true">
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

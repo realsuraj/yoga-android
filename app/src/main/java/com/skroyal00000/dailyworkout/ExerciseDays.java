@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +32,6 @@ public class ExerciseDays extends AppCompatActivity {
 
         gridAdapter adapter = new gridAdapter();
         gridViewDate.setAdapter(adapter);
-
         OnclickDate();
 
     }
@@ -40,91 +40,160 @@ public class ExerciseDays extends AppCompatActivity {
         gridViewDate.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String whichDay = dateString[position];
+                //Toast.makeText(ExerciseDays.this, " " + dateString[position], Toast.LENGTH_SHORT).show();
 
-                //chest
-                if(dateString[position].equalsIgnoreCase("DAY 1")
-                        || dateString[position].equalsIgnoreCase("DAY 9" )
-                        || dateString[position].equalsIgnoreCase("DAY 17" )
-                        || dateString[position].equalsIgnoreCase("Day 25"))
+                String whichExerciseDo = "";
+
+                //getting data from intent
+                Intent iin= getIntent();
+                Bundle b = iin.getExtras();
+                String joinBtn = null;
+                if(b!=null)
                 {
-                    Intent intent = new Intent(getApplicationContext(),ExerciseList.class);
-                    intent.putExtra("exercise","chest");
+                    joinBtn =(String) b.get("JoinBtn");
+                }
+
+                int[] oneWeek = {1,8,15,22,29};
+                int[] twoWeek = {2,9,16,23,30};
+                int[] threeWeek = {3,10,24,0,0};
+                int[] fourWeek = {4,11,18,25,0};
+                int[] fiveWeek = {5,12,19,26,0};
+                int[] sixWeek = {6,13,20,27,0};
+                int[] offWeek = {7,14,21,28,0};
+                boolean weekOffBoolean = false;
+                Toast.makeText(ExerciseDays.this, " " + joinBtn, Toast.LENGTH_SHORT).show();
+
+                   if(joinBtn.equalsIgnoreCase("Beginner") ){
+                      for(int i = 0; i < 5; i++){
+                          if (whichDay.equalsIgnoreCase("Day " + oneWeek[i])) {
+                              whichExerciseDo = "bicep or chest or triceps";
+                              break;
+                          }
+
+                          if( whichDay.equalsIgnoreCase("Day " + twoWeek[i])) {
+                              whichExerciseDo = "shoulder or back";
+                              break;
+                          }
+
+                          if( whichDay.equalsIgnoreCase("Day " + threeWeek[i])) {
+                              whichExerciseDo = "chest or shoulder";
+                              break;
+                          }
+
+                          if(whichDay.equalsIgnoreCase("Day " + fourWeek[i])) {
+                              whichExerciseDo = "bicep or triceps or back";
+                              break;
+                          }
+
+                          if(whichDay.equalsIgnoreCase("Day " + fiveWeek[i])) {
+                              whichExerciseDo = "chest or back";
+                              break;
+                          }
+
+                          if(whichDay.equalsIgnoreCase("Day " + sixWeek[i])) {
+                              whichExerciseDo = "leg";
+                              break;
+                          }
+                          if(whichDay.equalsIgnoreCase("Day " + offWeek[i])) {
+                              weekOffBoolean = true;
+                              break;
+                          }
+                      }
+                       Toast.makeText(ExerciseDays.this, " "  + whichExerciseDo, Toast.LENGTH_SHORT).show();
+
+
+                       if(!weekOffBoolean){
+                           Intent intent = new Intent(getApplicationContext(), ExerciseList.class);
+                           intent.putExtra("exercise", whichExerciseDo);
+                           startActivity(intent);
+                       }
+                       else {
+                           Toast.makeText(ExerciseDays.this, "Take a Break", Toast.LENGTH_SHORT).show();
+                       }
+                   }
+
+
+//intermediate
+                if(joinBtn.equalsIgnoreCase("Intermediate") ){
+                    for(int i = 0; i < 5; i++){
+                        if (whichDay.equalsIgnoreCase("Day " + oneWeek[i])) {
+                            whichExerciseDo = "chest";
+                            break;
+                        }
+
+                        if( whichDay.equalsIgnoreCase("Day " + twoWeek[i])) {
+                            whichExerciseDo = "back";
+                            break;
+                        }
+
+                        if( whichDay.equalsIgnoreCase("Day " + threeWeek[i])) {
+                            whichExerciseDo = "shoulder";
+                            break;
+                        }
+
+                        if(whichDay.equalsIgnoreCase("Day " + fourWeek[i])) {
+                            whichExerciseDo = "bicep";
+                            break;
+                        }
+
+                        if(whichDay.equalsIgnoreCase("Day " + fiveWeek[i])) {
+                            whichExerciseDo = "triceps";
+                            break;
+                        }
+
+                        if(whichDay.equalsIgnoreCase("Day " + sixWeek[i])) {
+                            whichExerciseDo = "leg";
+                            break;
+                        }
+                    }
+                    Toast.makeText(ExerciseDays.this, " "  + whichExerciseDo, Toast.LENGTH_SHORT).show();
+
+
+                    Intent intent = new Intent(ExerciseDays.this, ExerciseList.class);
+                    intent.putExtra("exercise", whichExerciseDo);
                     startActivity(intent);
                 }
+//advance
+                if(joinBtn.equalsIgnoreCase("Advanced") ){
+                    for(int i = 0; i < 5; i++){
+                        if (whichDay.equalsIgnoreCase("Day " + oneWeek[i])) {
+                            whichExerciseDo = "push";
+                            break;
+                        }
 
-                //back
+                        if( whichDay.equalsIgnoreCase("Day " + twoWeek[i])) {
+                            whichExerciseDo = "pull";
+                            break;
+                        }
 
-                if(dateString[position].equalsIgnoreCase("DAY 2")
-                        || dateString[position].equalsIgnoreCase("DAY 10" )
-                        || dateString[position].equalsIgnoreCase("DAY 18" )
-                        || dateString[position].equalsIgnoreCase("Day 26"))
-                {
-                    Intent intent = new Intent(getApplicationContext(),ExerciseList.class);
-                    intent.putExtra("exercise","back");
+                        if( whichDay.equalsIgnoreCase("Day " + threeWeek[i])) {
+                            whichExerciseDo = "leg";
+                            break;
+                        }
+
+                        if(whichDay.equalsIgnoreCase("Day " + fourWeek[i])) {
+                            whichExerciseDo = "push";
+                            break;
+                        }
+
+                        if(whichDay.equalsIgnoreCase("Day " + fiveWeek[i])) {
+                            whichExerciseDo = "pull";
+                            break;
+                        }
+
+                        if(whichDay.equalsIgnoreCase("Day " + sixWeek[i])) {
+                            whichExerciseDo = "leg";
+                            break;
+                        }
+                    }
+                    Toast.makeText(ExerciseDays.this, " "  + whichExerciseDo, Toast.LENGTH_SHORT).show();
+
+
+                    Intent intent = new Intent(getApplicationContext(), ExerciseList.class);
+                    intent.putExtra("exercise", whichExerciseDo);
                     startActivity(intent);
                 }
-
-                //shoulder
-
-                if(dateString[position].equalsIgnoreCase("DAY 3")
-                        || dateString[position].equalsIgnoreCase("DAY 11" )
-                        || dateString[position].equalsIgnoreCase("DAY 19" )
-                        || dateString[position].equalsIgnoreCase("Day 27"))
-                {
-                    Intent intent = new Intent(getApplicationContext(),ExerciseList.class);
-                    intent.putExtra("exercise","shoulder");
-                    startActivity(intent);
-                }
-
-
-
-                //bicep
-
-                if(dateString[position].equalsIgnoreCase("DAY 5")
-                        || dateString[position].equalsIgnoreCase("DAY 13" )
-                        || dateString[position].equalsIgnoreCase("DAY 21" )
-                        || dateString[position].equalsIgnoreCase("Day 29"))
-                {
-                    Intent intent = new Intent(getApplicationContext(),ExerciseList.class);
-                    intent.putExtra("exercise","bicep");
-                    startActivity(intent);
-                }
-
-                //tricep
-
-                if(dateString[position].equalsIgnoreCase("DAY 6")
-                        || dateString[position].equalsIgnoreCase("DAY 14" )
-                        || dateString[position].equalsIgnoreCase("DAY 22" )
-                        || dateString[position].equalsIgnoreCase("Day 30"))
-                {
-                    Intent intent = new Intent(getApplicationContext(),ExerciseList.class);
-                    intent.putExtra("exercise","triceps");
-                    startActivity(intent);
-                }
-                //leg
-                   if(dateString[position].equalsIgnoreCase("DAY 7")
-                           || dateString[position].equalsIgnoreCase("DAY 15" )
-                           || dateString[position].equalsIgnoreCase("DAY 23" ))
-                {
-                    Intent intent = new Intent(getApplicationContext(),ExerciseList.class);
-                    intent.putExtra("exercise","leg");
-                    startActivity(intent);
-                }
-
-                   // breake
-                if(dateString[position].equalsIgnoreCase("DAY 4")
-                        || dateString[position].equalsIgnoreCase("DAY 8" )
-                        || dateString[position].equalsIgnoreCase("DAY 12" )
-                        || dateString[position].equalsIgnoreCase("DAY 20" )
-                        || dateString[position].equalsIgnoreCase("DAY 28")
-                        || dateString[position].equalsIgnoreCase("DAY 16" )
-                        || dateString[position].equalsIgnoreCase("DAY 24" ))
-                {
-                    Toast.makeText(ExerciseDays.this, "Take Brake", Toast.LENGTH_SHORT).show();
-                }
-
-
-
             }
         });
     }
@@ -137,11 +206,11 @@ public class ExerciseDays extends AppCompatActivity {
                   "DAY 22","DAY 23","DAY 24","DAY 25","DAY 26","DAY 27","DAY 28","DAY 29","DAY 30"};
 
         imageDate = new int[]
-                {0,0,0,R.drawable.break_icon,0,0,0,R.drawable.break_icon,
-                 0,0,0,R.drawable.break_icon,0,0,0,R.drawable.break_icon,
-                 0,0,0,R.drawable.break_icon,0,0,0,R.drawable.break_icon,
-                 0,0,0,R.drawable.break_icon,0,0,0,R.drawable.break_icon,
-                        0,0,0};
+                {0,0,0,0,0,0,R.drawable.break_icon,
+                 0,0,0,0,0,0,R.drawable.break_icon,
+                 0,0,0,0,0,0,R.drawable.break_icon,
+                 0,0,0,0,0,0,R.drawable.break_icon,0,0
+                };
     }
 
     class gridAdapter extends BaseAdapter{

@@ -8,11 +8,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.skroyal00000.dailyworkout.Detail.Detail_intro;
 import com.skroyal00000.dailyworkout.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String gender,level;
+    private String gender,level,personName;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -20,24 +23,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-       if(PrefConfig.loadGender(this) != null && PrefConfig.loadGender(this) != null){
-           Intent intent = new Intent(MainActivity.this,HomePage.class);
-           startActivity(intent);
-           finish();
-       }
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+        if (acct != null) {
+            Intent intent = new Intent(MainActivity.this,HomePage.class);
+            startActivity(intent);
+            finish();
+        }
        else {
-           Intent intent = new Intent(MainActivity.this,Detail_intro.class);
+           Intent intent = new Intent(MainActivity.this,LoginPage.class);
            startActivity(intent);
            finish();
 
        }
-
-
-
-
-
 
     }
     }
