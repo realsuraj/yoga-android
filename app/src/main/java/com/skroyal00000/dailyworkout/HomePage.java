@@ -5,41 +5,56 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import com.skroyal00000.dailyworkout.Detail.Detail_intro;
-import com.skroyal00000.dailyworkout.HomeAdapter.FeaturedAdapter;
-import com.skroyal00000.dailyworkout.HomeAdapter.FeaturedhelperClass;
+import com.skroyal00000.dailyworkout.Home.ChildItem;
+import com.skroyal00000.dailyworkout.Home.ParentItem;
+import com.skroyal00000.dailyworkout.Home.ParentItemAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomePage extends AppCompatActivity {
-    private RecyclerView featuredRecycler;
-    private RecyclerView.Adapter adapter;
-    private SharedPreferences sharedPreferences;
-    private FeaturedAdapter.RecyclerViewOnClickListerner listerner;
     private Button begginerBtnJoin, intermediateBtnJoin, advanceBtnJoin;
-    ArrayList<FeaturedhelperClass> FeaturedLocation;
     String[] urls;
     String[] chestImageUrls,warmupUrls,bicepUrls,tricepUrls,shoulderUrls,backUrls,legUrls;
     ImageView settingImageview,custom_btn;
+
+
+//    Recycler
+
+    RecyclerView ParentRecyclerViewItem ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-
-
-        featuredRecycler = findViewById(R.id.featured_recycler);
         begginerBtnJoin = (Button) findViewById(R.id.joinNowDate);
         intermediateBtnJoin = (Button) findViewById(R.id.joinNowDate2);
         advanceBtnJoin = (Button) findViewById(R.id.joinNowDate3);
         settingImageview = (ImageView)  findViewById(R.id.setting_imageview);
         custom_btn = findViewById(R.id.create_custom_plan_btn);
         urls = getResources().getStringArray(R.array.home_page_icons_urls);
+
+        ParentRecyclerViewItem = findViewById(R.id.parentRecyclerView);
+
+        // Initialise the Linear layout manager
+        LinearLayoutManager layoutManager = new LinearLayoutManager(HomePage.this);
+        // Pass the arguments
+        // to the parentItemAdapter.
+        // These arguments are passed
+        // using a method ParentItemList()
+        ParentItemAdapter parentItemAdapter = new ParentItemAdapter(ParentItemList());
+        // Set the layout manager
+        // and adapter for items
+        // of the parent recyclerview
+        ParentRecyclerViewItem.setAdapter(parentItemAdapter);
+        ParentRecyclerViewItem.setLayoutManager(layoutManager);
+        ParentRecyclerViewItem.suppressLayout(true);
 
 
         BeginnerJoinFunc();
@@ -110,33 +125,62 @@ public class HomePage extends AppCompatActivity {
 
     public void featuredRecycler() {
         setOnClickLister();
-        featuredRecycler.setHasFixedSize(true);
-        featuredRecycler.setLayoutManager(new LinearLayoutManager(HomePage.this,LinearLayoutManager.HORIZONTAL,false));
-
-        FeaturedLocation = new ArrayList<>();
-
-        FeaturedLocation.add(new FeaturedhelperClass(urls[0],"WarmUp","12:00",warmupUrls.length + " exercise"));
-        FeaturedLocation.add(new FeaturedhelperClass(urls[1],"Chest","15:00",  chestImageUrls.length+"  exercise"));
-        FeaturedLocation.add(new FeaturedhelperClass(urls[2],"Bicep","13:00",  bicepUrls.length+" exercise"));
-        FeaturedLocation.add(new FeaturedhelperClass(urls[3],"Triceps","5:00",  tricepUrls.length+" exercise"));
-        FeaturedLocation.add(new FeaturedhelperClass(urls[4],"Shoulder","9:00",  shoulderUrls.length+" exercise"));
-        FeaturedLocation.add(new FeaturedhelperClass(urls[5],"Leg","10:00",  legUrls.length+" exercise"));
-        FeaturedLocation.add(new FeaturedhelperClass(urls[6],"Back","8:00",  backUrls.length+" exercise"));
-
-        adapter = new FeaturedAdapter(FeaturedLocation,listerner);
-
-        featuredRecycler.setAdapter(adapter);
 
     }
 
+    private List<ParentItem> ParentItemList()
+    {
+        List<ParentItem> itemList
+                = new ArrayList<>();
+
+        ParentItem item
+                = new ParentItem(
+                "Body focus",
+                ChildItemList());
+        itemList.add(item);
+        ParentItem item1
+                = new ParentItem(
+                "Nearby Gym",
+                ChildItemList());
+        itemList.add(item1);
+        ParentItem item2
+                = new ParentItem(
+                "Clothes",
+                ChildItemList());
+        itemList.add(item2);
+        ParentItem item3
+                = new ParentItem(
+                "Equipment",
+                ChildItemList());
+        itemList.add(item3);
+
+        return itemList;
+    }
+
+    private List<ChildItem> ChildItemList()
+    {
+        List<ChildItem> ChildItemList
+                = new ArrayList<>();
+
+        ChildItemList.add(new ChildItem(urls[0],"WarmUp"));
+        ChildItemList.add(new ChildItem(urls[1],"Chest"));
+        ChildItemList.add(new ChildItem(urls[2],"Bicep"));
+        ChildItemList.add(new ChildItem(urls[3],"Triceps"));
+        ChildItemList.add(new ChildItem(urls[4],"Shoulder"));
+        ChildItemList.add(new ChildItem(urls[5],"Leg"));
+        ChildItemList.add(new ChildItem(urls[6],"Back"));
+
+        return ChildItemList;
+    }
+
     private void setOnClickLister() {
-        listerner = new FeaturedAdapter.RecyclerViewOnClickListerner() {
-            @Override
-            public void Onclick(View v, int position) {
-                Intent intent = new Intent(HomePage.this,ExerciseList.class);
-                intent.putExtra("exercise",FeaturedLocation.get(position).getTitle());
-                startActivity(intent);
-            }
-        };
+//        listerner = new FeaturedAdapter.RecyclerViewOnClickListerner() {
+//            @Override
+//            public void Onclick(View v, int position) {
+//                Intent intent = new Intent(HomePage.this,ExerciseList.class);
+//                intent.putExtra("exercise",FeaturedLocation.get(position).getTitle());
+//                startActivity(intent);
+//            }
+//        };
     }
 }
