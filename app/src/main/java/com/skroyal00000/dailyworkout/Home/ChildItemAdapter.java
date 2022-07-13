@@ -61,10 +61,13 @@ public class ChildItemAdapter
         // the ImageViews because we have
         // provided the source for the images
         // in the layout file itself
-        childViewHolder
-                .ChildItemTitle
-                .setText(childItem.getTitle());
+        childViewHolder.ChildItemTitle.setText(childItem.getTitle());
+        childViewHolder.ChildMiniTitle1.setText(childItem.getMiniTitle1());
+        childViewHolder.ChildMiniTitle2.setText(childItem.getMiniTitle2());
         Glide.with(childViewHolder.ChildItemImage).load(childItem.getImage()).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(childViewHolder.ChildItemImage);
+        Glide.with(childViewHolder.MiniTitleIcon1).load(childItem.getMiniTitleIcon1()).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(childViewHolder.MiniTitleIcon1);
+        Glide.with(childViewHolder.MiniTitleIcon2).load(childItem.getMiniTitleIcon2()).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(childViewHolder.MiniTitleIcon2);
+
     }
 
     @Override
@@ -86,16 +89,17 @@ public class ChildItemAdapter
     class ChildViewHolder
             extends RecyclerView.ViewHolder {
 
-        TextView ChildItemTitle;
-        ImageView ChildItemImage;
+        TextView ChildItemTitle,ChildMiniTitle1, ChildMiniTitle2;
+        ImageView ChildItemImage,MiniTitleIcon1, MiniTitleIcon2;
         ChildViewHolder(View itemView)
         {
             super(itemView);
-            ChildItemTitle
-                    = itemView.findViewById(
-                    R.id.titleBar);
+            ChildItemTitle = itemView.findViewById(R.id.titleBar);
+            ChildMiniTitle1 = itemView.findViewById(R.id.childMiniTitle1);
+            ChildMiniTitle2 = itemView.findViewById(R.id.childMiniTitle2);
             ChildItemImage = itemView.findViewById(R.id.imageBar);
-
+            MiniTitleIcon1 = itemView.findViewById(R.id.miniTitleIcon1);
+            MiniTitleIcon2 = itemView.findViewById(R.id.miniTitleIcon2);
         }
     }
 }

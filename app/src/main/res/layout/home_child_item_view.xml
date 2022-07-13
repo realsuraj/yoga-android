@@ -46,11 +46,12 @@
             android:orientation="horizontal">
             android:layout_marginLeft="4dp"/>
             <ImageView
+                android:id="@+id/miniTitleIcon1"
                 android:layout_width="17dp"
                 android:layout_height="17dp"
                 android:src="@drawable/time_icon"/>
             <TextView
-                android:id="@+id/featured_time"
+                android:id="@+id/childMiniTitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="12:00 Minutes"
@@ -66,12 +67,13 @@
             android:orientation="horizontal">
             android:layout_marginLeft="4dp"/>
             <ImageView
+                android:id="@+id/miniTitleIcon2"
                 android:layout_width="20dp"
                 android:layout_height="25dp"
                 android:src="@drawable/exercise_icon"/>
             <TextView
                 android:layout_marginTop="4dp"
-                android:id="@+id/featured_exercise_count"
+                android:id="@+id/childMiniTitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="5 exercise"

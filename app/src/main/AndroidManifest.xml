@@ -23,16 +23,16 @@
             android:name="com.skroyal00000.dailyworkout.ExerciseDays"
             android:exported="false" />
         <activity
-            android:name="com.skroyal00000.dailyworkout.ShowExerciseAll"
+            android:name="com.skroyal00000.dailyworkout.exercise.ShowExerciseAll"
             android:exported="false" />
         <activity
             android:name="com.skroyal00000.dailyworkout.MainActivity"
             android:exported="false" />
         <activity
-            android:name="com.skroyal00000.dailyworkout.ShowExercise"
+            android:name="com.skroyal00000.dailyworkout.exercise.ShowExercise"
             android:exported="false" />
         <activity
-            android:name="com.skroyal00000.dailyworkout.ExerciseList"
+            android:name="com.skroyal00000.dailyworkout.exercise.ExerciseList"
             android:exported="false" />
         <activity
             android:name="com.skroyal00000.dailyworkout.HomePage"

@@ -1,6 +1,8 @@
 package com.skroyal00000.dailyworkout.ExerciseListAdapter;
 
-public class HelperClass {
+import java.io.Serializable;
+
+public class HelperClass implements Serializable {
     String exercise_image,exercise_title,exercise_time;
 
     public HelperClass(String exercise_image, String exercise_title, String exercise_time) {

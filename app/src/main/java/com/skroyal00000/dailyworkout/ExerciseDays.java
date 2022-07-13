@@ -10,11 +10,10 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.skroyal00000.dailyworkout.R;
+import com.skroyal00000.dailyworkout.exercise.ExerciseList;
 
 public class ExerciseDays extends AppCompatActivity {
 

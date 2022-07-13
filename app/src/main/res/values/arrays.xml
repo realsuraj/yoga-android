@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+<!--    home page-->
     <string-array name="home_page_icons_urls">
         <item>https://www.bodybuilding.com/fun/images/2014/proper-warm-up-to-enhance-performance_facebook-960x540.jpg</item>
         <item>https://generationiron.com/wp-content/uploads/2017/01/full-rounded-chest-header.jpg</item>

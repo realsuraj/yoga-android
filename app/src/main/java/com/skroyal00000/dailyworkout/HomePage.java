@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -20,7 +19,7 @@ import java.util.List;
 
 public class HomePage extends AppCompatActivity {
     private Button begginerBtnJoin, intermediateBtnJoin, advanceBtnJoin;
-    String[] urls;
+    String[] workoutUrl;
     String[] chestImageUrls,warmupUrls,bicepUrls,tricepUrls,shoulderUrls,backUrls,legUrls;
     ImageView settingImageview,custom_btn;
 
@@ -38,7 +37,7 @@ public class HomePage extends AppCompatActivity {
         advanceBtnJoin = (Button) findViewById(R.id.joinNowDate3);
         settingImageview = (ImageView)  findViewById(R.id.setting_imageview);
         custom_btn = findViewById(R.id.create_custom_plan_btn);
-        urls = getResources().getStringArray(R.array.home_page_icons_urls);
+        workoutUrl = getResources().getStringArray(R.array.home_page_icons_urls);
 
         ParentRecyclerViewItem = findViewById(R.id.parentRecyclerView);
 
@@ -65,23 +64,17 @@ public class HomePage extends AppCompatActivity {
     }
 
     private void custombtnPressed() {
-        custom_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomePage.this, Detail_intro.class);
-                intent.putExtra("customPressed","Custom_pressed");
-                startActivity(intent);
-            }
+        custom_btn.setOnClickListener(v -> {
+            Intent intent = new Intent(HomePage.this, Detail_intro.class);
+            intent.putExtra("customPressed","Custom_pressed");
+            startActivity(intent);
         });
     }
 
     private void SettingImageButton() {
-        settingImageview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomePage.this,Setting.class);
-                startActivity(intent);
-            }
+        settingImageview.setOnClickListener(v -> {
+            Intent intent = new Intent(HomePage.this,Setting.class);
+            startActivity(intent);
         });
     }
 
@@ -97,29 +90,20 @@ public class HomePage extends AppCompatActivity {
     }
 
     private void BeginnerJoinFunc() {
-        begginerBtnJoin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomePage.this,ExerciseDays.class);
-                intent.putExtra("JoinBtn","Beginner");
-                startActivity(intent);
-            }
+        begginerBtnJoin.setOnClickListener(v -> {
+            Intent intent = new Intent(HomePage.this,ExerciseDays.class);
+            intent.putExtra("JoinBtn","Beginner");
+            startActivity(intent);
         });
-        intermediateBtnJoin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomePage.this,ExerciseDays.class);
-                intent.putExtra("JoinBtn","Intermediate");
-                startActivity(intent);
-            }
+        intermediateBtnJoin.setOnClickListener(v -> {
+            Intent intent = new Intent(HomePage.this,ExerciseDays.class);
+            intent.putExtra("JoinBtn","Intermediate");
+            startActivity(intent);
         });
-        advanceBtnJoin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomePage.this,ExerciseDays.class);
-                intent.putExtra("JoinBtn","Advanced");
-                startActivity(intent);
-            }
+        advanceBtnJoin.setOnClickListener(v -> {
+            Intent intent = new Intent(HomePage.this,ExerciseDays.class);
+            intent.putExtra("JoinBtn","Advanced");
+            startActivity(intent);
         });
     }
 
@@ -162,13 +146,13 @@ public class HomePage extends AppCompatActivity {
         List<ChildItem> ChildItemList
                 = new ArrayList<>();
 
-        ChildItemList.add(new ChildItem(urls[0],"WarmUp"));
-        ChildItemList.add(new ChildItem(urls[1],"Chest"));
-        ChildItemList.add(new ChildItem(urls[2],"Bicep"));
-        ChildItemList.add(new ChildItem(urls[3],"Triceps"));
-        ChildItemList.add(new ChildItem(urls[4],"Shoulder"));
-        ChildItemList.add(new ChildItem(urls[5],"Leg"));
-        ChildItemList.add(new ChildItem(urls[6],"Back"));
+        ChildItemList.add(new ChildItem(workoutUrl[0],"WarmUp","12:00","9 Sets","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png"));
+        ChildItemList.add(new ChildItem(workoutUrl[1],"Chest","12:00","9 Sets","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png"));
+        ChildItemList.add(new ChildItem(workoutUrl[2],"Bicep","12:00","9 Sets","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png"));
+        ChildItemList.add(new ChildItem(workoutUrl[3],"Triceps","12:00","9 Sets","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png"));
+        ChildItemList.add(new ChildItem(workoutUrl[4],"Shoulder","12:00","9 Sets","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png"));
+        ChildItemList.add(new ChildItem(workoutUrl[5],"Leg","12:00","9 Sets","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png"));
+        ChildItemList.add(new ChildItem(workoutUrl[6],"Back","12:00","9 Sets","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png"));
 
         return ChildItemList;
     }
