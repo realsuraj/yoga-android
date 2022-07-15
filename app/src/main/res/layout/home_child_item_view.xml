@@ -43,8 +43,10 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            android:layout_marginLeft="4dp"/>
+            android:orientation="horizontal"
+            android:layout_marginStart="4dp"
+            >
+
             <ImageView
                 android:id="@+id/miniTitleIcon1"
                 android:layout_width="17dp"
@@ -57,15 +59,15 @@
                 android:text="12:00 Minutes"
                 android:fontFamily="@font/poppins_medium"
                 android:textColor="@color/black"
-                android:layout_marginLeft="20dp"/>
+                android:layout_marginStart="20dp"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            android:layout_marginLeft="4dp"/>
+            android:orientation="horizontal"
+            android:layout_marginLeft="4dp">
             <ImageView
                 android:id="@+id/miniTitleIcon2"
                 android:layout_width="20dp"

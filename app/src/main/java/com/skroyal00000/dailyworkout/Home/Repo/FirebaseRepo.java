@@ -34,20 +34,21 @@ public class FirebaseRepo {
                 List<ParentItem> parentItemList = new ArrayList<>();
 
                 for (DataSnapshot ds : snapshot.getChildren()){
-                    List<ChildItem> childItemList = new ArrayList<>();
+                    ArrayList<ChildItem> childItemList = new ArrayList<>();
                     ParentItem parentItem = new ParentItem();
                     parentItem.setParentItemTitle(ds.child("Title").getValue(String.class));
 
-                    ChildItem childItem = new ChildItem();
-                    childItem.setTitle(ds.child("childData").child("title").getValue(String.class));
-                    childItem.setImage(ds.child("childData").child("image").getValue(String.class));
-                    childItem.setMiniIcon1(ds.child("childData").child("miniIcon1").getValue(String.class));
-                    childItem.setMiniIcon2(ds.child("childData").child("miniIcon2").getValue(String.class));
-                    childItem.setMiniTitle1(ds.child("childData").child("miniTitle1").getValue(String.class));
-                    childItem.setMiniTitle2(ds.child("childData").child("miniTitle2").getValue(String.class));
+                    for(DataSnapshot ds2: ds.child("childData").getChildren()){
+                        ChildItem childItem = new ChildItem();
+                        childItem.setTitle(ds2.child("title").getValue(String.class));
+                        childItem.setImage(ds2.child("image").getValue(String.class));
+                        childItem.setMiniIcon1(ds2.child("miniIcon1").getValue(String.class));
+                        childItem.setMiniIcon2(ds2.child("miniIcon2").getValue(String.class));
+                        childItem.setMiniTitle1(ds2.child("miniTitle1").getValue(String.class));
+                        childItem.setMiniTitle2(ds2.child("miniTitle2").getValue(String.class));
 
-                    childItemList.add(childItem);
-
+                        childItemList.add(childItem);
+                    }
                     parentItem.setChildItemList(childItemList);
                     parentItemList.add(parentItem);
 

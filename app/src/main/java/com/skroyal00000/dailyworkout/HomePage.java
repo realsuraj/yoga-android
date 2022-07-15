@@ -53,6 +53,7 @@ public class HomePage extends AppCompatActivity {
         parentAdapter = new ParentItemAdapter();
         parentRecyclerView.setAdapter(parentAdapter);
 
+
         firebaseViewModel = new ViewModelProvider(this).get(FirebaseViewModel.class);
 
         firebaseViewModel.getAllData();
@@ -73,8 +74,6 @@ public class HomePage extends AppCompatActivity {
 
 
         BeginnerJoinFunc();
-        gettingArraysValues();
-        featuredRecycler();
         SettingImageButton();
         custombtnPressed();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("GymTab");
@@ -99,15 +98,7 @@ public class HomePage extends AppCompatActivity {
     }
 
 
-    private void gettingArraysValues() {
-        chestImageUrls = getResources().getStringArray(R.array.chest_urls);
-        bicepUrls = getResources().getStringArray(R.array.bicep_urls);
-        tricepUrls = getResources().getStringArray(R.array.tricep_urls);
-        shoulderUrls = getResources().getStringArray(R.array.shoulder_urls);
-        backUrls = getResources().getStringArray(R.array.back_urls);
-        legUrls = getResources().getStringArray(R.array.urls_legs);
-        warmupUrls = getResources().getStringArray(R.array.warmup_urls);
-    }
+
 
     private void BeginnerJoinFunc() {
         begginerBtnJoin.setOnClickListener(v -> {
@@ -127,62 +118,4 @@ public class HomePage extends AppCompatActivity {
         });
     }
 
-    public void featuredRecycler() {
-        setOnClickLister();
-
-    }
-
-    private List<ParentItem> ParentItemList() {
-        List<ParentItem> itemList
-                = new ArrayList<>();
-
-        ParentItem item
-                = new ParentItem(
-                "Body focus",
-                ChildItemList());
-        itemList.add(item);
-        ParentItem item1
-                = new ParentItem(
-                "Nearby Gym",
-                ChildItemList());
-        itemList.add(item1);
-        ParentItem item2
-                = new ParentItem(
-                "Clothes",
-                ChildItemList());
-        itemList.add(item2);
-        ParentItem item3
-                = new ParentItem(
-                "Equipment",
-                ChildItemList());
-        itemList.add(item3);
-
-        return itemList;
-    }
-
-    private List<ChildItem> ChildItemList() {
-        List<ChildItem> ChildItemList
-                = new ArrayList<>();
-
-        ChildItemList.add(new ChildItem(workoutUrl[0],"WarmUp","12:00","9 Sets","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png"));
-        ChildItemList.add(new ChildItem(workoutUrl[1],"Chest","12:00","9 Sets","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png"));
-        ChildItemList.add(new ChildItem(workoutUrl[2],"Bicep","12:00","9 Sets","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png"));
-        ChildItemList.add(new ChildItem(workoutUrl[3],"Triceps","12:00","9 Sets","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png"));
-        ChildItemList.add(new ChildItem(workoutUrl[4],"Shoulder","12:00","9 Sets","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png"));
-        ChildItemList.add(new ChildItem(workoutUrl[5],"Leg","12:00","9 Sets","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png"));
-        ChildItemList.add(new ChildItem(workoutUrl[6],"Back","12:00","9 Sets","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png","https://cdn.icon-icons.com/icons2/510/PNG/512/at_icon-icons.com_50456.png"));
-
-        return ChildItemList;
-    }
-
-    private void setOnClickLister() {
-//        listerner = new FeaturedAdapter.RecyclerViewOnClickListerner() {
-//            @Override
-//            public void Onclick(View v, int position) {
-//                Intent intent = new Intent(HomePage.this,ExerciseList.class);
-//                intent.putExtra("exercise",FeaturedLocation.get(position).getTitle());
-//                startActivity(intent);
-//            }
-//        };
-    }
 }

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 
 import com.skroyal00000.dailyworkout.R;
@@ -61,7 +62,7 @@ public class ParentItemAdapter extends RecyclerView.Adapter<ParentItemAdapter.Pa
         parentViewHolder.ParentItemTitle.setText(parentItem.getParentItemTitle());
 
         parentViewHolder.ChildRecyclerView.setHasFixedSize(true);
-        parentViewHolder.ChildRecyclerView.setLayoutManager(new GridLayoutManager(parentViewHolder.itemView.getContext() , 4));
+        parentViewHolder.ChildRecyclerView.setLayoutManager(new LinearLayoutManager(parentViewHolder.itemView.getContext(),LinearLayoutManager.HORIZONTAL,false));
         ChildItemAdapter childAdapter = new ChildItemAdapter();
         childAdapter.setChildItemList(parentItem.getChildItemList());
         parentViewHolder.ChildRecyclerView.setAdapter(childAdapter);
