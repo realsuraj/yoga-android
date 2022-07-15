@@ -2,15 +2,18 @@ package com.skroyal00000.dailyworkout.Home;
 
 public class ChildItem {
 
-        String image, title,miniTitle1,miniTitle2, miniTitleIcon1, miniTitleIcon2;
+        String image, miniIcon1, miniIcon2,miniTitle1,miniTitle2,title;
 
-    public ChildItem(String image, String title, String miniTitle1, String miniTitle2, String miniTitleIcon1, String miniTitleIcon2) {
+    public ChildItem() {
+    }
+
+    public ChildItem(String image,  String miniIcon1, String miniIcon2, String miniTitle1, String miniTitle2,String title) {
         this.image = image;
         this.title = title;
         this.miniTitle1 = miniTitle1;
         this.miniTitle2 = miniTitle2;
-        this.miniTitleIcon1 = miniTitleIcon1;
-        this.miniTitleIcon2 = miniTitleIcon2;
+        this.miniIcon1 = miniIcon1;
+        this.miniIcon2 = miniIcon2;
     }
 
     public String getImage() {
@@ -45,20 +48,20 @@ public class ChildItem {
         this.miniTitle2 = miniTitle2;
     }
 
-    public String getMiniTitleIcon1() {
-        return miniTitleIcon1;
+    public String getMiniIcon1() {
+        return miniIcon1;
     }
 
-    public void setMiniTitleIcon1(String miniTitleIcon1) {
-        this.miniTitleIcon1 = miniTitleIcon1;
+    public void setMiniIcon1(String miniIcon1) {
+        this.miniIcon1 = miniIcon1;
     }
 
-    public String getMiniTitleIcon2() {
-        return miniTitleIcon2;
+    public String getMiniIcon2() {
+        return miniIcon2;
     }
 
-    public void setMiniTitleIcon2(String miniTitleIcon2) {
-        this.miniTitleIcon2 = miniTitleIcon2;
+    public void setMiniIcon2(String miniIcon2) {
+        this.miniIcon2 = miniIcon2;
     }
 }
 

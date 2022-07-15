@@ -13,18 +13,19 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.skroyal00000.dailyworkout.R;
 
+import java.util.Collections;
 import java.util.List;
 
 public class ChildItemAdapter
         extends RecyclerView
         .Adapter<ChildItemAdapter.ChildViewHolder> {
 
-    private List<ChildItem> ChildItemList;
+    private List<ChildItem> childItemList;
 
     // Constructor
-    ChildItemAdapter(List<ChildItem> childItemList)
-    {
-        this.ChildItemList = childItemList;
+    public void setChildItemList(List<ChildItem> childItemList){
+        this.childItemList = childItemList;
+        this.childItemList.removeAll(Collections.singleton(null));
     }
 
     @NonNull
@@ -54,7 +55,7 @@ public class ChildItemAdapter
         // Create an instance of the ChildItem
         // class for the given position
         ChildItem childItem
-                = ChildItemList.get(position);
+                = childItemList.get(position);
 
         // For the created instance, set title.
         // No need to set the image for
@@ -65,8 +66,8 @@ public class ChildItemAdapter
         childViewHolder.ChildMiniTitle1.setText(childItem.getMiniTitle1());
         childViewHolder.ChildMiniTitle2.setText(childItem.getMiniTitle2());
         Glide.with(childViewHolder.ChildItemImage).load(childItem.getImage()).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(childViewHolder.ChildItemImage);
-        Glide.with(childViewHolder.MiniTitleIcon1).load(childItem.getMiniTitleIcon1()).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(childViewHolder.MiniTitleIcon1);
-        Glide.with(childViewHolder.MiniTitleIcon2).load(childItem.getMiniTitleIcon2()).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(childViewHolder.MiniTitleIcon2);
+        Glide.with(childViewHolder.MiniTitleIcon1).load(childItem.getMiniIcon1()).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(childViewHolder.MiniTitleIcon1);
+        Glide.with(childViewHolder.MiniTitleIcon2).load(childItem.getMiniIcon2()).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(childViewHolder.MiniTitleIcon2);
 
     }
 
@@ -74,13 +75,11 @@ public class ChildItemAdapter
     public int getItemCount()
     {
 
-        // This method returns the number
-        // of items we have added
-        // in the ChildItemList
-        // i.e. the number of instances
-        // of the ChildItemList
-        // that have been created
-        return ChildItemList.size();
+        if (childItemList != null){
+            return childItemList.size();
+        }else{
+            return  0;
+        }
     }
 
     // This class is to initialize

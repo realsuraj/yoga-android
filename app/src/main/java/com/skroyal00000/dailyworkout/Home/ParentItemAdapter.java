@@ -1,6 +1,7 @@
 package com.skroyal00000.dailyworkout.Home;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,9 +13,7 @@ import com.skroyal00000.dailyworkout.R;
 
 import java.util.List;
 
-public class ParentItemAdapter
-        extends RecyclerView
-        .Adapter<ParentItemAdapter.ParentViewHolder> {
+public class ParentItemAdapter extends RecyclerView.Adapter<ParentItemAdapter.ParentViewHolder> {
 
     // An object of RecyclerView.RecycledViewPool
     // is created to share the Views
@@ -24,11 +23,14 @@ public class ParentItemAdapter
             viewPool
             = new RecyclerView
             .RecycledViewPool();
-    private List<ParentItem> itemList;
+    private List<ParentItem> parentItemList;
 
-    public ParentItemAdapter(List<ParentItem> itemList)
-    {
-        this.itemList = itemList;
+    public void setParentItemList(List<ParentItem> parentItemList){
+        this.parentItemList = parentItemList;
+    }
+
+    public ParentItemAdapter() {
+
     }
 
     @NonNull
@@ -55,72 +57,27 @@ public class ParentItemAdapter
             int position)
     {
 
-        // Create an instance of the ParentItem
-        // class for the given position
-        ParentItem parentItem
-                = itemList.get(position);
+        ParentItem parentItem = parentItemList.get(position);
+        parentViewHolder.ParentItemTitle.setText(parentItem.getParentItemTitle());
 
-        // For the created instance,
-        // get the title and set it
-        // as the text for the TextView
-        parentViewHolder
-                .ParentItemTitle
-                .setText(parentItem.getParentItemTitle());
-
-        // Create a layout manager
-        // to assign a layout
-        // to the RecyclerView.
-
-        // Here we have assigned the layout
-        // as LinearLayout with vertical orientation
-        LinearLayoutManager layoutManager
-                = new LinearLayoutManager(
-                parentViewHolder
-                        .ChildRecyclerView
-                        .getContext(),
-                LinearLayoutManager.HORIZONTAL,
-                false);
-
-        // Since this is a nested layout, so
-        // to define how many child items
-        // should be prefetched when the
-        // child RecyclerView is nested
-        // inside the parent RecyclerView,
-        // we use the following method
-        layoutManager
-                .setInitialPrefetchItemCount(
-                        parentItem
-                                .getChildItemList()
-                                .size());
-
-        // Create an instance of the child
-        // item view adapter and set its
-        // adapter, layout manager and RecyclerViewPool
-        ChildItemAdapter childItemAdapter
-                = new ChildItemAdapter(
-                parentItem
-                        .getChildItemList());
-        parentViewHolder
-                .ChildRecyclerView
-                .setLayoutManager(layoutManager);
-        parentViewHolder
-                .ChildRecyclerView
-                .setAdapter(childItemAdapter);
-        parentViewHolder
-                .ChildRecyclerView
-                .setRecycledViewPool(viewPool);
+        parentViewHolder.ChildRecyclerView.setHasFixedSize(true);
+        parentViewHolder.ChildRecyclerView.setLayoutManager(new GridLayoutManager(parentViewHolder.itemView.getContext() , 4));
+        ChildItemAdapter childAdapter = new ChildItemAdapter();
+        childAdapter.setChildItemList(parentItem.getChildItemList());
+        parentViewHolder.ChildRecyclerView.setAdapter(childAdapter);
+        childAdapter.notifyDataSetChanged();
     }
 
-    // This method returns the number
-    // of items we have added in the
-    // ParentItemList i.e. the number
-    // of instances we have created
-    // of the ParentItemList
+
     @Override
     public int getItemCount()
     {
 
-        return itemList.size();
+        if (parentItemList != null){
+            return parentItemList.size();
+        }else{
+            return 0;
+        }
     }
 
     // This class is to initialize

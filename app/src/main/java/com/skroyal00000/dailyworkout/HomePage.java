@@ -1,6 +1,8 @@
 package com.skroyal00000.dailyworkout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,11 +10,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.skroyal00000.dailyworkout.Detail.Detail_intro;
 import com.skroyal00000.dailyworkout.Home.ChildItem;
 import com.skroyal00000.dailyworkout.Home.ParentItem;
 import com.skroyal00000.dailyworkout.Home.ParentItemAdapter;
+import com.skroyal00000.dailyworkout.Home.Repo.FirebaseViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +29,11 @@ public class HomePage extends AppCompatActivity {
     String[] workoutUrl;
     String[] chestImageUrls,warmupUrls,bicepUrls,tricepUrls,shoulderUrls,backUrls,legUrls;
     ImageView settingImageview,custom_btn;
-
-
+    String[] aTitle,aImageUrl,aMiniIcon1,aMiniIcon2,aMiniTitle1,aMiniTitle2;
 //    Recycler
-
-    RecyclerView ParentRecyclerViewItem ;
-
+    RecyclerView parentRecyclerView ;
+    private FirebaseViewModel firebaseViewModel;
+    private ParentItemAdapter parentAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,21 +45,31 @@ public class HomePage extends AppCompatActivity {
         custom_btn = findViewById(R.id.create_custom_plan_btn);
         workoutUrl = getResources().getStringArray(R.array.home_page_icons_urls);
 
-        ParentRecyclerViewItem = findViewById(R.id.parentRecyclerView);
+        parentRecyclerView = findViewById(R.id.parentRecyclerView);
 
-        // Initialise the Linear layout manager
-        LinearLayoutManager layoutManager = new LinearLayoutManager(HomePage.this);
-        // Pass the arguments
-        // to the parentItemAdapter.
-        // These arguments are passed
-        // using a method ParentItemList()
-        ParentItemAdapter parentItemAdapter = new ParentItemAdapter(ParentItemList());
-        // Set the layout manager
-        // and adapter for items
-        // of the parent recyclerview
-        ParentRecyclerViewItem.setAdapter(parentItemAdapter);
-        ParentRecyclerViewItem.setLayoutManager(layoutManager);
-        ParentRecyclerViewItem.suppressLayout(true);
+
+        parentRecyclerView.setHasFixedSize(true);
+        parentRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        parentAdapter = new ParentItemAdapter();
+        parentRecyclerView.setAdapter(parentAdapter);
+
+        firebaseViewModel = new ViewModelProvider(this).get(FirebaseViewModel.class);
+
+        firebaseViewModel.getAllData();
+        firebaseViewModel.getParentItemMutableLiveData().observe(this, new Observer<List<ParentItem>>() {
+            @Override
+            public void onChanged(List<ParentItem> parentItemList) {
+                parentAdapter.setParentItemList(parentItemList);
+                parentAdapter.notifyDataSetChanged();
+            }
+        });
+        firebaseViewModel.getDatabaseErrorMutableLiveData().observe(this, new Observer<DatabaseError>() {
+            @Override
+            public void onChanged(DatabaseError error) {
+                Toast.makeText(HomePage.this, error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+       //firebase things
 
 
         BeginnerJoinFunc();
@@ -61,7 +77,11 @@ public class HomePage extends AppCompatActivity {
         featuredRecycler();
         SettingImageButton();
         custombtnPressed();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("GymTab");
+
+
     }
+
 
     private void custombtnPressed() {
         custom_btn.setOnClickListener(v -> {
@@ -112,8 +132,7 @@ public class HomePage extends AppCompatActivity {
 
     }
 
-    private List<ParentItem> ParentItemList()
-    {
+    private List<ParentItem> ParentItemList() {
         List<ParentItem> itemList
                 = new ArrayList<>();
 
@@ -141,8 +160,7 @@ public class HomePage extends AppCompatActivity {
         return itemList;
     }
 
-    private List<ChildItem> ChildItemList()
-    {
+    private List<ChildItem> ChildItemList() {
         List<ChildItem> ChildItemList
                 = new ArrayList<>();
 

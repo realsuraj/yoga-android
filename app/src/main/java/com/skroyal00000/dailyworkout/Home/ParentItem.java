@@ -7,7 +7,7 @@ public class ParentItem {
     // Declaration of the variables
     private String ParentItemTitle;
     private List<ChildItem> ChildItemList;
-
+    public ParentItem(){}
     // Constructor of the class
     // to initialize the variables
     public ParentItem(
@@ -40,6 +40,6 @@ public class ParentItem {
     public void setChildItemList(
             List<ChildItem> childItemList)
     {
-        ChildItemList = childItemList;
+        this.ChildItemList = childItemList;
     }
 }
