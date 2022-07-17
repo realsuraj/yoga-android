@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
         if (acct != null) {
-            Intent intent = new Intent(MainActivity.this, ProductView.class);
+            Intent intent = new Intent(MainActivity.this, HomePage.class);
             startActivity(intent);
             finish();
         }

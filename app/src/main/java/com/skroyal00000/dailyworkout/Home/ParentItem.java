@@ -4,42 +4,29 @@ import java.util.List;
 
 public class ParentItem {
 
-    // Declaration of the variables
-    private String ParentItemTitle;
-    private List<ChildItem> ChildItemList;
-    public ParentItem(){}
-    // Constructor of the class
-    // to initialize the variables
-    public ParentItem(
-            String ParentItemTitle,
-            List<ChildItem> ChildItemList)
-    {
+   String id, Title;
 
-        this.ParentItemTitle = ParentItemTitle;
-        this.ChildItemList = ChildItemList;
-    }
+   public ParentItem() {
+   }
 
-    // Getter and Setter methods
-    // for each parameter
-    public String getParentItemTitle()
-    {
-        return ParentItemTitle;
-    }
+   public String getId() {
+      return id;
+   }
 
-    public void setParentItemTitle(
-            String parentItemTitle)
-    {
-        ParentItemTitle = parentItemTitle;
-    }
+   public void setId(String id) {
+      this.id = id;
+   }
 
-    public List<ChildItem> getChildItemList()
-    {
-        return ChildItemList;
-    }
+   public String getTitle() {
+      return Title;
+   }
 
-    public void setChildItemList(
-            List<ChildItem> childItemList)
-    {
-        this.ChildItemList = childItemList;
-    }
+   public void setTitle(String title) {
+      Title = title;
+   }
+
+   public ParentItem(String id, String title) {
+      this.id = id;
+      Title = title;
+   }
 }
