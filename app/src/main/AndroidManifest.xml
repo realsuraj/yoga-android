@@ -49,6 +49,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.skroyal00000.dailyworkout.ProductPage.ProductView"
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"

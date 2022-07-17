@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.skroyal00000.dailyworkout.Detail.Detail_intro;
+import com.skroyal00000.dailyworkout.ProductPage.ProductView;
 import com.skroyal00000.dailyworkout.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
         if (acct != null) {
-            Intent intent = new Intent(MainActivity.this,HomePage.class);
+            Intent intent = new Intent(MainActivity.this, ProductView.class);
             startActivity(intent);
             finish();
         }
