@@ -18,7 +18,9 @@ import java.util.List;
 
 
     public class ChildViewHolder
-            extends RecyclerView.ViewHolder {
+            extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+        public ClickInterface clickInterface;
 
         public TextView ChildItemTitle,ChildMiniTitle1, ChildMiniTitle2;
         public ImageView ChildItemImage,MiniTitleIcon1, MiniTitleIcon2;
@@ -31,6 +33,16 @@ import java.util.List;
             ChildItemImage = itemView.findViewById(R.id.imageBar);
             MiniTitleIcon1 = itemView.findViewById(R.id.miniTitleIcon1);
             MiniTitleIcon2 = itemView.findViewById(R.id.miniTitleIcon2);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            clickInterface.OnItemClick(v,false);
+        }
+        public void InterfaceClick(ClickInterface clickInterface){
+            this.clickInterface = clickInterface;
+
         }
     }
 

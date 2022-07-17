@@ -227,6 +227,7 @@ public class ExerciseList extends AppCompatActivity {
 
 
         }
+
         adapter = new Adapter(list, adapterRecycler);
         ExerciseRecyclerView.setAdapter(adapter);
 

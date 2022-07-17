@@ -27,8 +27,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.skroyal00000.dailyworkout.Detail.Detail_intro;
 import com.skroyal00000.dailyworkout.Home.ChildItem;
 import com.skroyal00000.dailyworkout.Home.ChildViewHolder;
+import com.skroyal00000.dailyworkout.Home.ClickInterface;
 import com.skroyal00000.dailyworkout.Home.ParentItem;
 import com.skroyal00000.dailyworkout.Home.ParentViewHolder;
+import com.skroyal00000.dailyworkout.exercise.ExerciseList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,6 +91,16 @@ public class HomePage extends AppCompatActivity {
                         Glide.with(childViewHolder.MiniTitleIcon1).load(childItem.getMiniIcon1()).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(childViewHolder.MiniTitleIcon1);
                         Glide.with(childViewHolder.MiniTitleIcon2).load(childItem.getMiniIcon2()).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(childViewHolder.MiniTitleIcon2);
 
+                        childViewHolder.InterfaceClick(new ClickInterface() {
+                            @Override
+                            public void OnItemClick(View v, Boolean longPress) {
+                               if(model.getTitle().equalsIgnoreCase("body workout")){
+                                   Intent intent = new Intent(HomePage.this, ExerciseList.class);
+                                   intent.putExtra("exercise",childItem.getTitle());
+                                   startActivity(intent);
+                               }
+                            }
+                        });
                     }
 
                     @NonNull
