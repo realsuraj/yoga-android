@@ -14,34 +14,37 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Yoga">
         <activity
-            android:name="com.skroyal00000.dailyworkout.Setting"
+            android:name=".Register"
             android:exported="false" />
         <activity
-            android:name="com.skroyal00000.dailyworkout.LoginPage"
+            android:name=".Setting"
             android:exported="false" />
         <activity
-            android:name="com.skroyal00000.dailyworkout.ExerciseDays"
+            android:name=".LoginPage"
             android:exported="false" />
         <activity
-            android:name="com.skroyal00000.dailyworkout.exercise.ShowExerciseAll"
+            android:name=".ExerciseDays"
             android:exported="false" />
         <activity
-            android:name="com.skroyal00000.dailyworkout.MainActivity"
+            android:name=".exercise.ShowExerciseAll"
             android:exported="false" />
         <activity
-            android:name="com.skroyal00000.dailyworkout.exercise.ShowExercise"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name="com.skroyal00000.dailyworkout.exercise.ExerciseList"
+            android:name=".exercise.ShowExercise"
             android:exported="false" />
         <activity
-            android:name="com.skroyal00000.dailyworkout.HomePage"
+            android:name=".exercise.ExerciseList"
             android:exported="false" />
         <activity
-            android:name="com.skroyal00000.dailyworkout.Detail.Detail_intro"
+            android:name=".HomePage"
             android:exported="false" />
         <activity
-            android:name="com.skroyal00000.dailyworkout.SplashScreen"
+            android:name=".Detail.Detail_intro"
+            android:exported="false" />
+        <activity
+            android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,7 +53,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.skroyal00000.dailyworkout.ProductPage.ProductView"
+            android:name=".ProductPage.ProductView"
             android:exported="false" />
 
         <meta-data

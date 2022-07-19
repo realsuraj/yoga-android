@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,56 +22,43 @@ import com.skroyal00000.dailyworkout.Detail.Detail_intro;
 public class LoginPage extends AppCompatActivity {
 
 
-    TextView googleSignInBtn;
-    GoogleSignInOptions gso;
-    GoogleSignInClient gsc;
+    EditText username,password;
+    Button signBtn;
+    TextView signUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
-        googleSignInBtn = findViewById(R.id.googleSignIn);
+       username = findViewById(R.id.username);
+       password = findViewById(R.id.password);
+       signBtn = findViewById(R.id.signInBtn);
+       signUp = findViewById(R.id.signUp);
 
-        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        gsc = GoogleSignIn.getClient(this,gso);
-
-        googleSignInBtn.setOnClickListener(new View.OnClickListener() {
+        signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SignIn();
+                Intent intent = new Intent(LoginPage.this,Register.class);
+                startActivity(intent);
             }
         });
+       signBtn.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+              String stringUserName = username.getText().toString();
+              String StringPassword = password.getText().toString();
+
+
+
+           }
+       });
+
+
 
     }
-    private void SignIn() {
-        Intent intent = gsc.getSignInIntent();
-        startActivityForResult(intent,100);
-    }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == 100){
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try
-            {
-                task.getResult(ApiException.class);
-                HomePage();
-            } catch (ApiException e){
-                Toast.makeText(this, "Error " + e, Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
 
-    private void HomePage() {
-        finish();
-        Intent intent = new Intent(LoginPage.this, Detail_intro.class);
-        startActivity(intent);
-    }
 
 }
