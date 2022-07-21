@@ -7,7 +7,7 @@ public class ChildItem {
     public ChildItem() {
     }
 
-    public ChildItem(String image,  String miniIcon1, String miniIcon2, String miniTitle1, String miniTitle2,String title) {
+    public ChildItem(String title,  String image, String miniTitle1, String miniTitle2, String miniIcon1,String miniIcon2) {
         this.image = image;
         this.title = title;
         this.miniTitle1 = miniTitle1;

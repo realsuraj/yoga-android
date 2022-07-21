@@ -3,6 +3,7 @@ package com.skroyal00000.dailyworkout;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,7 +27,8 @@ public class Register extends AppCompatActivity {
     EditText Rusername,Rpassword;
     Button registerBtn;
     String strUsername,strPassword;
-    String url = "https://dailyworkout.co.in/appApi/register.php";
+    LinkApi linkApi = new LinkApi();
+    String url = linkApi.signUpApi;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +53,10 @@ public class Register extends AppCompatActivity {
                 @Override
                 public void onResponse(String response) {
                     Toast.makeText(Register.this, response, Toast.LENGTH_SHORT).show();
+                    if(response.equalsIgnoreCase("success")){
+                        Intent intent = new Intent(getApplicationContext(),LoginPage.class);
+                        startActivity(intent);
+                    }
                 }
             }, new Response.ErrorListener() {
                 @Override

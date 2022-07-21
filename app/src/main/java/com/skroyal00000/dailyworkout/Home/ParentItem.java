@@ -4,17 +4,15 @@ import java.util.List;
 
 public class ParentItem {
 
-   String id, Title;
+   String Title;
+   private List<ChildItem> ChildItemList;
 
    public ParentItem() {
    }
 
-   public String getId() {
-      return id;
-   }
-
-   public void setId(String id) {
-      this.id = id;
+   public ParentItem(String title, List<ChildItem> childItemList) {
+      Title = title;
+      ChildItemList = childItemList;
    }
 
    public String getTitle() {
@@ -25,8 +23,11 @@ public class ParentItem {
       Title = title;
    }
 
-   public ParentItem(String id, String title) {
-      this.id = id;
-      Title = title;
+   public List<ChildItem> getChildItemList() {
+      return ChildItemList;
+   }
+
+   public void setChildItemList(List<ChildItem> childItemList) {
+      ChildItemList = childItemList;
    }
 }

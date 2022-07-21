@@ -1,48 +1,44 @@
 package com.skroyal00000.dailyworkout;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.FirebaseOptions;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.skroyal00000.dailyworkout.Detail.Detail_intro;
 import com.skroyal00000.dailyworkout.Home.ChildItem;
-import com.skroyal00000.dailyworkout.Home.ChildViewHolder;
-import com.skroyal00000.dailyworkout.Home.ClickInterface;
 import com.skroyal00000.dailyworkout.Home.ParentItem;
-import com.skroyal00000.dailyworkout.Home.ParentViewHolder;
-import com.skroyal00000.dailyworkout.exercise.ExerciseList;
+import com.skroyal00000.dailyworkout.Home.ParentItemAdapter;
+import com.skroyal00000.dailyworkout.Utils.LinkApi;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class HomePage extends AppCompatActivity {
     private Button begginerBtnJoin, intermediateBtnJoin, advanceBtnJoin;
     String[] workoutUrl;
     ImageView settingImageview,custom_btn;
     RecyclerView parentRecyclerView ;
-    FirebaseRecyclerAdapter<ChildItem, ChildViewHolder> adapter2;
-    FirebaseRecyclerAdapter<ParentItem, ParentViewHolder> adapter1;
-   DatabaseReference reference;
+    ParentItemAdapter parentItemAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,77 +57,84 @@ public class HomePage extends AppCompatActivity {
         parentRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-
         BeginnerJoinFunc();
         SettingImageButton();
         custombtnPressed();
 
-//firebase things
+        LinearLayoutManager layoutManager = new LinearLayoutManager(HomePage.this);
 
-        reference = FirebaseDatabase.getInstance().getReference().child("homeTab");
+        parentItemAdapter = new ParentItemAdapter(ParentItemList());
 
-        FirebaseRecyclerOptions<ParentItem> options1 = new FirebaseRecyclerOptions.Builder<ParentItem>()
-                .setQuery(reference,ParentItem.class)
-                .build();
+        parentRecyclerView.setAdapter(parentItemAdapter);
+        parentRecyclerView.setLayoutManager(layoutManager);
+    }
 
-        adapter1 = new FirebaseRecyclerAdapter<ParentItem, ParentViewHolder>(options1) {
-            @Override
-            protected void onBindViewHolder(@NonNull ParentViewHolder holder, int position, @NonNull ParentItem model) {
-                holder.ParentItemTitle.setText(model.getTitle());
-                FirebaseRecyclerOptions<ChildItem> options2 = new FirebaseRecyclerOptions.Builder<ChildItem>()
-                        .setQuery(reference.child(model.getId()).child("childData"),ChildItem.class)
-                        .build();
-                adapter2 = new FirebaseRecyclerAdapter<ChildItem, ChildViewHolder>(options2) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull ChildViewHolder childViewHolder, int position, @NonNull ChildItem childItem) {
-                        childViewHolder.ChildItemTitle.setText(childItem.getTitle());
-                        childViewHolder.ChildMiniTitle1.setText(childItem.getMiniTitle1());
-                        childViewHolder.ChildMiniTitle2.setText(childItem.getMiniTitle2());
-                        Glide.with(childViewHolder.ChildItemImage).load(childItem.getImage()).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(childViewHolder.ChildItemImage);
-                        Glide.with(childViewHolder.MiniTitleIcon1).load(childItem.getMiniIcon1()).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(childViewHolder.MiniTitleIcon1);
-                        Glide.with(childViewHolder.MiniTitleIcon2).load(childItem.getMiniIcon2()).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(childViewHolder.MiniTitleIcon2);
+    private List<ParentItem> ParentItemList()
+    {
+        List<ParentItem> itemList = new ArrayList<>();
 
-                        childViewHolder.InterfaceClick(new ClickInterface() {
-                            @Override
-                            public void OnItemClick(View v, Boolean longPress) {
-                               if(model.getTitle().equalsIgnoreCase("body workout")){
-                                   Intent intent = new Intent(HomePage.this, ExerciseList.class);
-                                   intent.putExtra("exercise",childItem.getTitle());
-                                   startActivity(intent);
-                               }
-                            }
-                        });
-                    }
+        ParentItem item = new ParentItem("Daily Workout", ChildItemList("Daily Workout"));
+        itemList.add(item);
+        ParentItem item1 = new ParentItem("Gym", ChildItemList("Gym"));
+        itemList.add(item1);
+        ParentItem item2 = new ParentItem("Clothes", ChildItemList("Daily Workout"));
+        itemList.add(item2);
+        ParentItem item3 = new ParentItem("Supplements", ChildItemList("Gym"));itemList.add(item3);
 
-                    @NonNull
-                    @Override
-                    public ChildViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view2 = LayoutInflater.from(getBaseContext()).inflate(R.layout.home_child_item_view,parent,false);
-                        return new ChildViewHolder(view2);
-                    }
-                };
-                adapter2.startListening();
-                adapter2.notifyDataSetChanged();
-                holder.ChildRecyclerView.setAdapter(adapter2);
-            }
-
-            @NonNull
-            @Override
-            public ParentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(getBaseContext()).inflate(R.layout.home_parent_item_view,parent,false);
-                return new ParentViewHolder(view);
-            }
-        };
-
-        adapter1.startListening();
-        adapter1.notifyDataSetChanged();
-        parentRecyclerView.setAdapter(adapter1);
-
-        //end
-
+        return itemList;
     }
 
 
+    private List<ChildItem> ChildItemList(String whichT) {
+        List<ChildItem> childItemsList = new ArrayList<>();
+
+
+        LinkApi linkApi = new LinkApi() ;
+        String url = linkApi.homeData;
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.DEPRECATED_GET_OR_POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+
+                    JSONObject childObj = new JSONObject(response);
+                    JSONArray childArray = childObj.getJSONArray("result");
+                    List<ChildItem> childItemsList2 = new ArrayList<>();
+                    for (int i = 0; i < childArray.length(); i++) {
+                     JSONObject jsonObject = childArray.getJSONObject(i);
+                     childItemsList.add(new ChildItem(jsonObject.getString("title"),jsonObject.getString("image")
+                     ,jsonObject.getString("miniTitle1"),jsonObject.getString("miniTitle2")
+                     ,jsonObject.getString("miniIcon1"),jsonObject.getString("miniIcon2")));
+
+                    }
+                    parentItemAdapter.notifyDataSetChanged();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("TAG", "Error : " + error.getMessage());
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String,String>();
+                params.put("whichT",whichT);
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
+
+            return childItemsList;
+
+
+
+    }
     private void custombtnPressed() {
         custom_btn.setOnClickListener(v -> {
             Intent intent = new Intent(HomePage.this, Detail_intro.class);
