@@ -49,36 +49,39 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         begginerBtnJoin = (Button) findViewById(R.id.joinNowDate);
         intermediateBtnJoin = (Button) findViewById(R.id.joinNowDate2);
         advanceBtnJoin = (Button) findViewById(R.id.joinNowDate3);
         settingImageview = (ImageView)  findViewById(R.id.setting_imageview);
         custom_btn = findViewById(R.id.create_custom_plan_btn);
         workoutUrl = getResources().getStringArray(R.array.home_page_icons_urls);
-
         parentRecyclerView = findViewById(R.id.parentRecyclerView);
 
-
-        parentRecyclerView.setHasFixedSize(true);
-        parentRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                              calling function
 
         BeginnerJoinFunc();
         SettingImageButton();
         custombtnPressed();
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                              Setting recyclerview
+        parentRecyclerView.setHasFixedSize(true);
+        parentRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         LinearLayoutManager layoutManager = new LinearLayoutManager(HomePage.this);
-
         parentItemAdapter = new ParentItemAdapter(ParentItemList());
-
         parentRecyclerView.setAdapter(parentItemAdapter);
         parentRecyclerView.setLayoutManager(layoutManager);
     }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                             setting array list for parent
     private List<ParentItem> ParentItemList()
     {
         List<ParentItem> itemList = new ArrayList<>();
-
         ParentItem item = new ParentItem("Daily Workout", ChildItemList("Daily Workout"));
         itemList.add(item);
         ParentItem item1 = new ParentItem("Gym", ChildItemList("Gym"));
@@ -86,9 +89,11 @@ public class HomePage extends AppCompatActivity {
         ParentItem item2 = new ParentItem("Clothes", ChildItemList("Daily Workout"));
         itemList.add(item2);
         ParentItem item3 = new ParentItem("Supplements", ChildItemList("Gym"));itemList.add(item3);
-
         return itemList;
     }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                            setting array list for child
 
 
     private List<ChildItem> ChildItemList(String whichT) {
@@ -133,54 +138,6 @@ public class HomePage extends AppCompatActivity {
                 params.put("whichT",whichT);
                 return params;
             }
-
-            @Override
-            protected Response<String> parseNetworkResponse(NetworkResponse response) {
-                try {
-                    Cache.Entry cacheEntry = HttpHeaderParser.parseCacheHeaders(response);
-                    if (cacheEntry == null) {
-                        cacheEntry = new Cache.Entry();
-                    }
-                    final long cacheHitButRefreshed = 3 * 60 * 1000; // in 3 minutes cache will be hit, but also refreshed on background
-                    final long cacheExpired = 24 * 60 * 60 * 1000; // in 24 hours this cache entry expires completely
-                    long now = System.currentTimeMillis();
-                    final long softExpire = now + cacheHitButRefreshed;
-                    final long ttl = now + cacheExpired;
-                    cacheEntry.data = response.data;
-                    cacheEntry.softTtl = softExpire;
-                    cacheEntry.ttl = ttl;
-                    String headerValue;
-                    headerValue = response.headers.get("Date");
-                    if (headerValue != null) {
-                        cacheEntry.serverDate = HttpHeaderParser.parseDateAsEpoch(headerValue);
-                    }
-                    headerValue = response.headers.get("Last-Modified");
-                    if (headerValue != null) {
-                        cacheEntry.lastModified = HttpHeaderParser.parseDateAsEpoch(headerValue);
-                    }
-                    cacheEntry.responseHeaders = response.headers;
-                    final String jsonString = new String(response.data,
-                            HttpHeaderParser.parseCharset(response.headers));
-                    return Response.success(new String(jsonString), cacheEntry);
-                } catch (UnsupportedEncodingException e) {
-                    return Response.error(new ParseError(e));
-                }
-            }
-
-            @Override
-            protected void deliverResponse(String response) {
-                super.deliverResponse(response.toString());
-            }
-
-            @Override
-            public void deliverError(VolleyError error) {
-                super.deliverError(error);
-            }
-
-            @Override
-            protected VolleyError parseNetworkError(VolleyError volleyError) {
-                return super.parseNetworkError(volleyError);
-            }
         };
 
         requestQueue.add(stringRequest);
@@ -190,6 +147,9 @@ public class HomePage extends AppCompatActivity {
 
 
     }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                           custom button press
     private void custombtnPressed() {
         custom_btn.setOnClickListener(v -> {
             Intent intent = new Intent(HomePage.this, Detail_intro.class);
@@ -197,6 +157,8 @@ public class HomePage extends AppCompatActivity {
             startActivity(intent);
         });
     }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                          setting button
 
     private void SettingImageButton() {
         settingImageview.setOnClickListener(v -> {
@@ -206,6 +168,8 @@ public class HomePage extends AppCompatActivity {
     }
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                           intent for join
 
 
     private void BeginnerJoinFunc() {

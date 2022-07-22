@@ -2,7 +2,7 @@ package com.skroyal00000.dailyworkout.ProductPage.Model;
 
 public class ShopChildItem {
 
-    String buy, image,title ,website;
+    String buy, image,title ,website, shopMiniIcon1, shopMiniIcon2;
 
     public String getBuy() {
         return buy;
@@ -39,10 +39,19 @@ public class ShopChildItem {
     public ShopChildItem() {
     }
 
-    public ShopChildItem(String buy, String image, String title, String website) {
-        this.buy = buy;
-        this.image = image;
-        this.title = title;
-        this.website = website;
+    public String getShopMiniIcon1() {
+        return shopMiniIcon1;
+    }
+
+    public void setShopMiniIcon1(String shopMiniIcon1) {
+        this.shopMiniIcon1 = shopMiniIcon1;
+    }
+
+    public String getShopMiniIcon2() {
+        return shopMiniIcon2;
+    }
+
+    public void setShopMiniIcon2(String shopMiniIcon2) {
+        this.shopMiniIcon2 = shopMiniIcon2;
     }
 }

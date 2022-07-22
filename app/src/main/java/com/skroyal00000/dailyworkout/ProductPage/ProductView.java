@@ -1,91 +1,133 @@
 package com.skroyal00000.dailyworkout.ProductPage;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.skroyal00000.dailyworkout.Home.ChildItem;
 import com.skroyal00000.dailyworkout.ProductPage.Model.ShopChildItem;
-import com.skroyal00000.dailyworkout.ProductPage.Model.ShopParentItem;
-import com.skroyal00000.dailyworkout.ProductPage.ViewHolder.ShopChildViewHolder;
-import com.skroyal00000.dailyworkout.ProductPage.ViewHolder.ShopParentViewHolder;
+import com.skroyal00000.dailyworkout.ProductPage.ViewHolder.ShopAdapder;
 import com.skroyal00000.dailyworkout.R;
+import com.skroyal00000.dailyworkout.Utils.LinkApi;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ProductView extends AppCompatActivity{
 
-    DatabaseReference reference;
     RecyclerView recyclerView;
-    FirebaseRecyclerAdapter<ShopChildItem,ShopChildViewHolder> adapter2;
-    FirebaseRecyclerAdapter<ShopParentItem, ShopParentViewHolder> adapter;
     RecyclerView.LayoutManager manager;
-
-
+    List<ShopChildItem> childItemList;
+    RecyclerView.Adapter adapter;
+    private LinearLayoutManager linearLayoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_view);
 
-        // firebase
-        reference = FirebaseDatabase.getInstance().getReference("cloth");
 
         recyclerView = findViewById(R.id.shopPRecyclerView);
-        manager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(manager);
 
-        FirebaseRecyclerOptions<ShopParentItem> options = new FirebaseRecyclerOptions.Builder<ShopParentItem>()
-                .setQuery(reference,ShopParentItem.class)
-                .build();
+        childItemList = new ArrayList<>();
+        adapter = new ShopAdapder(getApplicationContext(),childItemList);
 
-        adapter = new FirebaseRecyclerAdapter<ShopParentItem, ShopParentViewHolder>(options) {
+        linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(adapter);
+
+        getData();
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                           getting volley data
+     private void getData() {
+        String whichT = "Gym Shop";
+        LinkApi linkApi = new LinkApi();
+        String url = linkApi.shopData;
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
-            protected void onBindViewHolder(@NonNull ShopParentViewHolder holder, int position, @NonNull ShopParentItem model) {
-                holder.parentTitle.setText(model.getTitle());
+            public void onResponse(String response) {
+                try {
 
-                FirebaseRecyclerOptions<ShopChildItem> options2 = new FirebaseRecyclerOptions.Builder<ShopChildItem>()
-                        .setQuery(reference.child(model.getId()).child("childData"),ShopChildItem.class)
-                        .build();
+                    JSONObject childObj = new JSONObject(response);
+                    JSONArray childArray = childObj.getJSONArray("result");
+                    for (int i = 0; i < childArray.length(); i++) {
+                        JSONObject jsonObject = childArray.getJSONObject(i);
+                        ShopChildItem shopChildItem = new ShopChildItem();
+                        shopChildItem.setTitle(jsonObject.getString("title"));
+                        shopChildItem.setImage(jsonObject.getString("image"));
+                        shopChildItem.setWebsite(jsonObject.getString("website"));
+                        shopChildItem.setBuy(jsonObject.getString("buy"));
+                        shopChildItem.setShopMiniIcon1(jsonObject.getString("shopMiniIcon1"));
+                        shopChildItem.setShopMiniIcon2(jsonObject.getString("shopMiniIcon2"));
 
-                adapter2 = new FirebaseRecyclerAdapter<ShopChildItem, ShopChildViewHolder>(options2) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull ShopChildViewHolder holder2, int position, @NonNull ShopChildItem model2) {
-                        holder2.shopTitle.setText(model2.getTitle());
-                        Glide.with(holder2.shopImage).load(model2.getImage()).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder2.shopImage);
-                        holder2.shopBuy.setText(model2.getBuy());
-                        holder2.shopWebsite.setText(model2.getWebsite());
+                        childItemList.add(shopChildItem);
                     }
+                    adapter.notifyDataSetChanged();
+                    progressDialog.dismiss();
 
-                    @NonNull
-                    @Override
-                    public ShopChildViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view2 = LayoutInflater.from(getBaseContext()).inflate(R.layout.shop_page_card,parent,false);
-                        return new ShopChildViewHolder(view2);
-                    }
-                };
-                adapter2.startListening();
-                adapter2.notifyDataSetChanged();
-                holder.parentRecycler.setAdapter(adapter2);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-
-            @NonNull
+        }, new Response.ErrorListener() {
             @Override
-            public ShopParentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(getBaseContext()).inflate(R.layout.shop_parent,parent,false);
-                return new ShopParentViewHolder(view);
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("TAG", "Error : " + error.getMessage());
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                progressDialog.dismiss();
+
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String,String>();
+                params.put("whichT",whichT);
+                return params;
             }
         };
-        adapter.startListening();
-        adapter.notifyDataSetChanged();
-        recyclerView.setAdapter(adapter);
+
+        requestQueue.add(stringRequest);
     }
 }

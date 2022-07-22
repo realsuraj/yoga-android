@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
        else {
-           Intent intent = new Intent(MainActivity.this,HomePage.class);
+           Intent intent = new Intent(MainActivity.this,ProductView.class);
            startActivity(intent);
            finish();
 
