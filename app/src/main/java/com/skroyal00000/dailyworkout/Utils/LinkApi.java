@@ -7,4 +7,5 @@ public class LinkApi {
     public String homeData = webUrl + "homeData.php";
     public String shopData = webUrl + "shopData.php";
     public String showSingleData = webUrl + "showDataParticular.php";
+    public String userUpdateData = webUrl + "updateUserData.php";
 }

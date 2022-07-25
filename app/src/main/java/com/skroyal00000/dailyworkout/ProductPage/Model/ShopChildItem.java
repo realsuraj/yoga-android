@@ -2,7 +2,7 @@ package com.skroyal00000.dailyworkout.ProductPage.Model;
 
 public class ShopChildItem {
 
-    String buy, image,title ,website, shopMiniIcon1, shopMiniIcon2;
+    String miniTitle1, image,title , miniTitle2, miniIcon1, miniIcon2;
     int id;
 
     public int getId() {
@@ -13,12 +13,12 @@ public class ShopChildItem {
         this.id = id;
     }
 
-    public String getBuy() {
-        return buy;
+    public String getMiniTitle1() {
+        return miniTitle1;
     }
 
-    public void setBuy(String buy) {
-        this.buy = buy;
+    public void setMiniTitle1(String miniTitle1) {
+        this.miniTitle1 = miniTitle1;
     }
 
     public String getImage() {
@@ -37,30 +37,30 @@ public class ShopChildItem {
         this.title = title;
     }
 
-    public String getWebsite() {
-        return website;
+    public String getMiniTitle2() {
+        return miniTitle2;
     }
 
-    public void setWebsite(String website) {
-        this.website = website;
+    public void setMiniTitle2(String miniTitle2) {
+        this.miniTitle2 = miniTitle2;
     }
 
     public ShopChildItem() {
     }
 
-    public String getShopMiniIcon1() {
-        return shopMiniIcon1;
+    public String getMiniIcon1() {
+        return miniIcon1;
     }
 
-    public void setShopMiniIcon1(String shopMiniIcon1) {
-        this.shopMiniIcon1 = shopMiniIcon1;
+    public void setMiniIcon1(String miniIcon1) {
+        this.miniIcon1 = miniIcon1;
     }
 
-    public String getShopMiniIcon2() {
-        return shopMiniIcon2;
+    public String getMiniIcon2() {
+        return miniIcon2;
     }
 
-    public void setShopMiniIcon2(String shopMiniIcon2) {
-        this.shopMiniIcon2 = shopMiniIcon2;
+    public void setMiniIcon2(String miniIcon2) {
+        this.miniIcon2 = miniIcon2;
     }
 }

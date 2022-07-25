@@ -38,6 +38,7 @@ public class LoginPage extends AppCompatActivity {
     TextView signUp;
     String stringUserName;
     String stringPassword;
+    PrefConfig prefConfig = new PrefConfig();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,9 +78,10 @@ public class LoginPage extends AppCompatActivity {
                    StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                        @Override
                        public void onResponse(String response) {
-                           Toast.makeText(LoginPage.this, response, Toast.LENGTH_SHORT).show();
+                           Toast.makeText(LoginPage.this, response.toString(), Toast.LENGTH_SHORT).show();
                            if(response.equalsIgnoreCase("success")){
-                               Intent intent = new Intent(getApplicationContext(),HomePage.class);
+                               PrefConfig.saveUserName(LoginPage.this,stringUserName);
+                               Intent intent = new Intent(getApplicationContext(),Detail_intro.class);
                                startActivity(intent);
                            }
                        }

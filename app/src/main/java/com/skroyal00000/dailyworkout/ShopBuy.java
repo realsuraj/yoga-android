@@ -38,12 +38,9 @@ public class ShopBuy extends AppCompatActivity {
         title = findViewById(R.id.showAllTitle);
         miniTitle1 = findViewById(R.id.showAllBuy);
         miniTitle1 = findViewById(R.id.showAllWebsite);
-
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
         whichTable = intent.getStringExtra("whichT");
-
-        Toast.makeText(getApplicationContext(), "" + id + whichTable, Toast.LENGTH_LONG).show();
         getData();
 
     }

@@ -17,21 +17,19 @@ import com.skroyal00000.dailyworkout.R;
 public class MainActivity extends AppCompatActivity {
 
     private String gender,level,personName;
-    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-        if (acct != null) {
+        if (PrefConfig.loadUsername(MainActivity.this) != null) {
             Intent intent = new Intent(MainActivity.this, HomePage.class);
             startActivity(intent);
             finish();
         }
        else {
-           Intent intent = new Intent(MainActivity.this,HomePage.class);
+           Intent intent = new Intent(MainActivity.this,LoginPage.class);
            startActivity(intent);
            finish();
 

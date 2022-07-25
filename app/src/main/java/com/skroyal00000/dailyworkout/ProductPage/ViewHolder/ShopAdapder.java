@@ -2,7 +2,6 @@ package com.skroyal00000.dailyworkout.ProductPage.ViewHolder;
 
 import android.content.Context;
 import android.content.Intent;
-import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.skroyal00000.dailyworkout.Home.ChildItem;
-import com.skroyal00000.dailyworkout.Home.ChildItemAdapter;
 import com.skroyal00000.dailyworkout.ProductPage.Model.ShopChildItem;
 import com.skroyal00000.dailyworkout.ProductPage.ProductView;
 import com.skroyal00000.dailyworkout.R;
@@ -44,11 +41,11 @@ public class ShopAdapder extends RecyclerView.Adapter<ShopAdapder.ShopChildViewH
     public void onBindViewHolder(@NonNull ShopChildViewHolder holder, int position) {
         ShopChildItem ShopItem = list.get(position);
         holder.shopTitle.setText(ShopItem.getTitle());
-        holder.shopBuy.setText(ShopItem.getBuy());
-        holder.shopWebsite.setText(ShopItem.getWebsite());
+        holder.shopBuy.setText(ShopItem.getMiniTitle1());
+        holder.shopWebsite.setText(ShopItem.getMiniTitle2());
         Glide.with(holder.shopImage).load(ShopItem.getImage()).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.shopImage);
-        Glide.with(holder.shopMiniIcon1).load(ShopItem.getShopMiniIcon1()).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.shopMiniIcon1);
-        Glide.with(holder.shopMiniIcon2).load(ShopItem.getShopMiniIcon2()).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.shopMiniIcon2);
+        Glide.with(holder.shopMiniIcon1).load(ShopItem.getMiniIcon1()).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.shopMiniIcon1);
+        Glide.with(holder.shopMiniIcon2).load(ShopItem.getMiniIcon2()).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.shopMiniIcon2);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

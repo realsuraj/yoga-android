@@ -1,18 +1,13 @@
 package com.skroyal00000.dailyworkout.ProductPage;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -21,26 +16,16 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.skroyal00000.dailyworkout.Home.ChildItem;
 import com.skroyal00000.dailyworkout.ProductPage.Model.ShopChildItem;
 import com.skroyal00000.dailyworkout.ProductPage.ViewHolder.ShopAdapder;
 import com.skroyal00000.dailyworkout.R;
 import com.skroyal00000.dailyworkout.Utils.LinkApi;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,7 +38,7 @@ public class ProductView extends AppCompatActivity{
     List<ShopChildItem> childItemList;
     RecyclerView.Adapter adapter;
     private LinearLayoutManager linearLayoutManager;
-    public String whichT = "Gym Shop";
+    public String whichT;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +57,8 @@ public class ProductView extends AppCompatActivity{
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
 
+        Intent intent = getIntent();
+        whichT = intent.getStringExtra("whichT");
         getData();
     }
 
@@ -98,10 +85,10 @@ public class ProductView extends AppCompatActivity{
                         shopChildItem.setId(jsonObject.getInt("id"));
                         shopChildItem.setTitle(jsonObject.getString("title"));
                         shopChildItem.setImage(jsonObject.getString("image"));
-                        shopChildItem.setWebsite(jsonObject.getString("website"));
-                        shopChildItem.setBuy(jsonObject.getString("buy"));
-                        shopChildItem.setShopMiniIcon1(jsonObject.getString("shopMiniIcon1"));
-                        shopChildItem.setShopMiniIcon2(jsonObject.getString("shopMiniIcon2"));
+                        shopChildItem.setMiniTitle2(jsonObject.getString("miniTitle1"));
+                        shopChildItem.setMiniTitle1(jsonObject.getString("miniTitle2"));
+                        shopChildItem.setMiniIcon1(jsonObject.getString("miniIcon1"));
+                        shopChildItem.setMiniIcon2(jsonObject.getString("miniIcon2"));
                         childItemList.add(shopChildItem);
                     }
                     adapter.notifyDataSetChanged();

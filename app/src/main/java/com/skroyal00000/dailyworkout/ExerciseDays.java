@@ -24,11 +24,8 @@ public class ExerciseDays extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_days);
-
-
         gridViewDate = findViewById(R.id.grid_view_date);
         getAllArrayDate();
-
         gridAdapter adapter = new gridAdapter();
         gridViewDate.setAdapter(adapter);
         OnclickDate();
