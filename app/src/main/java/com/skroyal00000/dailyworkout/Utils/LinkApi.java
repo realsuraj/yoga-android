@@ -6,4 +6,5 @@ public class LinkApi {
     public String signUpApi = webUrl + "register.php";
     public String homeData = webUrl + "homeData.php";
     public String shopData = webUrl + "shopData.php";
+    public String showSingleData = webUrl + "showDataParticular.php";
 }

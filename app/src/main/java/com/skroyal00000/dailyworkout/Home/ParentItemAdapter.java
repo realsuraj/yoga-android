@@ -1,13 +1,11 @@
 package com.skroyal00000.dailyworkout.Home;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 
 import com.skroyal00000.dailyworkout.R;
@@ -46,7 +44,7 @@ public class ParentItemAdapter extends RecyclerView.Adapter<ParentItemAdapter.Pa
         layoutManager.setInitialPrefetchItemCount(parentItem.getChildItemList().size());
 
         ChildItemAdapter childItemAdapter = new ChildItemAdapter(parentViewHolder.itemView.getContext(), parentItem.getChildItemList());
-        childItemAdapter.setpTitle(parentItem.getTitle());parentViewHolder.ChildRecyclerView.setLayoutManager(layoutManager);
+        childItemAdapter.setWhichT(parentItem.getTitle());parentViewHolder.ChildRecyclerView.setLayoutManager(layoutManager);
         parentViewHolder.ChildRecyclerView.setAdapter(childItemAdapter);
         parentViewHolder.ChildRecyclerView.setRecycledViewPool(viewPool);
     }

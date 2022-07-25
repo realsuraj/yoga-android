@@ -14,6 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Yoga">
         <activity
+            android:name=".DietPlan"
+            android:exported="false" />
+        <activity
+            android:name=".ShopBuy"
+            android:exported="false" />
+        <activity
             android:name=".Register"
             android:exported="false" />
         <activity

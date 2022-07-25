@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +14,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.skroyal00000.dailyworkout.ExerciseDays;
 import com.skroyal00000.dailyworkout.R;
-import com.skroyal00000.dailyworkout.exercise.ExerciseList;
+import com.skroyal00000.dailyworkout.ShopBuy;
 
-import java.util.Collections;
 import java.util.List;
 
 public class ChildItemAdapter extends RecyclerView.Adapter<ChildItemAdapter.ChildViewHolder> {
@@ -27,14 +24,14 @@ public class ChildItemAdapter extends RecyclerView.Adapter<ChildItemAdapter.Chil
     private List<ChildItem> ChildItemList;
     Context context;
 
-    String pTitle;
+    String whichT;
 
-    public String getpTitle() {
-        return pTitle;
+    public String getWhichT() {
+        return whichT;
     }
 
-    public void setpTitle(String pTitle) {
-        this.pTitle = pTitle;
+    public void setWhichT(String whichT) {
+        this.whichT = whichT;
     }
 
     // Constructor
@@ -65,9 +62,10 @@ public class ChildItemAdapter extends RecyclerView.Adapter<ChildItemAdapter.Chil
         childViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("TAG", "onClick: " + childItem.getTitle());
-                Intent intent = new Intent(context, ExerciseDays.class);
-                Log.d("TAG", "title: " + getpTitle());
+                Intent intent = new Intent(context, ShopBuy.class);
+
+                intent.putExtra("whichT",getWhichT() +"");
+                intent.putExtra("id",childItem.getId() + "");
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }

@@ -53,6 +53,7 @@ public class ProductView extends AppCompatActivity{
     List<ShopChildItem> childItemList;
     RecyclerView.Adapter adapter;
     private LinearLayoutManager linearLayoutManager;
+    public String whichT = "Gym Shop";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +78,7 @@ public class ProductView extends AppCompatActivity{
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                           getting volley data
      private void getData() {
-        String whichT = "Gym Shop";
+
         LinkApi linkApi = new LinkApi();
         String url = linkApi.shopData;
         final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -94,13 +95,13 @@ public class ProductView extends AppCompatActivity{
                     for (int i = 0; i < childArray.length(); i++) {
                         JSONObject jsonObject = childArray.getJSONObject(i);
                         ShopChildItem shopChildItem = new ShopChildItem();
+                        shopChildItem.setId(jsonObject.getInt("id"));
                         shopChildItem.setTitle(jsonObject.getString("title"));
                         shopChildItem.setImage(jsonObject.getString("image"));
                         shopChildItem.setWebsite(jsonObject.getString("website"));
                         shopChildItem.setBuy(jsonObject.getString("buy"));
                         shopChildItem.setShopMiniIcon1(jsonObject.getString("shopMiniIcon1"));
                         shopChildItem.setShopMiniIcon2(jsonObject.getString("shopMiniIcon2"));
-
                         childItemList.add(shopChildItem);
                     }
                     adapter.notifyDataSetChanged();

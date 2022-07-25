@@ -115,7 +115,8 @@ public class HomePage extends AppCompatActivity {
                      JSONObject jsonObject = childArray.getJSONObject(i);
                      childItemsList.add(new ChildItem(jsonObject.getString("title"),jsonObject.getString("image")
                      ,jsonObject.getString("miniTitle1"),jsonObject.getString("miniTitle2")
-                     ,jsonObject.getString("miniIcon1"),jsonObject.getString("miniIcon2")));
+                     ,jsonObject.getString("miniIcon1"),jsonObject.getString("miniIcon2"),jsonObject.getInt("id")));
+
 
                     }
                     parentItemAdapter.notifyDataSetChanged();

@@ -3,6 +3,15 @@ package com.skroyal00000.dailyworkout.ProductPage.Model;
 public class ShopChildItem {
 
     String buy, image,title ,website, shopMiniIcon1, shopMiniIcon2;
+    int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getBuy() {
         return buy;
