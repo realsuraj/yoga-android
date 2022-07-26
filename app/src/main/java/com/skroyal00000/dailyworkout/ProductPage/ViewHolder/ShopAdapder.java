@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.skroyal00000.dailyworkout.PrefConfig;
 import com.skroyal00000.dailyworkout.ProductPage.Model.ShopChildItem;
 import com.skroyal00000.dailyworkout.ProductPage.ProductView;
 import com.skroyal00000.dailyworkout.R;
@@ -50,8 +51,7 @@ public class ShopAdapder extends RecyclerView.Adapter<ShopAdapder.ShopChildViewH
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ShopBuy.class);
-                ProductView productView = new ProductView();
-                intent.putExtra("whichT",productView.whichT);
+                intent.putExtra("whichT",PrefConfig.loadTableNameProductView(context) + "");
                 intent.putExtra("id",ShopItem.getId() + "");
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);

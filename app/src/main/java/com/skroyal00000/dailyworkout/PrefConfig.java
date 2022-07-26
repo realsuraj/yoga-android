@@ -16,6 +16,20 @@ public class PrefConfig {
     private static final String PREF_MUSIC_ON_OFF = "pref_is_music_on_off";
     private static final String PREF_USER_NAME = "pref_username";
 
+    private static final String PREF_WHICH_TABLE_PRODUCT_VIEW = "pref_which_table";
+
+    public static void saveTableNameProductView(Context context, String userName){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(MY_PREFERENCE_NAME,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(PREF_WHICH_TABLE_PRODUCT_VIEW,userName);
+        editor.apply();
+    };
+
+    public static String loadTableNameProductView(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(MY_PREFERENCE_NAME,Context.MODE_PRIVATE);
+        return  sharedPreferences.getString(PREF_WHICH_TABLE_PRODUCT_VIEW,null);
+    };
+
 
     public static void saveSettingSetsCountInPref(Context context, int total){
         SharedPreferences sharedPreferences = context.getSharedPreferences(MY_PREFERENCE_NAME,Context.MODE_PRIVATE);

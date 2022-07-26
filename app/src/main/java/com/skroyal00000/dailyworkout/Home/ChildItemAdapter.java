@@ -63,7 +63,6 @@ public class ChildItemAdapter extends RecyclerView.Adapter<ChildItemAdapter.Chil
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ShopBuy.class);
-
                 intent.putExtra("whichT",getWhichT() +"");
                 intent.putExtra("id",childItem.getId() + "");
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -92,7 +91,6 @@ public class ChildItemAdapter extends RecyclerView.Adapter<ChildItemAdapter.Chil
             ChildItemImage = itemView.findViewById(R.id.imageBar);
             MiniTitleIcon1 = itemView.findViewById(R.id.miniTitleIcon1);
             MiniTitleIcon2 = itemView.findViewById(R.id.miniTitleIcon2);
-
         }
 
 

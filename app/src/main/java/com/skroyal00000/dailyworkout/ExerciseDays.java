@@ -20,6 +20,9 @@ public class ExerciseDays extends AppCompatActivity {
     GridView gridViewDate;
     String[] dateString;
     int[]  imageDate;
+    int doneDays;
+    boolean isLocked;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +53,7 @@ public class ExerciseDays extends AppCompatActivity {
                     joinBtn =(String) b.get("JoinBtn");
                 }
 
+
                 int[] oneWeek = {1,8,15,22,29};
                 int[] twoWeek = {2,9,16,23,30};
                 int[] threeWeek = {3,10,24,0,0};
@@ -58,7 +62,6 @@ public class ExerciseDays extends AppCompatActivity {
                 int[] sixWeek = {6,13,20,27,0};
                 int[] offWeek = {7,14,21,28,0};
                 boolean weekOffBoolean = false;
-                Toast.makeText(ExerciseDays.this, " " + joinBtn, Toast.LENGTH_SHORT).show();
 
                    if(joinBtn.equalsIgnoreCase("Beginner") ){
                       for(int i = 0; i < 5; i++){
@@ -67,45 +70,51 @@ public class ExerciseDays extends AppCompatActivity {
                               break;
                           }
 
-                          if( whichDay.equalsIgnoreCase("Day " + twoWeek[i])) {
+                          else if( whichDay.equalsIgnoreCase("Day " + twoWeek[i])) {
                               whichExerciseDo = "shoulder or back";
                               break;
                           }
 
-                          if( whichDay.equalsIgnoreCase("Day " + threeWeek[i])) {
+                          else if( whichDay.equalsIgnoreCase("Day " + threeWeek[i])) {
                               whichExerciseDo = "chest or shoulder";
                               break;
                           }
 
-                          if(whichDay.equalsIgnoreCase("Day " + fourWeek[i])) {
+                          else if(whichDay.equalsIgnoreCase("Day " + fourWeek[i])) {
                               whichExerciseDo = "bicep or triceps or back";
                               break;
                           }
 
-                          if(whichDay.equalsIgnoreCase("Day " + fiveWeek[i])) {
+                          else if(whichDay.equalsIgnoreCase("Day " + fiveWeek[i])) {
                               whichExerciseDo = "chest or back";
                               break;
                           }
 
-                          if(whichDay.equalsIgnoreCase("Day " + sixWeek[i])) {
+                          else if(whichDay.equalsIgnoreCase("Day " + sixWeek[i])) {
                               whichExerciseDo = "leg";
                               break;
                           }
-                          if(whichDay.equalsIgnoreCase("Day " + offWeek[i])) {
+                          else if(whichDay.equalsIgnoreCase("Day " + offWeek[i])) {
                               weekOffBoolean = true;
+                              Toast.makeText(ExerciseDays.this, "Take a Break", Toast.LENGTH_SHORT).show();
                               break;
                           }
+                          else{
+                              Toast.makeText(ExerciseDays.this, "this locked", Toast.LENGTH_SHORT).show();
+                              isLocked = true;
+                              break;
+                               }
                       }
-                       Toast.makeText(ExerciseDays.this, " "  + whichExerciseDo, Toast.LENGTH_SHORT).show();
 
 
-                       if(!weekOffBoolean){
+                       if(!weekOffBoolean && !isLocked){
                            Intent intent = new Intent(getApplicationContext(), ExerciseList.class);
                            intent.putExtra("exercise", whichExerciseDo);
                            startActivity(intent);
                        }
                        else {
-                           Toast.makeText(ExerciseDays.this, "Take a Break", Toast.LENGTH_SHORT).show();
+                           weekOffBoolean = false;
+                           isLocked = false;
                        }
                    }
 
@@ -118,37 +127,50 @@ public class ExerciseDays extends AppCompatActivity {
                             break;
                         }
 
-                        if( whichDay.equalsIgnoreCase("Day " + twoWeek[i])) {
+                        else if( whichDay.equalsIgnoreCase("Day " + twoWeek[i])) {
                             whichExerciseDo = "back";
                             break;
                         }
 
-                        if( whichDay.equalsIgnoreCase("Day " + threeWeek[i])) {
+                        else if( whichDay.equalsIgnoreCase("Day " + threeWeek[i])) {
                             whichExerciseDo = "shoulder";
                             break;
                         }
 
-                        if(whichDay.equalsIgnoreCase("Day " + fourWeek[i])) {
+                        else if(whichDay.equalsIgnoreCase("Day " + fourWeek[i])) {
                             whichExerciseDo = "bicep";
                             break;
                         }
 
-                        if(whichDay.equalsIgnoreCase("Day " + fiveWeek[i])) {
+                        else if(whichDay.equalsIgnoreCase("Day " + fiveWeek[i])) {
                             whichExerciseDo = "triceps";
                             break;
                         }
 
-                        if(whichDay.equalsIgnoreCase("Day " + sixWeek[i])) {
+                        else if(whichDay.equalsIgnoreCase("Day " + sixWeek[i])) {
                             whichExerciseDo = "leg";
                             break;
                         }
+                        else if(whichDay.equalsIgnoreCase("Day " + offWeek[i])) {
+                            weekOffBoolean = true;
+                            Toast.makeText(ExerciseDays.this, "Take a Break", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                        else{
+                            isLocked = true;
+                            Toast.makeText(ExerciseDays.this, "this locked", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
                     }
-                    Toast.makeText(ExerciseDays.this, " "  + whichExerciseDo, Toast.LENGTH_SHORT).show();
-
-
-                    Intent intent = new Intent(ExerciseDays.this, ExerciseList.class);
-                    intent.putExtra("exercise", whichExerciseDo);
-                    startActivity(intent);
+                    if(!weekOffBoolean && !isLocked){
+                        Intent intent = new Intent(getApplicationContext(), ExerciseList.class);
+                        intent.putExtra("exercise", whichExerciseDo);
+                        startActivity(intent);
+                    }
+                    else {
+                        weekOffBoolean = false;
+                        isLocked = false;
+                    }
                 }
 //advance
                 if(joinBtn.equalsIgnoreCase("Advanced") ){
@@ -158,37 +180,51 @@ public class ExerciseDays extends AppCompatActivity {
                             break;
                         }
 
-                        if( whichDay.equalsIgnoreCase("Day " + twoWeek[i])) {
+                        else if( whichDay.equalsIgnoreCase("Day " + twoWeek[i])) {
                             whichExerciseDo = "pull";
                             break;
                         }
 
-                        if( whichDay.equalsIgnoreCase("Day " + threeWeek[i])) {
+                        else if( whichDay.equalsIgnoreCase("Day " + threeWeek[i])) {
                             whichExerciseDo = "leg";
                             break;
                         }
 
-                        if(whichDay.equalsIgnoreCase("Day " + fourWeek[i])) {
+                        else if(whichDay.equalsIgnoreCase("Day " + fourWeek[i])) {
                             whichExerciseDo = "push";
                             break;
                         }
 
-                        if(whichDay.equalsIgnoreCase("Day " + fiveWeek[i])) {
+                        else if(whichDay.equalsIgnoreCase("Day " + fiveWeek[i])) {
                             whichExerciseDo = "pull";
                             break;
                         }
 
-                        if(whichDay.equalsIgnoreCase("Day " + sixWeek[i])) {
+                        else if(whichDay.equalsIgnoreCase("Day " + sixWeek[i])) {
                             whichExerciseDo = "leg";
                             break;
                         }
+                        else if(whichDay.equalsIgnoreCase("Day " + offWeek[i])) {
+                            weekOffBoolean = true;
+                            Toast.makeText(ExerciseDays.this, "Take a Break", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                        else{
+                            isLocked = true;
+                            Toast.makeText(ExerciseDays.this, "this locked", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+
                     }
-                    Toast.makeText(ExerciseDays.this, " "  + whichExerciseDo, Toast.LENGTH_SHORT).show();
-
-
-                    Intent intent = new Intent(getApplicationContext(), ExerciseList.class);
-                    intent.putExtra("exercise", whichExerciseDo);
-                    startActivity(intent);
+                    if(!weekOffBoolean && !isLocked){
+                        Intent intent = new Intent(getApplicationContext(), ExerciseList.class);
+                        intent.putExtra("exercise", whichExerciseDo);
+                        startActivity(intent);
+                    }
+                    else {
+                        weekOffBoolean = false;
+                        isLocked = false;
+                    }
                 }
             }
         });
@@ -196,7 +232,7 @@ public class ExerciseDays extends AppCompatActivity {
 
     private void getAllArrayDate() {
         dateString = new String[]
-                {"DAY 1","DAY 2","DAY 3","DAY 4","DAY 5","DAY 6","DAY 7",
+                {"DAY 1","DAY 2 locked","DAY 3","DAY 4","DAY 5","DAY 6","DAY 7",
                   "DAY 8","DAY 9","DAY 10","DAY 11","DAY 12","DAY 13","DAY 14",
                   "DAY 15","DAY 16","DAY 17","DAY 18","DAY 19","DAY 20","DAY 21",
                   "DAY 22","DAY 23","DAY 24","DAY 25","DAY 26","DAY 27","DAY 28","DAY 29","DAY 30"};

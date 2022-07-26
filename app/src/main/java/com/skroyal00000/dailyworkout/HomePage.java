@@ -86,9 +86,12 @@ public class HomePage extends AppCompatActivity {
         itemList.add(item);
         ParentItem item1 = new ParentItem("Gym", ChildItemList("Gym"));
         itemList.add(item1);
-        ParentItem item2 = new ParentItem("Clothes", ChildItemList("Daily Workout"));
+        ParentItem item2 = new ParentItem("Clothes", ChildItemList("Clothes"));
         itemList.add(item2);
-        ParentItem item3 = new ParentItem("Supplements", ChildItemList("Gym"));itemList.add(item3);
+        ParentItem item3 = new ParentItem("Supplements", ChildItemList("Supplements"));
+        itemList.add(item3);
+        ParentItem item4 = new ParentItem("Gym Equipment", ChildItemList("Gym Equipment"));
+        itemList.add(item4);
         return itemList;
     }
 
@@ -116,8 +119,6 @@ public class HomePage extends AppCompatActivity {
                      childItemsList.add(new ChildItem(jsonObject.getString("title"),jsonObject.getString("image")
                      ,jsonObject.getString("miniTitle1"),jsonObject.getString("miniTitle2")
                      ,jsonObject.getString("miniIcon1"),jsonObject.getString("miniIcon2"),jsonObject.getInt("id")));
-
-
                     }
                     parentItemAdapter.notifyDataSetChanged();
 

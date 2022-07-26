@@ -31,14 +31,17 @@
         <TextView
             android:id="@+id/titleBar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="23dp"
             android:layout_marginLeft="4dp"
             android:layout_marginTop="30dp"
-            android:fontFamily="@font/poppins_bold"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_semibold"
+            android:maxLength="17"
+            android:maxLines="1"
             android:text="Chest"
             android:textColor="@color/black"
-
-            android:textSize="20sp" />
+            android:textSize="18sp"
+            android:layout_marginBottom="5dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"

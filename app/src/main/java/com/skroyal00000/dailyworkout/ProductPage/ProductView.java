@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.skroyal00000.dailyworkout.PrefConfig;
 import com.skroyal00000.dailyworkout.ProductPage.Model.ShopChildItem;
 import com.skroyal00000.dailyworkout.ProductPage.ViewHolder.ShopAdapder;
 import com.skroyal00000.dailyworkout.R;
@@ -59,6 +60,7 @@ public class ProductView extends AppCompatActivity{
 
         Intent intent = getIntent();
         whichT = intent.getStringExtra("whichT");
+        PrefConfig.saveTableNameProductView(getApplicationContext(),whichT);
         getData();
     }
 

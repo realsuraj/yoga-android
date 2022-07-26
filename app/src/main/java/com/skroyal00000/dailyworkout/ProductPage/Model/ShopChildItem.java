@@ -5,6 +5,7 @@ public class ShopChildItem {
     String miniTitle1, image,title , miniTitle2, miniIcon1, miniIcon2;
     int id;
 
+
     public int getId() {
         return id;
     }
