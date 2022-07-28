@@ -1,5 +1,6 @@
 package com.skroyal00000.dailyworkout.ExerciseListAdapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +19,10 @@ import java.util.ArrayList;
 public class Adapter extends RecyclerView.Adapter<Adapter.ExerciseViewHolder>{
     private ExerciseOnClickRecycler ex_listerner;
     ArrayList<HelperClass> exerciseLocation;
-
-    public Adapter(ArrayList<HelperClass> exerciseLocation, ExerciseOnClickRecycler ex_listerner) {
+    private Context context;
+    public Adapter(Context context,ArrayList<HelperClass> exerciseLocation) {
         this.exerciseLocation = exerciseLocation;
-        this.ex_listerner = ex_listerner;
+        this.context = context;
 
     }
 

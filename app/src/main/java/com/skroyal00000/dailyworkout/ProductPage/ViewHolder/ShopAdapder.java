@@ -73,14 +73,12 @@ public class ShopAdapder extends RecyclerView.Adapter<ShopAdapder.ShopChildViewH
 
         public ShopChildViewHolder(@NonNull View itemView) {
             super(itemView);
-
             shopTitle = itemView.findViewById(R.id.shopTitle);
             shopBuy = itemView.findViewById(R.id.shopBuy);
             shopWebsite = itemView.findViewById(R.id.shopWebsite);
             shopImage = itemView.findViewById(R.id.shopImage);
             shopMiniIcon1 = itemView.findViewById(R.id.shopMiniIcon1);
             shopMiniIcon2 = itemView.findViewById(R.id.shopMiniIcon2);
-
         }
     }
 }

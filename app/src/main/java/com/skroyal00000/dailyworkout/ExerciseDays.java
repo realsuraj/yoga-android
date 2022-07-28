@@ -22,6 +22,7 @@ public class ExerciseDays extends AppCompatActivity {
     int[]  imageDate;
     int doneDays;
     boolean isLocked;
+    boolean weekOffBoolean = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,61 +62,52 @@ public class ExerciseDays extends AppCompatActivity {
                 int[] fiveWeek = {5,12,19,26,0};
                 int[] sixWeek = {6,13,20,27,0};
                 int[] offWeek = {7,14,21,28,0};
-                boolean weekOffBoolean = false;
 
                    if(joinBtn.equalsIgnoreCase("Beginner") ){
+
                       for(int i = 0; i < 5; i++){
                           if (whichDay.equalsIgnoreCase("Day " + oneWeek[i])) {
-                              whichExerciseDo = "bicep or chest or triceps";
+                              SetExtra("chest","1","bicep","1","triceps","1");
                               break;
                           }
 
                           else if( whichDay.equalsIgnoreCase("Day " + twoWeek[i])) {
-                              whichExerciseDo = "shoulder or back";
+                              SetExtra("leg","1","sholder","1","warmup","1");
+
                               break;
                           }
 
                           else if( whichDay.equalsIgnoreCase("Day " + threeWeek[i])) {
-                              whichExerciseDo = "chest or shoulder";
+                              SetExtra("chest","1","bicep","1","triceps","1");
+
                               break;
                           }
 
                           else if(whichDay.equalsIgnoreCase("Day " + fourWeek[i])) {
-                              whichExerciseDo = "bicep or triceps or back";
+                              SetExtra("chest","1","bicep","1","triceps","1");
+
                               break;
                           }
 
                           else if(whichDay.equalsIgnoreCase("Day " + fiveWeek[i])) {
-                              whichExerciseDo = "chest or back";
+                              SetExtra("chest","1","bicep","1","triceps","1");
+
                               break;
                           }
 
                           else if(whichDay.equalsIgnoreCase("Day " + sixWeek[i])) {
-                              whichExerciseDo = "leg";
+                              SetExtra("chest","1","bicep","1","triceps","1");
+
                               break;
                           }
                           else if(whichDay.equalsIgnoreCase("Day " + offWeek[i])) {
-                              weekOffBoolean = true;
                               Toast.makeText(ExerciseDays.this, "Take a Break", Toast.LENGTH_SHORT).show();
                               break;
                           }
                           else{
                               Toast.makeText(ExerciseDays.this, "this locked", Toast.LENGTH_SHORT).show();
-                              isLocked = true;
-                              break;
                                }
                       }
-
-
-                       if(!weekOffBoolean && !isLocked){
-                           Intent intent = new Intent(getApplicationContext(), ExerciseList.class);
-                           intent.putExtra("exercise", whichExerciseDo);
-                           startActivity(intent);
-                       }
-                       else {
-                           weekOffBoolean = false;
-                           isLocked = false;
-                       }
                    }
 
 
@@ -230,9 +222,23 @@ public class ExerciseDays extends AppCompatActivity {
         });
     }
 
+    public void SetExtra(String whichT, String level,String whichT2,String level2,String whichT3,String level3){
+        if(!weekOffBoolean && !isLocked){
+            Intent intent = new Intent(getApplicationContext(), ExerciseList.class);
+            intent.putExtra("join", "1");
+            intent.putExtra("whichT",whichT);
+            intent.putExtra("level",level);
+            intent.putExtra("whichT2",whichT2);
+            intent.putExtra("level2",level2);
+            intent.putExtra("whichT3",whichT3);
+            intent.putExtra("level3",level3);
+            startActivity(intent);
+        }
+    }
+
     private void getAllArrayDate() {
         dateString = new String[]
-                {"DAY 1","DAY 2 locked","DAY 3","DAY 4","DAY 5","DAY 6","DAY 7",
+                {"DAY 1","DAY 2","DAY 3","DAY 4","DAY 5","DAY 6","DAY 7",
                   "DAY 8","DAY 9","DAY 10","DAY 11","DAY 12","DAY 13","DAY 14",
                   "DAY 15","DAY 16","DAY 17","DAY 18","DAY 19","DAY 20","DAY 21",
                   "DAY 22","DAY 23","DAY 24","DAY 25","DAY 26","DAY 27","DAY 28","DAY 29","DAY 30"};
