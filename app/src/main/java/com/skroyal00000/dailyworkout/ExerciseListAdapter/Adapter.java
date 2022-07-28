@@ -1,6 +1,7 @@
 package com.skroyal00000.dailyworkout.ExerciseListAdapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.skroyal00000.dailyworkout.R;
+import com.skroyal00000.dailyworkout.exercise.ExerciseList;
+import com.skroyal00000.dailyworkout.exercise.ExercisePreview;
 
 import java.util.ArrayList;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ExerciseViewHolder>{
-    private ExerciseOnClickRecycler ex_listerner;
     ArrayList<HelperClass> exerciseLocation;
     private Context context;
     public Adapter(Context context,ArrayList<HelperClass> exerciseLocation) {
@@ -48,7 +50,16 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ExerciseViewHolder>{
         holder.Exercise_title.setText(helperClass.getExercise_title());
         holder.Exercise_time.setText(helperClass.getExercise_time());
 
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ExercisePreview.class);
+                intent.putExtra("showExerciseTitle",helperClass.getExercise_title());
+                intent.putExtra("showExerciseImage",helperClass.getExercise_image());
+                intent.putExtra("description",helperClass.getDescription());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -57,7 +68,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ExerciseViewHolder>{
     }
 
 
-    public class ExerciseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ExerciseViewHolder extends RecyclerView.ViewHolder{
         ImageView imageView;
         TextView Exercise_title , Exercise_time;
 
@@ -68,19 +79,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ExerciseViewHolder>{
             imageView = itemView.findViewById(R.id.exercise_icon);
             Exercise_title = itemView.findViewById(R.id.exercise_title);
             Exercise_time = itemView.findViewById(R.id.exercise_time);
-            itemView.setOnClickListener(this);
+
 
         }
-
-
-        @Override
-        public void onClick(View v) {
-            ex_listerner.Onclick(itemView,getAdapterPosition());
-        }
-    }
-
-    public interface ExerciseOnClickRecycler{
-        void Onclick(View v,int position);
     }
 
 }

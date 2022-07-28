@@ -57,6 +57,9 @@ public class ShowExerciseAll extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_exercise_all);
+//**********************************************************************************************************************************
+//                                           getting ids
+//**********************************************************************************************************************************
 
         arcProgress = findViewById(R.id.arcprogress);
         play_time_btn = findViewById(R.id.play_time_btn);
@@ -71,9 +74,11 @@ public class ShowExerciseAll extends AppCompatActivity {
         localSetsTime = PrefConfig.loadSettingSetsCount(this);
 
         allExercise = (ArrayList<HelperClass>)getIntent().getSerializableExtra("Exercise");
+//**********************************************************************************************************************************
+//                                             calling function
+//**********************************************************************************************************************************
 
         getExtra();
-        gettingArraysValues();
         nextBtnPress();
         play_time_btn_on_click();
         loopExerciseManager();
@@ -82,6 +87,9 @@ public class ShowExerciseAll extends AppCompatActivity {
         settingbtn();
 
     }
+//**********************************************************************************************************************************
+//                                            on click on setting
+//**********************************************************************************************************************************
 
     private void settingbtn() {
       settingBtn.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +106,9 @@ public class ShowExerciseAll extends AppCompatActivity {
           }
       });
     }
+//**********************************************************************************************************************************
+//                                             setting background music
+//**********************************************************************************************************************************
 
     private void stopBackgroundSong() {
         if(player != null){
@@ -117,6 +128,9 @@ public class ShowExerciseAll extends AppCompatActivity {
             stopBackgroundSong();
         }
     }
+//**********************************************************************************************************************************
+//                                             setting tick tick
+//**********************************************************************************************************************************
 
 
     public void soundPlayer(String whichsound){
@@ -139,6 +153,9 @@ public class ShowExerciseAll extends AppCompatActivity {
        }
 
     }
+//**********************************************************************************************************************************
+//                                             handling next btn
+//**********************************************************************************************************************************
 
 
     private void nextBtnPress() {
@@ -152,24 +169,9 @@ public class ShowExerciseAll extends AppCompatActivity {
             }
         });
     }
-
-    private void gettingArraysValues() {
-        chestImageUrls = getResources().getStringArray(R.array.chest_urls);
-        bicepUrls = getResources().getStringArray(R.array.bicep_urls);
-        tricepUrls = getResources().getStringArray(R.array.tricep_urls);
-        shoulderUrls = getResources().getStringArray(R.array.shoulder_urls);
-        backUrls = getResources().getStringArray(R.array.back_urls);
-        legUrls = getResources().getStringArray(R.array.urls_legs);
-        warmupUrls = getResources().getStringArray(R.array.warmup_urls);
-
-        titles_legs = getResources().getStringArray(R.array.leg_titles);
-        titles_biceps = getResources().getStringArray(R.array.bicep_titles);
-        titles_back = getResources().getStringArray(R.array.back_titles);
-        titles_chest = getResources().getStringArray(R.array.chest_titles);
-        titles_warmup = getResources().getStringArray(R.array.warmup_titles);
-        titles_shoulder = getResources().getStringArray(R.array.shoulder_title);
-        titles_triceps = getResources().getStringArray(R.array.tricep_titles);
-    }
+//**********************************************************************************************************************************
+//                                            handling cancel btn
+//**********************************************************************************************************************************
 
 
     private void cancelBtnPress() {
@@ -195,6 +197,9 @@ public class ShowExerciseAll extends AppCompatActivity {
             }
         });
     }
+//**********************************************************************************************************************************
+//                                             handling back press
+//**********************************************************************************************************************************
 
     int countfinish = 1;
 
@@ -216,6 +221,9 @@ public class ShowExerciseAll extends AppCompatActivity {
             countfinish++;
         }
     }
+//**********************************************************************************************************************************
+//                                             getting extras
+//**********************************************************************************************************************************
 
     private void getExtra() {
         Bundle extra = getIntent().getExtras();
@@ -225,6 +233,9 @@ public class ShowExerciseAll extends AppCompatActivity {
         }
     }
 
+//**********************************************************************************************************************************
+//                                            setting loops for exercise
+//**********************************************************************************************************************************
 
     private void loopExerciseManager() {
 
@@ -259,6 +270,9 @@ public class ShowExerciseAll extends AppCompatActivity {
         }
 
     }
+//**********************************************************************************************************************************
+//                                             play pause btn and loop continue
+//**********************************************************************************************************************************
 
     private void play_time_btn_on_click() {
         play_time_btn.setOnClickListener(new View.OnClickListener() {
@@ -291,7 +305,14 @@ public class ShowExerciseAll extends AppCompatActivity {
             }
         });
     }
+    private void NextExercise(String title,String howManyExercise,int timer) {
+        Glide.with(ShowExerciseAll.this).asGif().load(urlImage).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(exercise_image);
+        exercise_title.setText(title);
+        exercise_description.setText(howManyExercise);
+        countDownClock = timer * 1000;
+        CountDown();
 
+    }
     long countDownClockTime,milliSecondLeft;
 
     private void CountDown() {
@@ -321,6 +342,9 @@ public class ShowExerciseAll extends AppCompatActivity {
         }.start();
 
     }
+//**********************************************************************************************************************************
+//                                            loop end alert on finish all
+//**********************************************************************************************************************************
 
     private void alertDialogFinishTime() {
         new AlertDialog.Builder(ShowExerciseAll.this)
@@ -344,14 +368,10 @@ public class ShowExerciseAll extends AppCompatActivity {
                 .show();
     }
 
-    private void NextExercise(String title,String howmanyExercise,int timer) {
-        Glide.with(ShowExerciseAll.this).asGif().load(urlImage).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(exercise_image);
-        exercise_title.setText(title);
-        exercise_description.setText(howmanyExercise);
-        countDownClock = timer * 1000;
-        CountDown();
+//**********************************************************************************************************************************
+//                                            all exercise finish dialog
+//**********************************************************************************************************************************
 
-    }
 
     private void DialogBox(){
         new AlertDialog.Builder(ShowExerciseAll.this)

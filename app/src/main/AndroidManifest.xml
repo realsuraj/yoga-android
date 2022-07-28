@@ -38,7 +38,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".exercise.ShowExercise"
+            android:name=".exercise.ExercisePreview"
             android:exported="false" />
         <activity
             android:name=".exercise.ExerciseList"

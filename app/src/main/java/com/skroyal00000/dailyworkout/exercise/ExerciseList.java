@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ import com.skroyal00000.dailyworkout.Utils.LinkApi;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,7 +38,6 @@ public class ExerciseList extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     String name_exercise_string;
-    Adapter.ExerciseOnClickRecycler adapterRecycler;
     private LinearLayoutManager linearLayoutManager;
     Button btn_start_all_exercise;
     int countdownTimeInt;
@@ -52,7 +53,7 @@ public class ExerciseList extends AppCompatActivity {
 
         getPrefs();
         getExtraIntent();
-//        BtnStartAllExercise();
+
         list = new ArrayList<>();
         adapter = new Adapter(getApplicationContext(),list);
 
@@ -63,6 +64,7 @@ public class ExerciseList extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
         getData();
+        BtnStartAllExercise();
     }
 
     private void getData() {
@@ -86,6 +88,7 @@ public class ExerciseList extends AppCompatActivity {
                         helperClass.setExercise_title(jsonObject.getString("title"));
                         helperClass.setExercise_image(jsonObject.getString("image"));
                         helperClass.setExercise_time(jsonObject.getString("miniTitle1"));
+                        helperClass.setDescription(jsonObject.getString("description"));
                         list.add(helperClass);
                     }
                     adapter.notifyDataSetChanged();
@@ -116,6 +119,20 @@ public class ExerciseList extends AppCompatActivity {
                     params.put("level2",level2);
                     params.put("whichT3",whichT3);
                     params.put("level3",level3);
+                }
+                else if(join.equalsIgnoreCase("2")){
+                    params.put("TWO","true");
+                    params.put("whichT",whichT);
+                    params.put("level",level);
+                    params.put("whichT2",whichT2);
+                    params.put("level2",level2);
+
+                }
+                else if(join.equalsIgnoreCase("3")){
+                    params.put("THREE","true");
+                    params.put("whichT",whichT);
+                    params.put("whichT2",whichT2);
+                    params.put("whichT3",whichT3);
 
                 }
                 return params;
@@ -128,16 +145,13 @@ public class ExerciseList extends AppCompatActivity {
     private void BtnStartAllExercise()
     {
         ArrayList<HelperClass> allExercise;
-//        allExercise = list;
-//        String testimage = allExercise.get(1).getExercise_image();
-//        Toast.makeText(ExerciseList.this, " " + testimage, Toast.LENGTH_SHORT).show();
-
-//        ArrayList<HelperClass> finalAllExercise = allExercise;
-//        btn_start_all_exercise.setOnClickListener(v -> {
-//            Intent intent = new Intent(ExerciseList.this, ShowExerciseAll.class);
-//            intent.putExtra("Exercise", finalAllExercise);
-//            startActivity(intent);
-//        });
+        allExercise = list;
+        ArrayList<HelperClass> finalAllExercise = allExercise;
+        btn_start_all_exercise.setOnClickListener(v -> {
+            Intent intent = new Intent(ExerciseList.this, ShowExerciseAll.class);
+            intent.putExtra("Exercise", finalAllExercise);
+            startActivity(intent);
+        });
     }
 
 
@@ -159,7 +173,7 @@ public class ExerciseList extends AppCompatActivity {
             whichT2 = extras.getString("whichT2");
             level2 = extras.getString("level2");
             whichT3 = extras.getString("whichT3");
-            level3 = extras.getString("level2");
+            level3 = extras.getString("level3");
 
         }
 
@@ -167,16 +181,7 @@ public class ExerciseList extends AppCompatActivity {
 
 
 
-    private void setOnClickLister() {
-        adapterRecycler = (v, position) -> {
-//            Intent intent = new Intent(ExerciseList.this, ShowExercise.class);
-//            intent.putExtra("showExerciseTitle",list.get(position).getExercise_title());
-//            intent.putExtra("showExerciseImage",list.get(position).getExercise_image());
-//            intent.putExtra("Exercise_previous_activity",name_exercise_string);
-//            intent.putExtra("start","startExercise");
-//            startActivity(intent);
-        };
-    }
+
 
 
 }

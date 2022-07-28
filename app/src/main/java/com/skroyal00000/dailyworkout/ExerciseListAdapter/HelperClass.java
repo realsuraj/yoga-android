@@ -3,12 +3,20 @@ package com.skroyal00000.dailyworkout.ExerciseListAdapter;
 import java.io.Serializable;
 
 public class HelperClass implements Serializable {
-    String exercise_image,exercise_title,exercise_time;
+    String exercise_image,exercise_title,exercise_time,description;
 
     public HelperClass(String exercise_image, String exercise_title, String exercise_time) {
         this.exercise_image = exercise_image;
         this.exercise_title = exercise_title;
         this.exercise_time = exercise_time;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public HelperClass() {

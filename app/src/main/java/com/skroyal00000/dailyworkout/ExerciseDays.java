@@ -46,154 +46,121 @@ public class ExerciseDays extends AppCompatActivity {
                 String whichExerciseDo = "";
 
                 //getting data from intent
-                Intent iin= getIntent();
+                Intent iin = getIntent();
                 Bundle b = iin.getExtras();
                 String joinBtn = null;
-                if(b!=null)
-                {
-                    joinBtn =(String) b.get("JoinBtn");
+                if (b != null) {
+                    joinBtn = (String) b.get("JoinBtn");
                 }
 
 
-                int[] oneWeek = {1,8,15,22,29};
-                int[] twoWeek = {2,9,16,23,30};
-                int[] threeWeek = {3,10,24,0,0};
-                int[] fourWeek = {4,11,18,25,0};
-                int[] fiveWeek = {5,12,19,26,0};
-                int[] sixWeek = {6,13,20,27,0};
-                int[] offWeek = {7,14,21,28,0};
+                int[] oneWeek = {1, 8, 15, 22, 29};
+                int[] twoWeek = {2, 9, 16, 23, 30};
+                int[] threeWeek = {3, 10, 24, 0, 0};
+                int[] fourWeek = {4, 11, 18, 25, 0};
+                int[] fiveWeek = {5, 12, 19, 26, 0};
+                int[] sixWeek = {6, 13, 20, 27, 0};
+                int[] offWeek = {7, 14, 21, 28, 0};
 
-                   if(joinBtn.equalsIgnoreCase("Beginner") ){
+                if (joinBtn.equalsIgnoreCase("Beginner")) {
 
-                      for(int i = 0; i < 5; i++){
-                          if (whichDay.equalsIgnoreCase("Day " + oneWeek[i])) {
-                              SetExtra("chest","1","bicep","1","triceps","1");
-                              break;
-                          }
+                    for (int i = 0; i < 5; i++) {
+                        if (whichDay.equalsIgnoreCase("Day " + oneWeek[i])) {
+                            SetExtraBeginner("chest", "1", "bicep", "1", "triceps", "1");
+                            break;
+                        } else if (whichDay.equalsIgnoreCase("Day " + twoWeek[i])) {
+                            SetExtraBeginner("leg", "1", "shoulder", "1", "warmup", "1");
 
-                          else if( whichDay.equalsIgnoreCase("Day " + twoWeek[i])) {
-                              SetExtra("leg","1","sholder","1","warmup","1");
+                            break;
+                        } else if (whichDay.equalsIgnoreCase("Day " + threeWeek[i])) {
+                            SetExtraBeginner("chest", "1", "bicep", "1", "triceps", "1");
 
-                              break;
-                          }
+                            break;
+                        } else if (whichDay.equalsIgnoreCase("Day " + fourWeek[i])) {
+                            SetExtraBeginner("chest", "1", "bicep", "1", "triceps", "1");
 
-                          else if( whichDay.equalsIgnoreCase("Day " + threeWeek[i])) {
-                              SetExtra("chest","1","bicep","1","triceps","1");
+                            break;
+                        } else if (whichDay.equalsIgnoreCase("Day " + fiveWeek[i])) {
+                            SetExtraBeginner("chest", "1", "bicep", "1", "triceps", "1");
 
-                              break;
-                          }
+                            break;
+                        } else if (whichDay.equalsIgnoreCase("Day " + sixWeek[i])) {
+                            SetExtraBeginner("chest", "1", "bicep", "1", "triceps", "1");
 
-                          else if(whichDay.equalsIgnoreCase("Day " + fourWeek[i])) {
-                              SetExtra("chest","1","bicep","1","triceps","1");
-
-                              break;
-                          }
-
-                          else if(whichDay.equalsIgnoreCase("Day " + fiveWeek[i])) {
-                              SetExtra("chest","1","bicep","1","triceps","1");
-
-                              break;
-                          }
-
-                          else if(whichDay.equalsIgnoreCase("Day " + sixWeek[i])) {
-                              SetExtra("chest","1","bicep","1","triceps","1");
-
-                              break;
-                          }
-                          else if(whichDay.equalsIgnoreCase("Day " + offWeek[i])) {
-                              Toast.makeText(ExerciseDays.this, "Take a Break", Toast.LENGTH_SHORT).show();
-                              break;
-                          }
-                          else{
-                              Toast.makeText(ExerciseDays.this, "this locked", Toast.LENGTH_SHORT).show();
-                               }
-                      }
-                   }
+                            break;
+                        } else if (whichDay.equalsIgnoreCase("Day " + offWeek[i])) {
+                            Toast.makeText(ExerciseDays.this, "Take a Break", Toast.LENGTH_SHORT).show();
+                            break;
+                        } else {
+                            Toast.makeText(ExerciseDays.this, "this locked", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
 
 
 //intermediate
-                if(joinBtn.equalsIgnoreCase("Intermediate") ){
-                    for(int i = 0; i < 5; i++){
+                if (joinBtn.equalsIgnoreCase("Intermediate")) {
+                    for (int i = 0; i < 5; i++) {
                         if (whichDay.equalsIgnoreCase("Day " + oneWeek[i])) {
-                            whichExerciseDo = "chest";
+                            SetExtraIntermediate("chest", "2", "bicep", "2");
                             break;
-                        }
-
-                        else if( whichDay.equalsIgnoreCase("Day " + twoWeek[i])) {
-                            whichExerciseDo = "back";
+                        } else if (whichDay.equalsIgnoreCase("Day " + twoWeek[i])) {
+                            SetExtraIntermediate("chest", "2", "bicep", "2");
                             break;
-                        }
-
-                        else if( whichDay.equalsIgnoreCase("Day " + threeWeek[i])) {
-                            whichExerciseDo = "shoulder";
+                        } else if (whichDay.equalsIgnoreCase("Day " + threeWeek[i])) {
+                            SetExtraIntermediate("chest", "2", "bicep", "2");
                             break;
-                        }
-
-                        else if(whichDay.equalsIgnoreCase("Day " + fourWeek[i])) {
-                            whichExerciseDo = "bicep";
+                        } else if (whichDay.equalsIgnoreCase("Day " + fourWeek[i])) {
+                            SetExtraIntermediate("chest", "2", "bicep", "2");
                             break;
-                        }
-
-                        else if(whichDay.equalsIgnoreCase("Day " + fiveWeek[i])) {
-                            whichExerciseDo = "triceps";
+                        } else if (whichDay.equalsIgnoreCase("Day " + fiveWeek[i])) {
+                            SetExtraIntermediate("chest", "2", "bicep", "2");
                             break;
-                        }
-
-                        else if(whichDay.equalsIgnoreCase("Day " + sixWeek[i])) {
-                            whichExerciseDo = "leg";
+                        } else if (whichDay.equalsIgnoreCase("Day " + sixWeek[i])) {
+                            SetExtraIntermediate("chest", "2", "bicep", "2");
                             break;
-                        }
-                        else if(whichDay.equalsIgnoreCase("Day " + offWeek[i])) {
+                        } else if (whichDay.equalsIgnoreCase("Day " + offWeek[i])) {
                             weekOffBoolean = true;
                             Toast.makeText(ExerciseDays.this, "Take a Break", Toast.LENGTH_SHORT).show();
                             break;
-                        }
-                        else{
+                        } else {
                             isLocked = true;
                             Toast.makeText(ExerciseDays.this, "this locked", Toast.LENGTH_SHORT).show();
                             break;
                         }
                     }
-                    if(!weekOffBoolean && !isLocked){
-                        Intent intent = new Intent(getApplicationContext(), ExerciseList.class);
-                        intent.putExtra("exercise", whichExerciseDo);
-                        startActivity(intent);
-                    }
-                    else {
-                        weekOffBoolean = false;
-                        isLocked = false;
-                    }
                 }
+
 //advance
                 if(joinBtn.equalsIgnoreCase("Advanced") ){
                     for(int i = 0; i < 5; i++){
                         if (whichDay.equalsIgnoreCase("Day " + oneWeek[i])) {
-                            whichExerciseDo = "push";
+                            SetExtraAdvance("leg","back","triceps");
                             break;
                         }
 
                         else if( whichDay.equalsIgnoreCase("Day " + twoWeek[i])) {
-                            whichExerciseDo = "pull";
+                            SetExtraAdvance("leg","back","triceps");
                             break;
                         }
 
                         else if( whichDay.equalsIgnoreCase("Day " + threeWeek[i])) {
-                            whichExerciseDo = "leg";
+                            SetExtraAdvance("leg","back","triceps");
                             break;
                         }
 
                         else if(whichDay.equalsIgnoreCase("Day " + fourWeek[i])) {
-                            whichExerciseDo = "push";
+                            SetExtraAdvance("leg","back","triceps");
                             break;
                         }
 
                         else if(whichDay.equalsIgnoreCase("Day " + fiveWeek[i])) {
-                            whichExerciseDo = "pull";
+                            SetExtraAdvance("leg","back","triceps");
                             break;
                         }
 
                         else if(whichDay.equalsIgnoreCase("Day " + sixWeek[i])) {
-                            whichExerciseDo = "leg";
+                            SetExtraAdvance("leg","back","triceps");
                             break;
                         }
                         else if(whichDay.equalsIgnoreCase("Day " + offWeek[i])) {
@@ -207,22 +174,13 @@ public class ExerciseDays extends AppCompatActivity {
                             break;
                         }
 
-                    }
-                    if(!weekOffBoolean && !isLocked){
-                        Intent intent = new Intent(getApplicationContext(), ExerciseList.class);
-                        intent.putExtra("exercise", whichExerciseDo);
-                        startActivity(intent);
-                    }
-                    else {
-                        weekOffBoolean = false;
-                        isLocked = false;
                     }
                 }
             }
         });
     }
 
-    public void SetExtra(String whichT, String level,String whichT2,String level2,String whichT3,String level3){
+    public void SetExtraBeginner(String whichT, String level, String whichT2, String level2, String whichT3, String level3){
         if(!weekOffBoolean && !isLocked){
             Intent intent = new Intent(getApplicationContext(), ExerciseList.class);
             intent.putExtra("join", "1");
@@ -232,6 +190,34 @@ public class ExerciseDays extends AppCompatActivity {
             intent.putExtra("level2",level2);
             intent.putExtra("whichT3",whichT3);
             intent.putExtra("level3",level3);
+            startActivity(intent);
+        }
+    }
+
+    public void SetExtraIntermediate(String whichT, String level, String whichT2, String level2){
+        if(!weekOffBoolean && !isLocked){
+            Intent intent = new Intent(getApplicationContext(), ExerciseList.class);
+            intent.putExtra("join", "2");
+            intent.putExtra("whichT",whichT);
+            intent.putExtra("level",level);
+            intent.putExtra("whichT2",whichT2);
+            intent.putExtra("level2",level2);
+            intent.putExtra("whichT3","");
+            intent.putExtra("level3","");
+            startActivity(intent);
+        }
+    }
+
+    public void SetExtraAdvance(String whichT, String whichT2, String whichT3){
+        if(!weekOffBoolean && !isLocked){
+            Intent intent = new Intent(getApplicationContext(), ExerciseList.class);
+            intent.putExtra("join", "3");
+            intent.putExtra("whichT",whichT);
+            intent.putExtra("level","");
+            intent.putExtra("whichT2",whichT2);
+            intent.putExtra("level2","");
+            intent.putExtra("whichT3","");
+            intent.putExtra("level3",whichT3);
             startActivity(intent);
         }
     }

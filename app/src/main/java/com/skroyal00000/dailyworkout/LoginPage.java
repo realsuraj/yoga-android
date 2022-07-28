@@ -38,7 +38,12 @@ public class LoginPage extends AppCompatActivity {
     TextView signUp;
     String stringUserName;
     String stringPassword;
-    PrefConfig prefConfig = new PrefConfig();
+
+
+//**********************************************************************************************************************************
+//                                             getting ids
+//**********************************************************************************************************************************
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +53,9 @@ public class LoginPage extends AppCompatActivity {
        password = findViewById(R.id.password);
        signBtn = findViewById(R.id.signInBtn);
        signUp = findViewById(R.id.signUp);
+//**********************************************************************************************************************************
+//                                             sign up btn
+//**********************************************************************************************************************************
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,8 +67,11 @@ public class LoginPage extends AppCompatActivity {
          stringUserName = username.getText().toString();
          stringPassword = password.getText().toString();
 
+//**********************************************************************************************************************************
+//                                             sign in with volley
+//**********************************************************************************************************************************
 
-       signBtn.setOnClickListener(new View.OnClickListener() {
+        signBtn.setOnClickListener(new View.OnClickListener() {
 
            final LinkApi linkApi = new LinkApi();
            String url;
