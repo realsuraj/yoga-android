@@ -252,8 +252,7 @@ public class ShowExerciseAll extends AppCompatActivity {
        }
     int i = 1;
     private void ExerciseManager() {
-         if(continuetime)
-        {
+         if(continuetime) {
 
             if(i <= localSetsTime){
                 i++;
@@ -264,9 +263,7 @@ public class ShowExerciseAll extends AppCompatActivity {
                 loopCount ++;
                 i = 1;
                 loopExerciseManager();
-
             }
-
         }
 
     }

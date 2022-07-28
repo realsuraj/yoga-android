@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.skroyal00000.dailyworkout.ExerciseListAdapter.Adapter;
 import com.skroyal00000.dailyworkout.ExerciseListAdapter.HelperClass;
 import com.skroyal00000.dailyworkout.PrefConfig;
@@ -43,12 +45,15 @@ public class ExerciseList extends AppCompatActivity {
     int countdownTimeInt;
     String countdownTimeString;
     ArrayList<HelperClass> list;
+    ShimmerFrameLayout shimmerFrameLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_list);
         recyclerView = (RecyclerView) findViewById(R.id.exercise_list_recyclerView);
         btn_start_all_exercise = findViewById(R.id.btn_start_all_exercise);
+        shimmerFrameLayout = findViewById(R.id.shimmerLayout);
+        shimmerFrameLayout.startShimmer();
         name_exercise_string = "";
 
         getPrefs();
@@ -71,9 +76,6 @@ public class ExerciseList extends AppCompatActivity {
 
         LinkApi linkApi = new LinkApi();
         String url = linkApi.showExercise;
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -92,10 +94,13 @@ public class ExerciseList extends AppCompatActivity {
                         list.add(helperClass);
                     }
                     adapter.notifyDataSetChanged();
-                    progressDialog.dismiss();
+                    shimmerFrameLayout.stopShimmer();
+                    shimmerFrameLayout.setVisibility(View.GONE);
 
                 } catch (Exception e) {
                     e.printStackTrace();
+                    shimmerFrameLayout.stopShimmer();
+                    shimmerFrameLayout.setVisibility(View.GONE);
                 }
             }
         }, new Response.ErrorListener() {
@@ -103,7 +108,8 @@ public class ExerciseList extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.e("TAG", "Error : " + error.getMessage());
                 Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-                progressDialog.dismiss();
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
 
             }
         }){

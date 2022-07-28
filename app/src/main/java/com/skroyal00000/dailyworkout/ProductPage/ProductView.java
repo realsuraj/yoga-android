@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -18,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.skroyal00000.dailyworkout.PrefConfig;
 import com.skroyal00000.dailyworkout.ProductPage.Model.ShopChildItem;
 import com.skroyal00000.dailyworkout.ProductPage.ViewHolder.ShopAdapder;
@@ -39,15 +41,15 @@ public class ProductView extends AppCompatActivity{
     List<ShopChildItem> childItemList;
     RecyclerView.Adapter adapter;
     private LinearLayoutManager linearLayoutManager;
+    private ShimmerFrameLayout shimmerFrameLayout;
     public String whichT;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_view);
-
-
+        shimmerFrameLayout = findViewById(R.id.shimmerLayout);
+        shimmerFrameLayout.startShimmer();
         recyclerView = findViewById(R.id.shopPRecyclerView);
-
         childItemList = new ArrayList<>();
         adapter = new ShopAdapder(getApplicationContext(),childItemList);
 
@@ -70,9 +72,6 @@ public class ProductView extends AppCompatActivity{
 
         LinkApi linkApi = new LinkApi();
         String url = linkApi.shopData;
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -94,7 +93,8 @@ public class ProductView extends AppCompatActivity{
                         childItemList.add(shopChildItem);
                     }
                     adapter.notifyDataSetChanged();
-                    progressDialog.dismiss();
+                    shimmerFrameLayout.stopShimmer();
+                    shimmerFrameLayout.setVisibility(View.GONE);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -105,7 +105,8 @@ public class ProductView extends AppCompatActivity{
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.e("TAG", "Error : " + error.getMessage());
                 Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-                progressDialog.dismiss();
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
 
             }
         }){

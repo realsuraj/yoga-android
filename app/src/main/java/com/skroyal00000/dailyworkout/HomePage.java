@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.skroyal00000.dailyworkout.Detail.Detail_intro;
 import com.skroyal00000.dailyworkout.Home.ChildItem;
 import com.skroyal00000.dailyworkout.Home.ParentItem;
@@ -45,6 +47,7 @@ public class HomePage extends AppCompatActivity {
     ImageView settingImageview,custom_btn;
     RecyclerView parentRecyclerView ;
     ParentItemAdapter parentItemAdapter;
+    ShimmerFrameLayout shimmerFrameLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +57,7 @@ public class HomePage extends AppCompatActivity {
 //**********************************************************************************************************************************
 //                                            finding data
 //**********************************************************************************************************************************
-
+        shimmerFrameLayout = findViewById(R.id.shimmerLayout);
         begginerBtnJoin = (Button) findViewById(R.id.joinNowDate);
         intermediateBtnJoin = (Button) findViewById(R.id.joinNowDate2);
         advanceBtnJoin = (Button) findViewById(R.id.joinNowDate3);
@@ -67,7 +70,7 @@ public class HomePage extends AppCompatActivity {
 //                                               calling function
 //**********************************************************************************************************************************
 
-
+        shimmerFrameLayout.startShimmer();
         BeginnerJoinFunc();
         SettingImageButton();
         custombtnPressed();
@@ -132,9 +135,13 @@ public class HomePage extends AppCompatActivity {
                      ,jsonObject.getString("miniIcon1"),jsonObject.getString("miniIcon2"),jsonObject.getInt("id")));
                     }
                     parentItemAdapter.notifyDataSetChanged();
+                    shimmerFrameLayout.stopShimmer();
+                    shimmerFrameLayout.setVisibility(View.GONE);
 
                 } catch (Exception e) {
                     e.printStackTrace();
+                    shimmerFrameLayout.stopShimmer();
+                    shimmerFrameLayout.setVisibility(View.GONE);
                 }
             }
         }, new Response.ErrorListener() {
@@ -142,6 +149,8 @@ public class HomePage extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.e("TAG", "Error : " + error.getMessage());
                 Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
             }
         }){
             @Nullable
