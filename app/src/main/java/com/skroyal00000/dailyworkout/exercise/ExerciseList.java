@@ -60,7 +60,7 @@ public class ExerciseList extends AppCompatActivity {
         getExtraIntent();
 
         list = new ArrayList<>();
-        adapter = new Adapter(getApplicationContext(),list);
+        adapter = new Adapter(ExerciseList.this,list);
 
         linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);

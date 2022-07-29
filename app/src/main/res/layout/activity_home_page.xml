@@ -206,12 +206,7 @@
 
 
     </RelativeLayout>
-    <LinearLayout
-        android:layout_alignParentTop="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/mudit"
-        >
+
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmerLayout"
             android:layout_width="match_parent"
@@ -224,17 +219,12 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <include layout="@layout/shimmer_homepage"></include>
+                <include layout="@layout/shimmer_homepage" />
 
-                <include layout="@layout/shimmer_homepage"></include>
+                <include layout="@layout/shimmer_homepage" />
 
-                <include layout="@layout/shimmer_homepage"></include>
+                <include layout="@layout/shimmer_homepage" />
 
-                <include layout="@layout/shimmer_homepage"></include>
-
-                <include layout="@layout/shimmer_homepage"></include>
-
-                <include layout="@layout/shimmer_homepage"></include>
             </LinearLayout>
         </com.facebook.shimmer.ShimmerFrameLayout>
 
@@ -242,8 +232,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/parentRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="1600dp" />
-    </LinearLayout>
+        android:layout_height="1950dp"
+        android:nestedScrollingEnabled="false"/>
+
 <!--    diet-->
     <TextView
         android:layout_width="wrap_content"

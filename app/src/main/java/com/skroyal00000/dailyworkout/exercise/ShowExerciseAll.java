@@ -162,6 +162,7 @@ public class ShowExerciseAll extends AppCompatActivity {
         next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                i = 1;
                 loopCount ++;
                 exerciseManager = 1;
                 countDownTimer.cancel();
@@ -356,6 +357,7 @@ public class ShowExerciseAll extends AppCompatActivity {
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        soundPlayer("stopCountdownMusic");
                         stopBackgroundSong();
                         continuetime = false;
                         countDownTimer.cancel();
@@ -377,6 +379,7 @@ public class ShowExerciseAll extends AppCompatActivity {
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        soundPlayer("stopCountdownMusic");
                         soundplayer = false;
                         stopBackgroundSong();
                         continuetime = false;
