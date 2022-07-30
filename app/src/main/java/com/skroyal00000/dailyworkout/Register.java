@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -26,6 +27,7 @@ public class Register extends AppCompatActivity {
 
     EditText Rusername,Rpassword;
     Button registerBtn;
+    TextView signInBtn;
     String strUsername,strPassword;
     LinkApi linkApi = new LinkApi();
     String url = linkApi.signUpApi;
@@ -37,8 +39,15 @@ public class Register extends AppCompatActivity {
         Rusername = findViewById(R.id.registerUsername);
         Rpassword = findViewById(R.id.RegisterPassword);
         registerBtn = findViewById(R.id.registerBtn);
+        signInBtn = findViewById(R.id.signin);
 
-
+        signInBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Register.this,LoginPage.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void RegisterClick(View view){

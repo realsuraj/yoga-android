@@ -28,8 +28,7 @@
             android:layout_alignParentRight="true"
             android:fontFamily="@font/poppins_medium"
             android:padding="16dp"
-            android:text="SKIP"
-            />
+            android:text="SKIP" />
     </RelativeLayout>
 
     <FrameLayout

@@ -94,11 +94,18 @@ public class Detail_intro extends AppCompatActivity {
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
+                Intent intent = new Intent(Detail_intro.this,HomePage.class);
+                startActivity(intent);
             }
         });
 
+        btnskip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Detail_intro.this,HomePage.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
