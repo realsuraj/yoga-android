@@ -2,6 +2,7 @@ package com.skroyal00000.dailyworkout.ProductPage;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,6 +47,8 @@ public class ProductView extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_product_view);
         shimmerFrameLayout = findViewById(R.id.shimmerLayout);
         shimmerFrameLayout.startShimmer();
@@ -53,11 +56,8 @@ public class ProductView extends AppCompatActivity{
         childItemList = new ArrayList<>();
         adapter = new ShopAdapder(getApplicationContext(),childItemList);
 
-        linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        GridLayoutManager layoutManager=new GridLayoutManager(this,2);
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
         Intent intent = getIntent();

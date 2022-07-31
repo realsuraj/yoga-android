@@ -29,18 +29,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:fontFamily="@font/poppins_bold"
             android:text="WorkOut"
             android:textColor="@color/black"
             android:textSize="25sp"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginStart="20dp"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
             android:gravity="end">
 
             <ImageView
@@ -48,7 +47,6 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
-                android:layout_gravity=""
                 android:background="@drawable/setting_icon" />
         </RelativeLayout>
 
@@ -90,7 +88,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="467dp"
         android:orientation="vertical">
 
         <GridLayout
@@ -137,16 +135,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="23dp"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="15dp"
                         android:ellipsize="end"
                         android:fontFamily="@font/poppins_semibold"
                         android:maxLength="17"
                         android:maxLines="1"
                         android:text="Workout"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:layout_marginBottom="5dp"/>
+                        android:textSize="18sp" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -184,16 +181,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="23dp"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="15dp"
                         android:ellipsize="end"
                         android:fontFamily="@font/poppins_semibold"
                         android:maxLength="17"
                         android:maxLines="1"
                         android:text="Trainer"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:layout_marginBottom="5dp"/>
+                        android:textSize="18sp" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -230,16 +226,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="23dp"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="15dp"
                         android:ellipsize="end"
                         android:fontFamily="@font/poppins_semibold"
                         android:maxLength="17"
                         android:maxLines="1"
                         android:text="Shops"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:layout_marginBottom="5dp"/>
+                        android:textSize="18sp" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -275,16 +270,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="23dp"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="15dp"
                         android:ellipsize="end"
                         android:fontFamily="@font/poppins_semibold"
                         android:maxLength="17"
                         android:maxLines="1"
                         android:text="Gym"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:layout_marginBottom="5dp"/>
+                        android:textSize="18sp"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -297,7 +291,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="My Custom Exercise"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textColor="@color/black"
         android:fontFamily="@font/poppins_medium"
         android:layout_marginLeft="20dp"/>
@@ -324,7 +318,6 @@
            android:id="@+id/create_custom_plan_btn"
            android:layout_width="50dp"
            android:layout_height="50dp"
-           android:layout_below="@id/custom_plan_txt"
            android:src="@drawable/add_new_icon"
            android:layout_gravity="center"/>
 
