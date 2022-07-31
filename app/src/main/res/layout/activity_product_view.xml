@@ -11,8 +11,8 @@
 
 
     <TextView
+        android:id="@+id/titleProductView"
         android:layout_marginStart="16dp"
-        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Shop"

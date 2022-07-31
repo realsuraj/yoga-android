@@ -48,7 +48,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ExerciseViewHolder>{
 
 
         holder.Exercise_title.setText(helperClass.getExercise_title());
-        holder.Exercise_time.setText(helperClass.getExercise_time());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +69,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ExerciseViewHolder>{
 
     public class ExerciseViewHolder extends RecyclerView.ViewHolder{
         ImageView imageView;
-        TextView Exercise_title , Exercise_time;
+        TextView Exercise_title ;
 
 
         public ExerciseViewHolder(@NonNull View itemView) {
@@ -78,7 +77,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ExerciseViewHolder>{
 
             imageView = itemView.findViewById(R.id.exercise_icon);
             Exercise_title = itemView.findViewById(R.id.exercise_title);
-            Exercise_time = itemView.findViewById(R.id.exercise_time);
 
 
         }

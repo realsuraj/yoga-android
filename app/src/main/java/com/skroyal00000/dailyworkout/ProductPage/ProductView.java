@@ -10,6 +10,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -21,6 +22,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.gson.JsonObject;
 import com.skroyal00000.dailyworkout.PrefConfig;
 import com.skroyal00000.dailyworkout.ProductPage.Model.ShopChildItem;
 import com.skroyal00000.dailyworkout.ProductPage.ViewHolder.ShopAdapder;
@@ -28,6 +30,7 @@ import com.skroyal00000.dailyworkout.R;
 import com.skroyal00000.dailyworkout.Utils.LinkApi;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -37,6 +40,7 @@ import java.util.Map;
 
 public class ProductView extends AppCompatActivity{
 
+    TextView titleProductView;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager manager;
     List<ShopChildItem> childItemList;
@@ -47,9 +51,9 @@ public class ProductView extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.activity_product_view);
+
+        titleProductView = findViewById(R.id.titleProductView);
         shimmerFrameLayout = findViewById(R.id.shimmerLayout);
         shimmerFrameLayout.startShimmer();
         recyclerView = findViewById(R.id.shopPRecyclerView);
@@ -62,6 +66,7 @@ public class ProductView extends AppCompatActivity{
 
         Intent intent = getIntent();
         whichT = intent.getStringExtra("whichT");
+
         PrefConfig.saveTableNameProductView(getApplicationContext(),whichT);
         getData();
     }
@@ -86,10 +91,7 @@ public class ProductView extends AppCompatActivity{
                         shopChildItem.setId(jsonObject.getInt("id"));
                         shopChildItem.setTitle(jsonObject.getString("title"));
                         shopChildItem.setImage(jsonObject.getString("image"));
-                        shopChildItem.setMiniTitle2(jsonObject.getString("miniTitle1"));
-                        shopChildItem.setMiniTitle1(jsonObject.getString("miniTitle2"));
-                        shopChildItem.setMiniIcon1(jsonObject.getString("miniIcon1"));
-                        shopChildItem.setMiniIcon2(jsonObject.getString("miniIcon2"));
+                        SetRemainingData(jsonObject,shopChildItem);
                         childItemList.add(shopChildItem);
                     }
                     adapter.notifyDataSetChanged();
@@ -120,5 +122,34 @@ public class ProductView extends AppCompatActivity{
         };
 
         requestQueue.add(stringRequest);
+    }
+
+    private void SetRemainingData(JSONObject jsonObject, ShopChildItem shopChildItem ) throws JSONException {
+
+        if(whichT.equalsIgnoreCase("daily_workout")){
+            shopChildItem.setMiniTitle1(jsonObject.getString("duration"));
+            shopChildItem.setMiniTitle2(jsonObject.getString("set"));
+            shopChildItem.setMiniIcon1("https://cdn-icons-png.flaticon.com/512/992/992700.png");
+            shopChildItem.setMiniIcon2("https://cdn-icons-png.flaticon.com/512/6793/6793958.png");
+            titleProductView.setText("Daily Workout");
+        } else if(whichT.equalsIgnoreCase("trainer")){
+            shopChildItem.setMiniTitle1(jsonObject.getString("price"));
+            shopChildItem.setMiniTitle2(jsonObject.getString("rating"));
+            shopChildItem.setMiniIcon1("https://cdn-icons-png.flaticon.com/512/60/60484.png");
+            shopChildItem.setMiniIcon2("https://cdn-icons-png.flaticon.com/512/263/263075.png");
+            titleProductView.setText("Trainer");
+        }else if(whichT.equalsIgnoreCase("shop")){
+            shopChildItem.setMiniTitle1(jsonObject.getString("price"));
+            shopChildItem.setMiniTitle2(jsonObject.getString("which_website"));
+            shopChildItem.setMiniIcon1("https://cdn-icons-png.flaticon.com/512/60/60484.png");
+            shopChildItem.setMiniIcon2("https://cdn-icons.flaticon.com/png/512/2129/premium/2129111.png?token=exp=1659281544~hmac=4afe0bac6ab23f2bef0d8d34457da947");
+            titleProductView.setText("Shop");
+        }else if(whichT.equalsIgnoreCase("gym")){
+            shopChildItem.setMiniTitle1(jsonObject.getString("price"));
+            shopChildItem.setMiniTitle2(jsonObject.getString("location"));
+            shopChildItem.setMiniIcon1("https://cdn-icons-png.flaticon.com/512/60/60484.png");
+            shopChildItem.setMiniIcon2("https://cdn-icons.flaticon.com/png/512/2838/premium/2838912.png?token=exp=1659281377~hmac=21c486478a726006219ac981bd73e0a4");
+            titleProductView.setText("Gym");
+        }
     }
 }

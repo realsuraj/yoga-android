@@ -129,7 +129,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomePage.this, ProductView.class);
-                intent.putExtra("whichT","Daily Workout");
+                intent.putExtra("whichT","daily_workout");
                 startActivity(intent);
             }
         });
@@ -138,7 +138,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomePage.this, ProductView.class);
-                intent.putExtra("whichT","Trainer");
+                intent.putExtra("whichT","trainer");
                 startActivity(intent);
             }
         });
@@ -147,7 +147,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomePage.this, ProductView.class);
-                intent.putExtra("whichT","Clothes");
+                intent.putExtra("whichT","shop");
                 startActivity(intent);
             }
         });
@@ -156,7 +156,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomePage.this, ProductView.class);
-                intent.putExtra("whichT","Gym");
+                intent.putExtra("whichT","gym");
                 startActivity(intent);
             }
         });

@@ -18,6 +18,7 @@ import com.skroyal00000.dailyworkout.ProductPage.Model.ShopChildItem;
 import com.skroyal00000.dailyworkout.ProductPage.ProductView;
 import com.skroyal00000.dailyworkout.R;
 import com.skroyal00000.dailyworkout.ShopBuy;
+import com.skroyal00000.dailyworkout.exercise.ExerciseList;
 
 import java.util.List;
 
@@ -50,11 +51,22 @@ public class ShopAdapder extends RecyclerView.Adapter<ShopAdapder.ShopChildViewH
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, ShopBuy.class);
-                intent.putExtra("whichT",PrefConfig.loadTableNameProductView(context) + "");
-                intent.putExtra("id",ShopItem.getId() + "");
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+
+                if(PrefConfig.loadTableNameProductView(context).equalsIgnoreCase("daily_workout")){
+                    Intent intent = new Intent(context, ExerciseList.class);
+                    intent.putExtra("whichT",ShopItem.getTitle() + "");
+                    intent.putExtra("join","4");
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(context, ShopBuy.class);
+                    intent.putExtra("whichT",PrefConfig.loadTableNameProductView(context) + "");
+                    intent.putExtra("id",ShopItem.getId() + "");
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
+
 
             }
         });

@@ -2,6 +2,7 @@ package com.skroyal00000.dailyworkout.exercise;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,7 +41,6 @@ public class ExerciseList extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     String name_exercise_string;
-    private LinearLayoutManager linearLayoutManager;
     Button btn_start_all_exercise;
     int countdownTimeInt;
     String countdownTimeString;
@@ -62,11 +62,10 @@ public class ExerciseList extends AppCompatActivity {
         list = new ArrayList<>();
         adapter = new Adapter(ExerciseList.this,list);
 
-        linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        GridLayoutManager layoutManager=new GridLayoutManager(this,2);;
 
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         getData();
         BtnStartAllExercise();
@@ -89,7 +88,7 @@ public class ExerciseList extends AppCompatActivity {
                         HelperClass helperClass = new HelperClass();
                         helperClass.setExercise_title(jsonObject.getString("title"));
                         helperClass.setExercise_image(jsonObject.getString("image"));
-                        helperClass.setExercise_time(jsonObject.getString("miniTitle1"));
+                        helperClass.setExercise_time(jsonObject.getString("duration"));
                         helperClass.setDescription(jsonObject.getString("description"));
                         list.add(helperClass);
                     }
@@ -118,7 +117,7 @@ public class ExerciseList extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<String,String>();
                 if(join.equalsIgnoreCase("1")){
-                    params.put("MAINTHREE","true");
+                    params.put("medium","level_5");
                     params.put("whichT",whichT);
                     params.put("level",level);
                     params.put("whichT2",whichT2);
@@ -127,7 +126,7 @@ public class ExerciseList extends AppCompatActivity {
                     params.put("level3",level3);
                 }
                 else if(join.equalsIgnoreCase("2")){
-                    params.put("TWO","true");
+                    params.put("medium","level_3");
                     params.put("whichT",whichT);
                     params.put("level",level);
                     params.put("whichT2",whichT2);
@@ -135,11 +134,15 @@ public class ExerciseList extends AppCompatActivity {
 
                 }
                 else if(join.equalsIgnoreCase("3")){
-                    params.put("THREE","true");
+                    params.put("medium","level_4");
                     params.put("whichT",whichT);
                     params.put("whichT2",whichT2);
                     params.put("whichT3",whichT3);
 
+                }
+                else if(join.equalsIgnoreCase("4")){
+                    params.put("medium","level_1");
+                    params.put("whichT",whichT);
                 }
                 return params;
             }
@@ -172,7 +175,6 @@ public class ExerciseList extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if(extras != null)
         {
-
             join = extras.getString("join");
             whichT = extras.getString("whichT");
             level = extras.getString("level");

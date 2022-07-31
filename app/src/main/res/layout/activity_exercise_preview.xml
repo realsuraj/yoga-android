@@ -6,28 +6,48 @@
     android:layout_height="match_parent"
     tools:context="com.skroyal00000.dailyworkout.exercise.ExercisePreview"
     android:orientation="vertical"
-    android:padding="5dp"
-    android:weightSum="100">
+    android:weightSum="100"
+    android:background="#EEEEEE">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="50"
-        android:layout_marginRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@color/white"
         >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="DW"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
         <ImageView
             android:id="@+id/settingbtn"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
             android:src="@drawable/setting_icon"
-            android:layout_alignParentRight="true"
-            android:translationZ="2dp"/>
+            android:translationZ="4dp"
+            android:layout_gravity="start"
+            android:layout_marginEnd="10dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="50"
+        >
+
 
         <ImageView
             android:id="@+id/exercisePreviewImage"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
+            android:layout_centerInParent="true"
+            android:scaleType="fitCenter"
             android:src="@drawable/chest_icon" />
     </RelativeLayout>
 
@@ -37,7 +57,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/design_default_color_primary_dark"
+        android:background="@color/white"
         android:orientation="vertical"
         android:layout_margin="5dp"
         android:elevation="5dp"
@@ -49,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Description"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textAlignment="center"
             android:textSize="20sp"
             android:fontFamily="@font/poppins_semibold"/>
@@ -59,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="fsfs"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textAlignment="textStart"
             android:layout_margin="5dp"
             android:textSize="20sp"

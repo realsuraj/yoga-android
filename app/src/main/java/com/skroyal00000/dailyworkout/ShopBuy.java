@@ -1,5 +1,6 @@
 package com.skroyal00000.dailyworkout;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +23,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.skroyal00000.dailyworkout.Utils.LinkApi;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -66,10 +68,9 @@ public class ShopBuy extends AppCompatActivity {
                     for (int i = 0; i < result.length(); i++) {
                         JSONObject jsonObject = result.getJSONObject(i);
                         title.setText(jsonObject.getString("title"));
-                        miniTitle1.setText(jsonObject.getString("miniTitle1"));
-                        miniTitle2.setText(jsonObject.getString("miniTitle2"));
-                        description.setText((jsonObject.getString("description")));
                         stringShopAllImage = jsonObject.getString("image");
+                        description.setText((jsonObject.getString("description")));
+                        GetExtraData(jsonObject);
                         Glide.with(ShopBuy.this).load(stringShopAllImage).fitCenter().
                                 placeholder(R.drawable.progess_bar).
                                 diskCacheStrategy(DiskCacheStrategy.ALL).into(showAllImage);
@@ -86,7 +87,7 @@ public class ShopBuy extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
             }
         }){
-            @Nullable
+            @NonNull
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<String,String>();
@@ -97,5 +98,18 @@ public class ShopBuy extends AppCompatActivity {
         };
 
         requestQueue.add(stringRequest);
+    }
+
+    public void GetExtraData(JSONObject jsonObject) throws JSONException {
+        if(whichTable.equalsIgnoreCase("trainer")){
+            miniTitle1.setText(jsonObject.getString("price"));
+            miniTitle2.setText(jsonObject.getString("rating"));
+        }else if(whichTable.equalsIgnoreCase("shop")){
+            miniTitle1.setText(jsonObject.getString("price"));
+            miniTitle2.setText(jsonObject.getString("which_website"));
+        }else if(whichTable.equalsIgnoreCase("gym")){
+            miniTitle1.setText(jsonObject.getString("price"));
+            miniTitle2.setText(jsonObject.getString("location"));
+            }
     }
 }

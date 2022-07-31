@@ -6,31 +6,49 @@
     android:layout_height="match_parent"
     tools:context="com.skroyal00000.dailyworkout.exercise.ExercisePreview"
     android:orientation="vertical"
-    android:padding="5dp"
-    android:layout_weight="100">
+    android:layout_weight="100"
+    android:background="#EEEEEE">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginRight="20dp"
-        android:layout_weight="50"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@color/white"
         >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="DW"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/settingbtn"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:src="@drawable/setting_icon"
-            android:translationZ="4dp"/>
+            android:translationZ="4dp"
+            android:layout_gravity="start"
+            android:layout_marginEnd="10dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="50"
+        >
+
+
         <ImageView
-            android:layout_centerInParent="true"
             android:id="@+id/exercise_imageview"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/chest_icon"
-            android:scaleType="centerCrop"
-            />
+            android:layout_centerInParent="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/chest_icon" />
     </RelativeLayout>
 
 
@@ -40,7 +58,7 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/design_default_color_primary_dark"
+        android:background="@color/white"
         android:orientation="vertical"
         android:layout_margin="5dp"
         android:layout_weight="50"
@@ -52,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Chest"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="23sp"
             android:fontFamily="@font/poppins_bold"
             android:layout_gravity="center"/>
@@ -62,7 +80,7 @@
             android:layout_height="wrap_content"
             android:text="12"
             android:layout_gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:fontFamily="@font/poppins_medium"/>
 
@@ -103,11 +121,11 @@
                     android:id="@+id/arcprogress"
                     android:layout_width="140dp"
                     android:layout_height="120dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-
+                    app:arc_finished_color="@color/black"
+                    app:arc_unfinished_color="@android:color/darker_gray"
                     android:layout_gravity="center"
-                    app:arc_bottom_text_size="32sp" />
+                    app:arc_bottom_text_size="32sp"
+                    app:arc_text_color="@color/black"/>
 
                 <ToggleButton
                     android:id="@+id/play_time_btn"
@@ -132,7 +150,7 @@
                     android:id="@+id/next_btn"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/next_icon"
+                    android:background="@drawable/next"
                     />
 
             </LinearLayout>

@@ -10,12 +10,16 @@
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/drawable-anydpi/play_icon.xml" value="0.131" />
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/drawable-anydpi/time_icon.xml" value="0.22179487179487178" />
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1495" />
+        <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/drawable/back_icon_background.xml" value="0.1505" />
+        <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/drawable/back_icon_foreground.xml" value="0.1505" />
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/drawable/btn_slector.xml" value="0.11965811965811966" />
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/drawable/btn_text_selector.xml" value="0.11965811965811966" />
+        <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/drawable/card_shape.xml" value="0.1505" />
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/drawable/edit_text_styling.xml" value="0.2189873417721519" />
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/drawable/feature_card_selector.xml" value="0.11965811965811966" />
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/drawable/ic_baseline_local_offer_24.xml" value="0.2189873417721519" />
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/drawable/ic_baseline_skip_next_24.xml" value="0.131" />
+        <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1505" />
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/drawable/join_now_btn_background.xml" value="0.2188034188034188" />
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/drawable/progess_bar.xml" value="0.16452991452991453" />
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/drawable/radio_normal.xml" value="0.22179487179487178" />
@@ -29,6 +33,7 @@
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/layout/activity_diet_plan.xml" value="0.20854700854700856" />
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/layout/activity_exercise_days.xml" value="0.14871794871794872" />
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/layout/activity_exercise_list.xml" value="0.176" />
+        <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/layout/activity_exercise_preview.xml" value="0.20854700854700856" />
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/layout/activity_home_page.xml" value="0.21107266435986158" />
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/layout/activity_login.xml" value="0.20854700854700856" />
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/layout/activity_login_page.xml" value="0.264" />
@@ -43,7 +48,7 @@
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/layout/child_recyclerview_homepage.xml" value="0.20555555555555555" />
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/layout/exercise_list_card.xml" value="0.20555555555555555" />
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/layout/featured_card_design.xml" value="0.264" />
-        <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/layout/grid_for_date.xml" value="0.14871794871794872" />
+        <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/layout/grid_for_date.xml" value="0.264" />
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/layout/home_child_item_view.xml" value="0.20854700854700856" />
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/layout/home_parent_item_view.xml" value="0.20854700854700856" />
         <entry key="..\:/Users/skroy/AndroidStudioProjects/workout/app/src/main/res/layout/home_slider_image.xml" value="0.20854700854700856" />
