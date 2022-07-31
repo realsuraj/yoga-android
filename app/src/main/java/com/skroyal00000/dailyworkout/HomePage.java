@@ -1,176 +1,102 @@
 package com.skroyal00000.dailyworkout;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Cache;
-import com.android.volley.NetworkResponse;
-import com.android.volley.ParseError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.facebook.shimmer.ShimmerFrameLayout;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.skroyal00000.dailyworkout.Detail.Detail_intro;
-import com.skroyal00000.dailyworkout.Home.ChildItem;
-import com.skroyal00000.dailyworkout.Home.ParentItem;
-import com.skroyal00000.dailyworkout.Home.ParentItemAdapter;
-import com.skroyal00000.dailyworkout.Utils.LinkApi;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
+import com.skroyal00000.dailyworkout.Home.ImageSlider.ImageSliderAdapter;
+import com.skroyal00000.dailyworkout.Home.ImageSlider.ImageSliderModel;
+import com.skroyal00000.dailyworkout.ProductPage.ProductView;
+import com.smarteist.autoimageslider.SliderView;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class HomePage extends AppCompatActivity {
-    private Button begginerBtnJoin, intermediateBtnJoin, advanceBtnJoin;
-    String[] workoutUrl;
-    ImageView settingImageview,custom_btn;
-    RecyclerView parentRecyclerView ;
-    ParentItemAdapter parentItemAdapter;
-    ShimmerFrameLayout shimmerFrameLayout;
+    ImageView settingImageview,custom_btn, imgWorkout,imgTrainer, imgShop, imgGym;
+    CardView cardWorkout,cardTrainer, cardGym, cardShop;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+//**********************************************************************************************************************************
+//                                           image slider
+//**********************************************************************************************************************************
+
+        String url1 = "https://images.pexels.com/photos/3253501/pexels-photo-3253501.jpeg?auto=compress&cs=tinysrgb&w=600";
+        String url2 = "https://images.pexels.com/photos/2105493/pexels-photo-2105493.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+        String url3 = "https://images.pexels.com/photos/1552103/pexels-photo-1552103.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+        ArrayList<ImageSliderModel> sliderDataArrayList = new ArrayList<>();
+        SliderView sliderView = findViewById(R.id.imageSlider);
+
+        sliderDataArrayList.add(new ImageSliderModel(url1,"beginner"));
+        sliderDataArrayList.add(new ImageSliderModel(url2,"intermediate"));
+        sliderDataArrayList.add(new ImageSliderModel(url3,"advanced"));
+
+        ImageSliderAdapter imageSliderAdapter = new ImageSliderAdapter(this, sliderDataArrayList);
+        sliderView.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
+        sliderView.setSliderAdapter(imageSliderAdapter);
+
+        sliderView.setScrollTimeInSec(3);
+        sliderView.setAutoCycle(true);
+        sliderView.startAutoCycle();
 
 
 //**********************************************************************************************************************************
 //                                            finding data
 //**********************************************************************************************************************************
-        shimmerFrameLayout = findViewById(R.id.shimmerLayout);
-        begginerBtnJoin = (Button) findViewById(R.id.joinNowDate);
-        intermediateBtnJoin = (Button) findViewById(R.id.joinNowDate2);
-        advanceBtnJoin = (Button) findViewById(R.id.joinNowDate3);
+        cardShop = findViewById(R.id.cardClothes);
+        cardGym = findViewById(R.id.cardSupplements);
+        cardTrainer = findViewById(R.id.cardTrainer);
+        cardWorkout = findViewById(R.id.cardWorkout);
+
         settingImageview = (ImageView)  findViewById(R.id.setting_imageview);
         custom_btn = findViewById(R.id.create_custom_plan_btn);
-        workoutUrl = getResources().getStringArray(R.array.home_page_icons_urls);
-        parentRecyclerView = findViewById(R.id.parentRecyclerView);
+        imgShop = findViewById(R.id.imgShop);
+        imgGym = findViewById(R.id.imgGym);
+        imgTrainer = findViewById(R.id.imgTrainer);
+        imgWorkout = findViewById(R.id.imgWorkout);
 
 //**********************************************************************************************************************************
-//                                               calling function
+//                                               setting images to cardView
 //**********************************************************************************************************************************
 
-        shimmerFrameLayout.startShimmer();
-        BeginnerJoinFunc();
+        String urlClothes = "https://i.pinimg.com/736x/7f/d6/11/7fd611e6e4cc411f380153fa73cccee5.jpg";
+        String urlSupplement = "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gettyimages-1227050586.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=640:*";
+        String urlTrainer = "https://www.mensjournal.com/wp-content/uploads/mf/_main2_trainer2.jpg?quality=86&strip=all";
+        String urlWorkout = "https://images.pexels.com/photos/1552106/pexels-photo-1552106.jpeg?auto=compress&cs=tinysrgb&w=600";
+
+
+        Glide.with(HomePage.this).load(urlClothes).fitCenter().
+                placeholder(R.drawable.progess_bar).
+                diskCacheStrategy(DiskCacheStrategy.ALL).into(imgShop);
+
+        Glide.with(HomePage.this).load(urlSupplement).fitCenter().
+                placeholder(R.drawable.progess_bar).
+                diskCacheStrategy(DiskCacheStrategy.ALL).into(imgGym);
+
+        Glide.with(HomePage.this).load(urlTrainer).fitCenter().
+                placeholder(R.drawable.progess_bar).
+                diskCacheStrategy(DiskCacheStrategy.ALL).into(imgTrainer);
+
+        Glide.with(HomePage.this).load(urlWorkout).fitCenter().
+                placeholder(R.drawable.progess_bar).
+                diskCacheStrategy(DiskCacheStrategy.ALL).into(imgWorkout);
+
+       JoinFunc();
         SettingImageButton();
         custombtnPressed();
 
-//**********************************************************************************************************************************
-//                                              Setting recyclerview
-//**********************************************************************************************************************************
-
-        parentRecyclerView.setHasFixedSize(true);
-        parentRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        LinearLayoutManager layoutManager = new LinearLayoutManager(HomePage.this);
-        parentItemAdapter = new ParentItemAdapter(ParentItemList());
-        parentRecyclerView.setAdapter(parentItemAdapter);
-        parentRecyclerView.setLayoutManager(layoutManager);
-    }
-//**********************************************************************************************************************************
-//                                             setting array list for parent
-//**********************************************************************************************************************************
-
-
-    private List<ParentItem> ParentItemList()
-    {
-        List<ParentItem> itemList = new ArrayList<>();
-        ParentItem item = new ParentItem("Daily Workout", ChildItemList("Daily Workout"));
-        itemList.add(item);
-        ParentItem item1 = new ParentItem("Gym", ChildItemList("Gym"));
-        itemList.add(item1);
-        ParentItem item2 = new ParentItem("Trainer", ChildItemList("Trainer"));
-        itemList.add(item2);
-        ParentItem item3 = new ParentItem("Clothes", ChildItemList("Clothes"));
-        itemList.add(item3);
-        ParentItem item4 = new ParentItem("Supplements", ChildItemList("Supplements"));
-        itemList.add(item4);
-
-        return itemList;
-    }
-
-//**********************************************************************************************************************************
-//                                             setting array list for child
-//**********************************************************************************************************************************
-
-
-
-    private List<ChildItem> ChildItemList(String whichT) {
-        List<ChildItem> childItemsList = new ArrayList<>();
-        LinkApi linkApi = new LinkApi() ;
-        String url = linkApi.homeData;
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-
-                    JSONObject childObj = new JSONObject(response);
-                    JSONArray childArray = childObj.getJSONArray("result");
-                    List<ChildItem> childItemsList2 = new ArrayList<>();
-                    for (int i = 0; i < childArray.length(); i++) {
-                     JSONObject jsonObject = childArray.getJSONObject(i);
-                     childItemsList.add(new ChildItem(jsonObject.getString("title"),jsonObject.getString("image")
-                     ,jsonObject.getString("miniTitle1"),jsonObject.getString("miniTitle2")
-                     ,jsonObject.getString("miniIcon1"),jsonObject.getString("miniIcon2"),jsonObject.getInt("id")));
-                    }
-                    shimmerFrameLayout.stopShimmer();
-                    shimmerFrameLayout.setVisibility(View.GONE);
-                    parentItemAdapter.notifyDataSetChanged();
-
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    shimmerFrameLayout.stopShimmer();
-                    shimmerFrameLayout.setVisibility(View.GONE);
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.e("TAG", "Error : " + error.getMessage());
-                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-                shimmerFrameLayout.stopShimmer();
-                shimmerFrameLayout.setVisibility(View.GONE);
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String,String>();
-                params.put("whichT",whichT);
-                return params;
-            }
-        };
-
-        requestQueue.add(stringRequest);
-
-            return childItemsList;
-
-
 
     }
+
+
 //**********************************************************************************************************************************
 //                                             custom button
 //**********************************************************************************************************************************
@@ -198,21 +124,41 @@ public class HomePage extends AppCompatActivity {
 //                                            intent for join
 //**********************************************************************************************************************************
 
-    private void BeginnerJoinFunc() {
-        begginerBtnJoin.setOnClickListener(v -> {
-            Intent intent = new Intent(HomePage.this,ExerciseDays.class);
-            intent.putExtra("JoinBtn","Beginner");
-            startActivity(intent);
+    private void JoinFunc() {
+        cardWorkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this, ProductView.class);
+                intent.putExtra("whichT","Daily Workout");
+                startActivity(intent);
+            }
         });
-        intermediateBtnJoin.setOnClickListener(v -> {
-            Intent intent = new Intent(HomePage.this,ExerciseDays.class);
-            intent.putExtra("JoinBtn","Intermediate");
-            startActivity(intent);
+
+        cardTrainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this, ProductView.class);
+                intent.putExtra("whichT","Trainer");
+                startActivity(intent);
+            }
         });
-        advanceBtnJoin.setOnClickListener(v -> {
-            Intent intent = new Intent(HomePage.this,ExerciseDays.class);
-            intent.putExtra("JoinBtn","Advanced");
-            startActivity(intent);
+
+        cardShop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this, ProductView.class);
+                intent.putExtra("whichT","Clothes");
+                startActivity(intent);
+            }
+        });
+
+        cardGym.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this, ProductView.class);
+                intent.putExtra("whichT","Gym");
+                startActivity(intent);
+            }
         });
     }
 

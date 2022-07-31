@@ -46,11 +46,11 @@ public class ExerciseDays extends AppCompatActivity {
                 String whichExerciseDo = "";
 
                 //getting data from intent
-                Intent iin = getIntent();
-                Bundle b = iin.getExtras();
+                Intent intent = getIntent();
+                Bundle extras = intent.getExtras();
                 String joinBtn = null;
-                if (b != null) {
-                    joinBtn = (String) b.get("JoinBtn");
+                if (extras != null) {
+                    joinBtn = (String) extras.get("JoinBtn");
                 }
 
 
