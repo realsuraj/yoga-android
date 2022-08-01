@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cardDiet"
+    android:layout_width="match_parent"
+    android:layout_height="230dp"
+    android:layout_rowWeight="1"
+    android:layout_columnWeight="1"
+    android:layout_margin="3dp"
+    android:elevation="0dp"
+    android:layout_row="0"
+    android:layout_column="0"
+    >
+    <LinearLayout
+        android:elevation="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/feature_card_selector"
+        android:orientation="vertical"
+        android:paddingHorizontal="5dp"
+
+        >
+        <TextView
+            android:layout_marginVertical="9dp"
+            android:id="@+id/dietTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_semibold"
+            android:maxLength="17"
+            android:maxLines="1"
+            android:text="Egg"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textAlignment="center"/>
+        <ImageView
+            android:id="@+id/dietImage"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/chest_icon"
+            android:scaleType="centerCrop"
+
+            />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingHorizontal="5dp"
+            >
+
+                <TextView
+                    android:id="@+id/dietCalorie"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3sp"
+                    android:text="1600"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:ellipsize="end"
+                    android:maxLength="17"/>
+            <TextView
+                android:id="@+id/dietProtein"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3sp"
+                android:text="1600"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:ellipsize="end"
+                android:maxLength="17"
+                android:layout_alignParentEnd="true"/>
+
+
+        </RelativeLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+

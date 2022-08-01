@@ -9,4 +9,5 @@ public class LinkApi {
     public String showSingleData = webUrl + "showDataParticular.php";
     public String userUpdateData = webUrl + "updateUserData.php";
     public  String showExercise = webUrl + "exercise.php";
+    public String showDiet = webUrl + "dietShow.php";
 }

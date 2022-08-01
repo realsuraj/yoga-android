@@ -15,7 +15,7 @@
         android:theme="@style/Theme.Yoga"
         tools:node="replace">
         <activity
-            android:name=".DietPlan"
+            android:name=".diet.DietPlan"
             android:exported="false" />
         <activity
             android:name=".ShopBuy"

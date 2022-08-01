@@ -46,8 +46,6 @@ public class ShopAdapder extends RecyclerView.Adapter<ShopAdapder.ShopChildViewH
         holder.shopBuy.setText(ShopItem.getMiniTitle1());
         holder.shopWebsite.setText(ShopItem.getMiniTitle2());
         Glide.with(holder.shopImage).load(ShopItem.getImage()).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.shopImage);
-        Glide.with(holder.shopMiniIcon1).load(ShopItem.getMiniIcon1()).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.shopMiniIcon1);
-        Glide.with(holder.shopMiniIcon2).load(ShopItem.getMiniIcon2()).placeholder(R.drawable.progess_bar).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.shopMiniIcon2);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +54,7 @@ public class ShopAdapder extends RecyclerView.Adapter<ShopAdapder.ShopChildViewH
                     Intent intent = new Intent(context, ExerciseList.class);
                     intent.putExtra("whichT",ShopItem.getTitle() + "");
                     intent.putExtra("join","4");
+                    intent.putExtra("joinBtn",ShopItem.getTitle() + "");
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }
@@ -89,8 +88,6 @@ public class ShopAdapder extends RecyclerView.Adapter<ShopAdapder.ShopChildViewH
             shopBuy = itemView.findViewById(R.id.shopBuy);
             shopWebsite = itemView.findViewById(R.id.shopWebsite);
             shopImage = itemView.findViewById(R.id.shopImage);
-            shopMiniIcon1 = itemView.findViewById(R.id.shopMiniIcon1);
-            shopMiniIcon2 = itemView.findViewById(R.id.shopMiniIcon2);
         }
     }
 }

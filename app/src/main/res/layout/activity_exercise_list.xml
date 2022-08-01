@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.skroyal00000.dailyworkout.exercise.ExerciseList"
     android:orientation="vertical"
-    android:background="@color/white"
     android:layout_weight="10">
 
     <RelativeLayout
@@ -54,11 +53,11 @@
 
             <include layout="@layout/shimmer_default" />
 
-            <include layout="@layout/shimmer_default" />
 
-            <include layout="@layout/shimmer_default" />
 
-            <include layout="@layout/shimmer_default" />
+
+
+
 
 
         </LinearLayout>

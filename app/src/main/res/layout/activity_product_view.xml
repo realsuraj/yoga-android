@@ -10,19 +10,25 @@
 
 
 
-    <TextView
-        android:id="@+id/titleProductView"
-        android:layout_marginStart="16dp"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Shop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="29dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:textColor="@color/black"/>
+        android:padding="10dp"
+        android:background="@color/white"
+        >
 
+        <TextView
+            android:id="@+id/titleProductView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="DW"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmerLayout"

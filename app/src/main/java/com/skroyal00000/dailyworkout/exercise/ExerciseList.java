@@ -234,8 +234,11 @@ public class ExerciseList extends AppCompatActivity {
             level3 = extras.getString("level3");
             whichDay = extras.getString("whichDay");
             joinBtnStr = extras.getString("joinBtn");
-            whichExerciseTxt.setText(whichDay);
-
+            if(whichDay != null) {
+                whichExerciseTxt.setText("Day " + whichDay);
+            }else{
+                whichExerciseTxt.setText(joinBtnStr);
+            }
         }
 
     }

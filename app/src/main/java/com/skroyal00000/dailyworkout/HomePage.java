@@ -10,15 +10,15 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.skroyal00000.dailyworkout.Detail.Detail_intro;
 import com.skroyal00000.dailyworkout.Home.ImageSlider.ImageSliderAdapter;
 import com.skroyal00000.dailyworkout.Home.ImageSlider.ImageSliderModel;
 import com.skroyal00000.dailyworkout.ProductPage.ProductView;
+import com.skroyal00000.dailyworkout.diet.DietPlan;
 import com.smarteist.autoimageslider.SliderView;
 import java.util.ArrayList;
 
 public class HomePage extends AppCompatActivity {
-    ImageView settingImageview,custom_btn, imgWorkout,imgTrainer, imgShop, imgGym;
+    ImageView settingImageview, dietBtnImg, imgWorkout,imgTrainer, imgShop, imgGym;
     CardView cardWorkout,cardTrainer, cardGym, cardShop;
 
     @Override
@@ -57,7 +57,7 @@ public class HomePage extends AppCompatActivity {
         cardWorkout = findViewById(R.id.cardWorkout);
 
         settingImageview = (ImageView)  findViewById(R.id.setting_imageview);
-        custom_btn = findViewById(R.id.create_custom_plan_btn);
+        dietBtnImg = findViewById(R.id.dietBtnImg);
         imgShop = findViewById(R.id.imgShop);
         imgGym = findViewById(R.id.imgGym);
         imgTrainer = findViewById(R.id.imgTrainer);
@@ -91,7 +91,7 @@ public class HomePage extends AppCompatActivity {
 
        JoinFunc();
         SettingImageButton();
-        custombtnPressed();
+        DietBtnFunc();
 
 
     }
@@ -101,10 +101,9 @@ public class HomePage extends AppCompatActivity {
 //                                             custom button
 //**********************************************************************************************************************************
 
-    private void custombtnPressed() {
-        custom_btn.setOnClickListener(v -> {
-            Intent intent = new Intent(HomePage.this, Detail_intro.class);
-            intent.putExtra("customPressed","Custom_pressed");
+    private void DietBtnFunc() {
+        dietBtnImg.setOnClickListener(v -> {
+            Intent intent = new Intent(HomePage.this, DietPlan.class);
             startActivity(intent);
         });
     }
