@@ -1,16 +1,18 @@
 package com.skroyal00000.dailyworkout.exercise;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -31,13 +33,12 @@ import com.skroyal00000.dailyworkout.Utils.LinkApi;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ExerciseList extends AppCompatActivity {
-    String join , whichT, level, whichT2, level2, whichT3, level3;
+    String join , whichT, level, whichT2, level2, whichT3, level3,whichDay;
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     String name_exercise_string;
@@ -46,6 +47,9 @@ public class ExerciseList extends AppCompatActivity {
     String countdownTimeString;
     ArrayList<HelperClass> list;
     ShimmerFrameLayout shimmerFrameLayout;
+    TextView whichExerciseTxt;
+    ImageView ExerciseListInfoImg;
+    String joinBtnStr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,11 +57,20 @@ public class ExerciseList extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.exercise_list_recyclerView);
         btn_start_all_exercise = findViewById(R.id.btn_start_all_exercise);
         shimmerFrameLayout = findViewById(R.id.shimmerLayout);
+        ExerciseListInfoImg = findViewById(R.id.ExerciseListInfoTxt);
         shimmerFrameLayout.startShimmer();
         name_exercise_string = "";
-
+        whichExerciseTxt = findViewById(R.id.exerciseName);
         getPrefs();
         getExtraIntent();
+        ExerciseListInfoImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getInfoClick();
+            }
+        });
+
+
 
         list = new ArrayList<>();
         adapter = new Adapter(ExerciseList.this,list);
@@ -69,6 +82,43 @@ public class ExerciseList extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         getData();
         BtnStartAllExercise();
+    }
+
+    private void getInfoClick() {
+            AlertDialog.Builder builder = new AlertDialog.Builder(ExerciseList.this);
+            builder.setMessage("Have You Done Exercise");
+            builder.setTitle("Alert!");
+            builder.setCancelable(false);
+
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which)
+                                {
+                                    int whichIntDay = Integer.parseInt(whichDay);
+                                    if(joinBtnStr.equalsIgnoreCase("beginner")){
+                                        PrefConfig.saveWhichDayBeginner(ExerciseList.this,whichIntDay+1);
+                                    }else if(joinBtnStr.equalsIgnoreCase("intermediate")){
+                                        PrefConfig.saveWhichDayIntermediate(ExerciseList.this,whichIntDay+1);
+                                    }else if(joinBtnStr.equalsIgnoreCase("advanced")){
+                                        PrefConfig.saveWhichDayAdvanced(ExerciseList.this,whichIntDay+1);
+
+                                    }
+                                }
+                            });
+
+
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog, int which)
+                                {
+                                    dialog.cancel();
+                                }
+                            });
+
+            AlertDialog alertDialog = builder.create();
+
+            alertDialog.show();
     }
 
     private void getData() {
@@ -182,6 +232,9 @@ public class ExerciseList extends AppCompatActivity {
             level2 = extras.getString("level2");
             whichT3 = extras.getString("whichT3");
             level3 = extras.getString("level3");
+            whichDay = extras.getString("whichDay");
+            joinBtnStr = extras.getString("joinBtn");
+            whichExerciseTxt.setText(whichDay);
 
         }
 

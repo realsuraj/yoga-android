@@ -12,40 +12,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@drawable/white_card_selector"
-        android:gravity="center">
-   <androidx.constraintlayout.widget.ConstraintLayout
-       android:layout_gravity="center"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:orientation="vertical"
-       android:gravity="center"
+        android:background="@drawable/white_card_selector">
 
-       >
-
-       <ImageView
-           android:id="@+id/image_date_brake"
-           android:layout_width="30dp"
-           android:layout_height="30dp"
-           android:src="@drawable/break_icon"
-           app:layout_constraintBottom_toTopOf="@+id/textDate"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Day 1"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textAlignment="center"/>
 
        <TextView
-           android:id="@+id/textDate"
+           android:id="@+id/textMessage"
+           android:layout_marginHorizontal="9dp"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:fontFamily="@font/poppins_bold"
-           android:text="Day 1"
+           android:textSize="10sp"
+           android:textAlignment="center"
            android:textColor="@color/black"
-           android:textSize="15sp"
-           app:layout_constraintBottom_toBottomOf="parent"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toTopOf="parent" />
-   </androidx.constraintlayout.widget.ConstraintLayout>
+           android:text="Send" />
+
+
 
     </LinearLayout>
 

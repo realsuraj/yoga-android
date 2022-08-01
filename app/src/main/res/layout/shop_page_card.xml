@@ -5,7 +5,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/cardWorkout"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="240dp"
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
         android:layout_margin="5dp"
@@ -21,7 +21,20 @@
             android:padding="10dp"
 
             >
-
+            <TextView
+                android:layout_marginBottom="10dp"
+                android:id="@+id/shopTitle"
+                android:layout_width="match_parent"
+                android:layout_height="23dp"
+                android:layout_marginStart="4dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_semibold"
+                android:maxLength="17"
+                android:maxLines="1"
+                android:text="Workout"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textAlignment="center"/>
             <ImageView
                 android:id="@+id/shopImage"
                 android:layout_width="match_parent"
@@ -31,63 +44,60 @@
 
                 />
 
-            <TextView
-                android:id="@+id/shopTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="23dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="10dp"
-                android:ellipsize="end"
-                android:fontFamily="@font/poppins_semibold"
-                android:maxLength="17"
-                android:maxLines="1"
-                android:text="Workout"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
 
-            <LinearLayout
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    android:id="@+id/shopMiniIcon1"
-                    android:layout_marginTop="4dp"
-                    android:layout_width="30dp"
-                    android:layout_height="15dp"
-                    android:src="@drawable/ic_baseline_local_offer_24" />
-                <TextView
-                    android:id="@+id/shopBuy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="1600"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:layout_marginLeft="10sp"
-                    />
-            </LinearLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/shopMiniIcon1"
+            android:layout_width="30dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/ic_baseline_local_offer_24" />
+
+        <TextView
+            android:id="@+id/shopBuy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3sp"
+            android:text="1600"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    android:id="@+id/shopMiniIcon2"
-                    android:layout_width="30dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/website_link" />
-                <TextView
-                    android:id="@+id/shopWebsite"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="1600"
-                    android:textColor="@color/black"
-                    android:textSize="17sp"
-                    android:layout_marginLeft="10sp"
-                    />
-            </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
 
+        <ImageView
+            android:id="@+id/shopMiniIcon2"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:src="@drawable/website_link" />
+
+        <TextView
+            android:id="@+id/shopWebsite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3sp"
+            android:text="1600"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+    </LinearLayout>
+</RelativeLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
