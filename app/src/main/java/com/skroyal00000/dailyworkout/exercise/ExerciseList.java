@@ -26,6 +26,7 @@ import com.android.volley.toolbox.Volley;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.skroyal00000.dailyworkout.ExerciseListAdapter.Adapter;
 import com.skroyal00000.dailyworkout.ExerciseListAdapter.HelperClass;
+import com.skroyal00000.dailyworkout.MainActivity;
 import com.skroyal00000.dailyworkout.PrefConfig;
 import com.skroyal00000.dailyworkout.R;
 import com.skroyal00000.dailyworkout.Utils.LinkApi;
@@ -123,8 +124,8 @@ public class ExerciseList extends AppCompatActivity {
 
     private void getData() {
 
-        LinkApi linkApi = new LinkApi();
-        String url = linkApi.showExercise;
+        MainActivity mainActivity = new MainActivity();
+        String url = mainActivity.getApiUserShowExercise();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

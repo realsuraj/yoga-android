@@ -1,6 +1,5 @@
 package com.skroyal00000.dailyworkout.Detail;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,14 +24,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.skroyal00000.dailyworkout.ExerciseDays;
 import com.skroyal00000.dailyworkout.HomePage;
-import com.skroyal00000.dailyworkout.LoginPage;
+import com.skroyal00000.dailyworkout.MainActivity;
 import com.skroyal00000.dailyworkout.PrefConfig;
 import com.skroyal00000.dailyworkout.R;
-import com.skroyal00000.dailyworkout.Register;
 import com.skroyal00000.dailyworkout.Utils.LinkApi;
 
 import java.util.HashMap;
@@ -168,12 +163,12 @@ public class Detail_intro extends AppCompatActivity {
     }
 
     private void saveData(){
-        String username = PrefConfig.loadUsername(getApplicationContext());
+        String userEmail = PrefConfig.loadUserEmail(getApplicationContext());
         String gender = gender_string;
         String age = userAge;
         String phone_no = userPhoneNo;
-        LinkApi linkApi = new LinkApi();
-        String url = linkApi.userUpdateData;
+        MainActivity mainActivity = new MainActivity();
+        String url = mainActivity.getApiUserUpdateData();
 
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -194,7 +189,7 @@ public class Detail_intro extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<String,String>();
-                params.put("userName",username);
+                params.put("email",userEmail);
                 params.put("gender",gender);
                 params.put("age",age);
                 params.put("phone_no",phone_no);

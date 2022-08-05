@@ -23,6 +23,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.gson.JsonObject;
+import com.skroyal00000.dailyworkout.MainActivity;
 import com.skroyal00000.dailyworkout.PrefConfig;
 import com.skroyal00000.dailyworkout.ProductPage.Model.ShopChildItem;
 import com.skroyal00000.dailyworkout.ProductPage.ViewHolder.ShopAdapder;
@@ -48,6 +49,9 @@ public class ProductView extends AppCompatActivity{
     private LinearLayoutManager linearLayoutManager;
     private ShimmerFrameLayout shimmerFrameLayout;
     public String whichT;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,9 +78,10 @@ public class ProductView extends AppCompatActivity{
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                           getting volley data
      private void getData() {
+         MainActivity mainActivity = new MainActivity();
+         String url = mainActivity.getApiHomeData();
 
-        LinkApi linkApi = new LinkApi();
-        String url = linkApi.shopData;
+
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

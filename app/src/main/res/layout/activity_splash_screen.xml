@@ -8,10 +8,14 @@
     android:orientation="vertical"
     android:weightSum="100"
     android:background="@color/white"
+    android:gravity="center"
     >
 
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/gym_kar"
 
-
-
+    />
 
 </LinearLayout>

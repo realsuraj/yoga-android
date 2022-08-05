@@ -14,7 +14,7 @@ public class PrefConfig {
     private static final String PREF_SOUND_ON_OFF = "pref_sound_onn_off";
 
     private static final String PREF_MUSIC_ON_OFF = "pref_is_music_on_off";
-    private static final String PREF_USER_NAME = "pref_username";
+    private static final String PREF_USER_EMAIL = "pref_user_email";
 
     private static final String PREF_WHICH_TABLE_PRODUCT_VIEW = "pref_which_table";
     private static final String PREF_WHICH_DAY_BEGINNER = "pref_which_day_beginner";
@@ -77,16 +77,16 @@ public class PrefConfig {
         editor.apply();
     }
 
-    public static void saveUserName(Context context, String userName){
+    public static void saveUserEmail(Context context, String userName){
         SharedPreferences sharedPreferences = context.getSharedPreferences(MY_PREFERENCE_NAME,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(PREF_USER_NAME,userName);
+        editor.putString(PREF_USER_EMAIL,userName);
         editor.apply();
     }
 
-    public static String loadUsername(Context context){
+    public static String loadUserEmail(Context context){
         SharedPreferences sharedPreferences = context.getSharedPreferences(MY_PREFERENCE_NAME,Context.MODE_PRIVATE);
-        return  sharedPreferences.getString(PREF_USER_NAME,null);
+        return  sharedPreferences.getString(PREF_USER_EMAIL,null);
     }
 
     public static void saveSettingCountdownTimeInPref(Context context, int total){

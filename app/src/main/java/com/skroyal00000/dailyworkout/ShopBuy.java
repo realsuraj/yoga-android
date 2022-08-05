@@ -54,8 +54,8 @@ public class ShopBuy extends AppCompatActivity {
     }
 
     private void getData(){
-        LinkApi linkApi = new LinkApi() ;
-        String url = linkApi.showSingleData;
+        MainActivity mainActivity = new MainActivity();
+        String url = mainActivity.getApiShowSingleData();
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
