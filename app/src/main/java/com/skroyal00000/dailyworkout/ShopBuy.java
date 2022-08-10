@@ -3,12 +3,20 @@ package com.skroyal00000.dailyworkout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.MotionEventCompat;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -34,23 +42,92 @@ public class ShopBuy extends AppCompatActivity {
     TextView title, miniTitle1, miniTitle2,description;
     ImageView showAllImage;
     String stringShopAllImage;
+    VideoView videoView;
+    String videoUrl = "https://media.geeksforgeeks.org/wp-content/uploads/20201217192146/Screenrecorder-2020-12-17-19-17-36-828.mp4?_=1";
+    private float x1,x2;
+    static final int MIN_DISTANCE = 150;
+    ImageView videoPlayBtn;
+    ImageView indicatorCircle1, indicatorCircle2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_buy);
 
+        videoView = findViewById(R.id.videoView);
         title = findViewById(R.id.showAllTitle);
         miniTitle1 = findViewById(R.id.showAllBuy);
         miniTitle2 = findViewById(R.id.showAllWebsite);
         description = findViewById(R.id.showAllDescription);
         showAllImage = findViewById(R.id.shopAllImage);
+        indicatorCircle1 = findViewById(R.id.indicatorCircle1);
+        indicatorCircle2 = findViewById(R.id.indicatorCircle2);
+        videoPlayBtn = findViewById(R.id.play_button);
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
         whichTable = intent.getStringExtra("whichT");
         getData();
+        indicatorCircle1.setBackground(ContextCompat.getDrawable(ShopBuy.this, R.drawable.circle));
+        indicatorCircle2.setBackground(ContextCompat.getDrawable(ShopBuy.this, R.drawable.circle_2));
+        videoPlayBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse(videoUrl);
+                videoView.setVideoURI(uri);
+                MediaController mediaController = new MediaController(ShopBuy.this);
+                mediaController.setAnchorView(videoView);
+                mediaController.setMediaPlayer(videoView);
+                videoView.setMediaController(mediaController);
+                videoView.start();
+                videoPlayBtn.setVisibility(View.GONE);
+
+            }
+        });
+
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        switch(event.getAction())
+        {
+            case MotionEvent.ACTION_DOWN:
+                x1 = event.getX();
+                break;
+            case MotionEvent.ACTION_UP:
+                x2 = event.getX();
+                float deltaX = x2 - x1;
+
+                if (Math.abs(deltaX) > MIN_DISTANCE)
+                {
+                    // Left to Right swipe action
+                    if (x2 > x1)
+                    {
+                        //previous
+                        videoView.setVisibility(View.GONE);
+                        showAllImage.setVisibility(View.VISIBLE);
+                        indicatorCircle1.setBackground(ContextCompat.getDrawable(ShopBuy.this, R.drawable.circle));
+                        indicatorCircle2.setBackground(ContextCompat.getDrawable(ShopBuy.this, R.drawable.circle_2));
 
 
+                    }
 
+                    // Right to left swipe action
+                    else
+                    {
+                       //next
+                        videoView.setVisibility(View.VISIBLE);
+                        showAllImage.setVisibility(View.GONE);
+                        videoPlayBtn.setVisibility(View.VISIBLE);
+                        indicatorCircle1.setBackground(ContextCompat.getDrawable(ShopBuy.this, R.drawable.circle_2));
+                        indicatorCircle2.setBackground(ContextCompat.getDrawable(ShopBuy.this, R.drawable.circle));
+
+                    }
+
+                }
+
+                break;
+        }
+        return super.onTouchEvent(event);
     }
 
     private void getData(){
@@ -70,6 +147,7 @@ public class ShopBuy extends AppCompatActivity {
                         title.setText(jsonObject.getString("title"));
                         stringShopAllImage = jsonObject.getString("image");
                         description.setText((jsonObject.getString("description")));
+                        miniTitle1.setText("₹ " + jsonObject.getString("price"));
                         GetExtraData(jsonObject);
                         Glide.with(ShopBuy.this).load(stringShopAllImage).fitCenter().
                                 placeholder(R.drawable.progess_bar).
@@ -102,13 +180,10 @@ public class ShopBuy extends AppCompatActivity {
 
     public void GetExtraData(JSONObject jsonObject) throws JSONException {
         if(whichTable.equalsIgnoreCase("trainer")){
-            miniTitle1.setText(jsonObject.getString("price"));
             miniTitle2.setText(jsonObject.getString("rating"));
         }else if(whichTable.equalsIgnoreCase("shop")){
-            miniTitle1.setText(jsonObject.getString("price"));
             miniTitle2.setText(jsonObject.getString("which_website"));
         }else if(whichTable.equalsIgnoreCase("gym")){
-            miniTitle1.setText(jsonObject.getString("price"));
             miniTitle2.setText(jsonObject.getString("location"));
             }
     }

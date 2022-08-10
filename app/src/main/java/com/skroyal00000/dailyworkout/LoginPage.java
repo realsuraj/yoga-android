@@ -38,10 +38,13 @@ public class LoginPage extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
     public static int RC_SIGN_IN = 100;
     String strUsername,strEmail;
+    Button btnSkip;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
+
+        btnSkip = findViewById(R.id.skipBtnLoginPage);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -62,11 +65,18 @@ public class LoginPage extends AppCompatActivity {
             }
         });
 
+        btnSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginPage.this,HomePage.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-
         startActivityForResult(signInIntent, RC_SIGN_IN);
 
     }
