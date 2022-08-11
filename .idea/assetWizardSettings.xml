@@ -351,7 +351,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="play_icon_new" />
+                            <entry key="color" value="4a4545" />
+                            <entry key="outputName" value="ic_baseline_play_arrow_24" />
                             <entry key="sourceFile" value="C:\Users\skroy\AndroidStudioProjects\workout" />
                           </map>
                         </option>

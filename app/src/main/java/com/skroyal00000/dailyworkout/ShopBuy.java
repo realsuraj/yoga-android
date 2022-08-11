@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.MediaController;
@@ -44,6 +45,7 @@ public class ShopBuy extends AppCompatActivity {
     String stringShopAllImage;
     VideoView videoView;
     String videoUrl = "https://media.geeksforgeeks.org/wp-content/uploads/20201217192146/Screenrecorder-2020-12-17-19-17-36-828.mp4?_=1";
+    Button clickBtn;
     private float x1,x2;
     static final int MIN_DISTANCE = 150;
     ImageView videoPlayBtn;
@@ -62,6 +64,7 @@ public class ShopBuy extends AppCompatActivity {
         indicatorCircle1 = findViewById(R.id.indicatorCircle1);
         indicatorCircle2 = findViewById(R.id.indicatorCircle2);
         videoPlayBtn = findViewById(R.id.play_button);
+        clickBtn = findViewById(R.id.buyBtn);
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
         whichTable = intent.getStringExtra("whichT");
@@ -80,6 +83,14 @@ public class ShopBuy extends AppCompatActivity {
                 videoView.start();
                 videoPlayBtn.setVisibility(View.GONE);
 
+            }
+        });
+        clickBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("http://www.google.com");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
 

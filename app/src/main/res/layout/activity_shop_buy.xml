@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="DW"
+            android:text="buy"
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -90,10 +90,10 @@
 
                <ImageView
                    android:id="@+id/play_button"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
+                   android:layout_width="60dp"
+                   android:layout_height="60dp"
                    android:layout_gravity="center_vertical|center_horizontal"
-                   android:src="@drawable/play_icon" />
+                   android:src="@drawable/play_btn_grey" />
 
            </FrameLayout>
        </LinearLayout>
@@ -175,6 +175,7 @@
             android:gravity="bottom">
 
             <Button
+                android:id="@+id/buyBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Buy"
